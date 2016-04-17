@@ -28,19 +28,15 @@ var csv = {
 
                     }
 
-                    console.log(zzz);
-
                     for (var i = 0; i < 3; i++) {
-                        console.log(zzz[i]["name"] + " - KM: " + zzz[i]["km"].toFixed(4));
+                        console.log(zzz[i]["name"] + "," + zzz[i]["km"].toFixed(4));
                     }
 
-                    return 1;
                 }
             }
         }
         rawFile.send(null);
 
-        return 1;
     }
 }
 
