@@ -1,41 +1,60 @@
 ﻿
-
 var csv = {
-    read: function (location) {
+
+    check: function (location) {
+
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", "coffee_shops.csv", false);
+        rawFile.onreadystatechange = function () {
+            if (rawFile.readyState === 4 && rawFile.status === 200) {
+                csv.read(location, rawFile.responseText);
+            }
+        }
+        rawFile.send(null);
+        return csv.read(location, rawFile.responseText);
+    },
+
+    read: function (location, file) {
 
         var user_lat = location.coords.latitude;
         var user_lon = location.coords.longitude;
 
-        var rawFile = new XMLHttpRequest();
-        rawFile.open("GET", "coffee_shops.csv", true);
-        rawFile.onreadystatechange = function () {
-            if (rawFile.readyState === 4) {
-                if (rawFile.status === 200 || rawFile.status == 0) {
-                    var line = rawFile.responseText.split("\n");
-                    var zzz = [];
-                    for (var i in line) {
-                        var x = line[i].split(",");
-                        if (x.length != 3) {
-                            throw Error("Invalid record in CSV");
-                            break;
-                        }
-
-                        zzz[i] = [];
-                        zzz[i]["name"] = x[0];
-                        zzz[i]["km"] = mats.transformToKM(user_lat, user_lon, x[1], x[2]);
-
-                        zzz.sort(function (a, b) { return a.km - b.km });
-
-                    }
-
-                    for (var i = 0; i < 3; i++) {
-                        console.log(zzz[i]["name"] + "," + zzz[i]["km"].toFixed(4));
-                    }
-
-                }
+        var line = file.split("\n");
+        var output = [];
+        for (var i in line) {
+            var el = line[i].split(",");
+            if (el.length != 3) {
+                throw Error("Invalid record in CSV");
             }
+
+            output[i] = [];
+
+            output[i]["name"] = el[0];
+            output[i]["lat"] = el[1];
+            output[i]["lon"] = el[2];
+
+            output[i]["km"] = mats.transformToKM(user_lat, user_lon, el[1], el[2]);
+            output[i]["dist"] = mats.getdistance(user_lat, user_lon, el[1], el[2]);
+
         }
-        rawFile.send(null);
+
+        output.sort(function (a, b) { return a.km - b.km });
+
+        var results = [];
+        for (var i = 0; i < 3; i++) {
+            results[i] = [];
+
+            results[i]["name"] = output[i]["name"];
+            results[i]["lat"] = output[i]["lat"];
+            results[i]["lon"] = output[i]["lon"];
+
+            results[i]["km"] = output[i]["km"];
+            results[i]["dist"] = output[i]["dist"];
+
+            //console.log(output[i]["name"] + "," + output[i]["km"]);
+        }
+
+        return results;
 
     }
 }
@@ -47,18 +66,36 @@ function error(message) {
 
 var mats = {
 
+    // Classic formula 
+    getdistance: function (lat1, lon1, lat2, lon2) {
+
+        var lat = Math.pow(lat2 - lat1, 2);
+        var lon = Math.pow(lon2 - lon1, 2);
+
+        var r = Math.sqrt(lat + lon);
+
+        return r.toFixed(4);
+    },
+
+
+    // Haversine formula
+    // URL: www.en.wikipedia.org/wiki/Haversine_formula
+    // return real distance between 2 points in KM
+
     transformToKM: function (lat1, lon1, lat2, lon2) {
+
         var R = 6371;
-        var dLat = mats.deg2rad(lat2 - lat1);
-        var dLon = mats.deg2rad(lon2 - lon1);
+        var dLat = this.deg2rad(lat2 - lat1);
+        var dLon = this.deg2rad(lon2 - lon1);
         var a =
           Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-          Math.cos(mats.deg2rad(lat1)) * Math.cos(mats.deg2rad(lat2)) *
+          Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
           Math.sin(dLon / 2) * Math.sin(dLon / 2)
         ;
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c;
-        return d;
+
+        return d.toFixed(4);
     },
 
     deg2rad: function(deg) {
@@ -79,3 +116,4 @@ var loc = {
 
     }
 }
+
