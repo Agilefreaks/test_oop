@@ -3,15 +3,25 @@ var csv = {
 
     check: function (location) {
 
+        var ReadSucces = false;
         var rawFile = new XMLHttpRequest();
         rawFile.open("GET", "coffee_shops.csv", false);
         rawFile.onreadystatechange = function () {
-            if (rawFile.readyState === 4 && rawFile.status === 200) {
-                csv.read(location, rawFile.responseText);
+            if (rawFile.readyState === 4 && rawFile.status === 200 || rawFile.readyState === 4 && rawFile.status === 0) {
+                ReadSucces = true;
             }
         }
+        
         rawFile.send(null);
-        return csv.read(location, rawFile.responseText);
+
+        if (ReadSucces) {
+            return csv.read(location, rawFile.responseText);
+        }
+        else {
+            throw Error("Can't open CSV file");
+        }
+
+        
     },
 
     read: function (location, file) {
