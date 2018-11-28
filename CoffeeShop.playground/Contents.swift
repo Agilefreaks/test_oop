@@ -42,7 +42,8 @@ struct CoffeeShopApp {
     init?(_ arguments: [String]) {
         guard arguments.count == 3,
             let y = Double(arguments[0]),
-            let x = Double(arguments[1])
+            let x = Double(arguments[1]),
+            CoffeeShopApp.isFilename(arguments[2])
         else {
             return nil
         }
@@ -50,6 +51,17 @@ struct CoffeeShopApp {
         user.y = y
         shopDataFilename = arguments[2]
     }
+
+    static func isFilename(_ value: String) -> Bool {
+        guard value.contains("."),
+            let first = value.first, first != ".",
+            let last = value.last, last != "."
+        else {
+            return false
+        }
+        return true
+    }
+
 }
 
 class CoffeeShopAppTest: XCTestCase {
