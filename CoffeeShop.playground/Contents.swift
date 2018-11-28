@@ -2,7 +2,7 @@ import Foundation
 import XCTest
 
 // MARK: - Location
-struct Location {
+struct Location: Equatable {
     var x = 0.0
     var y = 0.0
 }
@@ -34,7 +34,7 @@ LocationTest.defaultTestSuite.run()
 
 
 // MARK: - CoffeeShop
-struct CoffeeShop {
+struct CoffeeShop: Equatable {
     var name: String
     var location: Location
 
@@ -56,6 +56,19 @@ struct CoffeeShop {
 
         self.init(name: components[0], location: Location(x: x, y: y))
     }
+
+    static func coffeeShops(fromCSV content: String) -> [CoffeeShop]? {
+        var coffeeShops = [CoffeeShop]()
+        let lines = content.components(separatedBy: .newlines)
+        for line in lines {
+            guard let coffeeShop = CoffeeShop(line, separator: ",") else {
+                return nil
+            }
+            coffeeShops.append(coffeeShop)
+        }
+        return coffeeShops
+    }
+
 }
 
 class CoffeeShopTest: XCTestCase {
