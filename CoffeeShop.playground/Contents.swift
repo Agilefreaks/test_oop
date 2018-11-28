@@ -166,6 +166,30 @@ class CoffeeShopTest: XCTestCase {
         XCTAssertNil(coffeeShops)
     }
 
+    func test_coffeeShopsOrderedByDistanceToLocation() {
+        let fileContent = """
+                        Starbucks Seattle,47.5809,-122.3160
+                        Starbucks SF,37.5209,-122.3340
+                        Starbucks Moscow,55.752047,37.595242
+                        Starbucks Seattle2,47.5869,-122.3368
+                        Starbucks Rio De Janeiro,-22.923489,-43.234418
+                        Starbucks Sydney,-33.871843,151.206767
+                        """
+        let coffeeShops = CoffeeShop.coffeeShops(fromCSV: fileContent)
+        XCTAssertNotNil(coffeeShops)
+        XCTAssertEqual(coffeeShops!.count, 6)
+        let location = Location(x: -122.4, y: 47.6)
+        let orderedCoffeeShops = CoffeeShop.sort(coffeeShops: coffeeShops, byDistanceTo: location, ascending: true)
+        var ordered = true
+        for i in 0..<coffeeShops!.count-1 {
+            let distance1 = orderedCoffeeShops[i].distance
+            let distance2 = orderedCoffeeShops[i+1].distance
+            if distance1 > distance2 {
+                ordered = false
+            }
+        }
+        XCTAssertTrue(ordered)
+    }
 }
 
 CoffeeShopTest.defaultTestSuite.run()
