@@ -28,6 +28,12 @@ class LocationTest: XCTestCase {
         XCTAssertEqual(location.x, 1)
         XCTAssertEqual(location.y, 1)
     }
+
+    func test_distanceToLocation() {
+        let locationA = Location(x: -2, y: 1)
+        let locationB = Location(x: 1, y: 5)
+        XCTAssertEqual(locationA.distanceTo(locationB), 5)
+    }
 }
 
 LocationTest.defaultTestSuite.run()
@@ -35,6 +41,9 @@ LocationTest.defaultTestSuite.run()
 
 // MARK: - CoffeeShop
 struct CoffeeShop: Equatable {
+
+    typealias CoffeeShopWithDistance = (coffeeShop: CoffeeShop, distance: Double)
+
     var name: String
     var location: Location
 
@@ -69,6 +78,17 @@ struct CoffeeShop: Equatable {
         return coffeeShops
     }
 
+    static func sort(coffeeShops: [CoffeeShop], byDistanceTo location: Location, ascending: Bool = true) -> [CoffeeShopWithDistance] {
+        var coffeeShopWithDistance = coffeeShops.map { CoffeeShopWithDistance(coffeeShop: $0, distance: $0.location.distanceTo(location)) }
+        coffeeShopWithDistance.sort {
+            if ascending {
+                return $0.distance < $1.distance
+            } else {
+                return $0.distance > $1.distance
+            }
+        }
+        return coffeeShopWithDistance
+    }
 }
 
 class CoffeeShopTest: XCTestCase {
