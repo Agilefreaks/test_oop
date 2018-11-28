@@ -105,6 +105,54 @@ class CoffeeShopTest: XCTestCase {
         let coffeeShop = CoffeeShop("Starbucks Seattle,47.5809,-122.3160", separator: "")
         XCTAssertNil(coffeeShop)
     }
+
+    func test_coffeeShopsFromValidData() {
+        let fileContent = """
+                        Starbucks Seattle,47.5809,-122.3160
+                        Starbucks SF,37.5209,-122.3340
+                        Starbucks Moscow,55.752047,37.595242
+                        Starbucks Seattle2,47.5869,-122.3368
+                        Starbucks Rio De Janeiro,-22.923489,-43.234418
+                        Starbucks Sydney,-33.871843,151.206767
+                        """
+        let coffeeShops = CoffeeShop.coffeeShops(fromCSV: fileContent)
+        XCTAssertNotNil(coffeeShops)
+        XCTAssertEqual(coffeeShops!.count, 6)
+        XCTAssertEqual(coffeeShops!.first!, CoffeeShop(name: "Starbucks Seattle", location: Location(x: 47.5809, y: -122.3160)))
+    }
+
+    func test_coffeeShopsFromInvalidDataMoreInfo() {
+        let fileContent = """
+                        Starbucks Seattle,47,5809,-122,3160
+                        """
+        let coffeeShops = CoffeeShop.coffeeShops(fromCSV: fileContent)
+        XCTAssertNil(coffeeShops)
+    }
+
+    func test_coffeeShopsFromInvalidDataNoName() {
+        let fileContent = """
+                        ,47.5809,-122.3160
+                        """
+        let coffeeShops = CoffeeShop.coffeeShops(fromCSV: fileContent)
+        XCTAssertNil(coffeeShops)
+    }
+
+    func test_coffeeShopsFromInvalidDataInvalidX() {
+        let fileContent = """
+                        Starbucks Seattle,47.5809x,-122.3160
+                        """
+        let coffeeShops = CoffeeShop.coffeeShops(fromCSV: fileContent)
+        XCTAssertNil(coffeeShops)
+    }
+
+    func test_coffeeShopsFromInvalidDataInvalidY() {
+        let fileContent = """
+                        Starbucks Seattle,47.5809,-122.3160y
+                        """
+        let coffeeShops = CoffeeShop.coffeeShops(fromCSV: fileContent)
+        XCTAssertNil(coffeeShops)
+    }
+
 }
 
 CoffeeShopTest.defaultTestSuite.run()
