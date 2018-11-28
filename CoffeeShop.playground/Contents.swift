@@ -31,6 +31,11 @@ class CoffeeShopAppTest: XCTestCase {
 
 CoffeeShopAppTest.defaultTestSuite.run()
 
+struct Location {
+    var x = 0.0
+    var y = 0.0
+}
+
 class LocationTest: XCTestCase {
 
     override func setUp() {
