@@ -1,6 +1,18 @@
 import Foundation
 import XCTest
 
+struct CoffeeShopApp {
+
+    init?(_ arguments: [String]) {
+        guard arguments.count == 3,
+            let y = Double(arguments[0]),
+            let x = Double(arguments[1])
+        else {
+            return
+        }
+    }
+}
+
 class CoffeeShopAppTest: XCTestCase {
     
     override func setUp() {
