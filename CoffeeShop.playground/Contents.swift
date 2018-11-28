@@ -58,6 +58,39 @@ class CoffeeShopTest: XCTestCase {
         XCTAssertEqual(coffeeShop.location.x, 47.5809)
         XCTAssertEqual(coffeeShop.location.y, -122.3160)
     }
+
+    func test_coffeeShopFromString() {
+        let coffeeShop = CoffeeShop("Starbucks Seattle,47.5809,-122.3160", separator: ",")
+        XCTAssertNotNil(coffeeShop)
+        XCTAssertEqual(coffeeShop!.name, "Starbucks Seattle")
+        XCTAssertEqual(coffeeShop!.location.x, 47.5809)
+        XCTAssertEqual(coffeeShop!.location.y, -122.3160)
+    }
+
+    func test_coffeeShopFromInvalidString() {
+        let coffeeShop = CoffeeShop("Starbucks, Seattle,47.5809,-122.3160", separator: ",")
+        XCTAssertNil(coffeeShop)
+    }
+
+    func test_coffeeShopFromStringEmptyName() {
+        let coffeeShop = CoffeeShop(",47.5809,-122.3160", separator: ",")
+        XCTAssertNil(coffeeShop)
+    }
+
+    func test_coffeeShopFromStringInvalidX() {
+        let coffeeShop = CoffeeShop("Starbucks Seattle,47.5809x,-122.3160", separator: ",")
+        XCTAssertNil(coffeeShop)
+    }
+
+    func test_coffeeShopFromStringInvalidY() {
+        let coffeeShop = CoffeeShop("Starbucks Seattle,47.5809,-122.3160y", separator: ",")
+        XCTAssertNil(coffeeShop)
+    }
+
+    func test_coffeeShopFromStringEmptySeparator() {
+        let coffeeShop = CoffeeShop("Starbucks Seattle,47.5809,-122.3160", separator: "")
+        XCTAssertNil(coffeeShop)
+    }
 }
 
 CoffeeShopTest.defaultTestSuite.run()
