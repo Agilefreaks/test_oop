@@ -26,6 +26,9 @@ class CoffeeShopAppTest: XCTestCase {
     func test_applicationValidArguments() {
         let app = CoffeeShopApp(["47.6", "-122.4", "coffee_shop.csv"])
         XCTAssertNotNil(app)
+        XCTAssertEqual(app!.user.y, 47.6)
+        XCTAssertEqual(app!.user.x, -122.4)
+        XCTAssertEqual(app!.shopDataFilename, "coffee_shop.csv")
     }
 }
 
