@@ -32,6 +32,23 @@ class LocationTest: XCTestCase {
 
 LocationTest.defaultTestSuite.run()
 
+class CoffeeShopTest: XCTestCase {
+
+    override func setUp() {
+    }
+
+    override func tearDown() {
+    }
+
+    func test_coffeeShop() {
+        let coffeeShop = CoffeeShop(name: "Starbucks Seattle", location: Location(x: 47.5809, y: -122.3160))
+        XCTAssertEqual(coffeeShop.name, "Starbucks Seattle")
+        XCTAssertEqual(coffeeShop.location.x, 47.5809)
+        XCTAssertEqual(coffeeShop.location.y, -122.3160)
+    }
+}
+
+CoffeeShopTest.defaultTestSuite.run()
 
 // MARK: - CoffeeShopApp
 struct CoffeeShopApp {
