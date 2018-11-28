@@ -42,6 +42,20 @@ struct CoffeeShop {
         self.name = name
         self.location = location
     }
+
+    init?(_ line: String, separator: String) {
+        let components = line.components(separatedBy: separator)
+        guard !separator.isEmpty,
+            components.count == 3,
+            !components[0].isEmpty,
+            let x = Double(components[1]),
+            let y = Double(components[2])
+            else {
+                return nil
+        }
+
+        self.init(name: components[0], location: Location(x: x, y: y))
+    }
 }
 
 class CoffeeShopTest: XCTestCase {
