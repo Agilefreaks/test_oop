@@ -83,6 +83,24 @@ class CoffeeShopAppTest: XCTestCase {
         XCTAssertNil(app)
     }
 
+    func test_isFilename() {
+        let isFilename = CoffeeShopApp.isFilename("coffee_shop.csv")
+        XCTAssertTrue(isFilename)
+    }
+
+    func test_isNotFilename() {
+        let isFilename = CoffeeShopApp.isFilename("coffee_shop_csv")
+        XCTAssertFalse(isFilename)
+    }
+
+    func test_test_isNotFilenameNoName() {
+        let isFilename = CoffeeShopApp.isFilename(".csv")
+        XCTAssertFalse(isFilename)
+    }
+
+    func test_test_isNotFilenameNoExtension() {
+        let isFilename = CoffeeShopApp.isFilename("coffee_shop.")
+        XCTAssertFalse(isFilename)
     }
 }
 
