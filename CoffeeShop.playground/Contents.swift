@@ -32,6 +32,18 @@ class LocationTest: XCTestCase {
 
 LocationTest.defaultTestSuite.run()
 
+
+// MARK: - CoffeeShop
+struct CoffeeShop {
+    var name: String
+    var location: Location
+
+    init(name: String, location: Location) {
+        self.name = name
+        self.location = location
+    }
+}
+
 class CoffeeShopTest: XCTestCase {
 
     override func setUp() {
