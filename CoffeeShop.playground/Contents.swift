@@ -30,3 +30,28 @@ class CoffeeShopAppTest: XCTestCase {
 }
 
 CoffeeShopAppTest.defaultTestSuite.run()
+
+class LocationTest: XCTestCase {
+
+    override func setUp() {
+    }
+
+    override func tearDown() {
+    }
+
+    func test_defaultLocation() {
+        let location = Location()
+        XCTAssertEqual(location.x, 0.0)
+        XCTAssertEqual(location.y, 0.0)
+    }
+
+    func test_specificLocation() {
+        var location = Location()
+        location.x = 1
+        location.y = 1
+        XCTAssertEqual(location.x, 1)
+        XCTAssertEqual(location.y, 1)
+    }
+}
+
+LocationTest.defaultTestSuite.run()
