@@ -1,5 +1,6 @@
 import Foundation
 import XCTest
+import PlaygroundSupport
 
 // MARK: - Location
 struct Location: Equatable {
@@ -43,10 +44,11 @@ class LocationTest: XCTestCase {
 LocationTest.defaultTestSuite.run()
 
 
+
+typealias CoffeeShopWithDistance = (coffeeShop: CoffeeShop, distance: Double)
+
 // MARK: - CoffeeShop
 struct CoffeeShop: Equatable {
-
-    typealias CoffeeShopWithDistance = (coffeeShop: CoffeeShop, distance: Double)
 
     var name: String
     var location: Location
@@ -272,6 +274,17 @@ struct CoffeeShopApp {
         return true
     }
 
+    func closestCoffeeShops(count: Int, coffeeShopsCSV fileContent: String) -> [CoffeeShopWithDistance]? {
+
+        guard let coffeeShops = CoffeeShop.coffeeShops(fromCSV: fileContent) else {
+            return nil
+        }
+
+        let coffeeShopsWithDistance = CoffeeShop.sort(coffeeShops: coffeeShops, byDistanceTo: self.user)
+
+        let itemsToPrint = min(count, coffeeShopsWithDistance.count)
+        return Array(coffeeShopsWithDistance.prefix(itemsToPrint))
+    }
 }
 
 class CoffeeShopAppTest: XCTestCase {
@@ -315,17 +328,65 @@ class CoffeeShopAppTest: XCTestCase {
         XCTAssertFalse(isFilename)
     }
 
-    func test_test_isNotFilenameNoName() {
+    func test_isNotFilenameNoName() {
         let isFilename = CoffeeShopApp.isFilename(".csv")
         XCTAssertFalse(isFilename)
     }
 
-    func test_test_isNotFilenameNoExtension() {
+    func test_isNotFilenameNoExtension() {
         let isFilename = CoffeeShopApp.isFilename("coffee_shop.")
         XCTAssertFalse(isFilename)
     }
+
+    func test_3ClosestCoffeeShops() {
+        let app = CoffeeShopApp(["47.6", "-122.4", "coffee_shop.csv"])
+        XCTAssertNotNil(app)
+        let fileContent = """
+                        Starbucks Seattle,47.5809,-122.3160
+                        Starbucks SF,37.5209,-122.3340
+                        Starbucks Moscow,55.752047,37.595242
+                        Starbucks Seattle2,47.5869,-122.3368
+                        Starbucks Rio De Janeiro,-22.923489,-43.234418
+                        Starbucks Sydney,-33.871843,151.206767
+                        """
+
+        guard let coffeeShopsWithDistance = app!.closestCoffeeShops(count: 3, coffeeShopsCSV: fileContent) else {
+            NSLog("Invalid data format")
+            return
+        }
+
+        for coffeeShopWithDistance in coffeeShopsWithDistance {
+            let distance = String(format: "%.4f", coffeeShopWithDistance.distance)
+            print("\(coffeeShopWithDistance.coffeeShop.name),\(distance)")
+        }
+    }
+
 }
 
 CoffeeShopAppTest.defaultTestSuite.run()
 
+var commandLineArguments = CommandLine.arguments
+commandLineArguments.removeFirst()
 
+done: if let app = CoffeeShopApp(commandLineArguments) {
+
+    let fileUrl = playgroundSharedDataDirectory.appendingPathComponent(app.shopDataFilename)
+    guard let fileContent = try? String(contentsOf: fileUrl) else {
+        NSLog("Unable to read \(app.shopDataFilename) from ~\\Documents\\Shared Playground Data")
+        break done
+    }
+
+    guard let coffeeShopsWithDistance = app.closestCoffeeShops(count: 3, coffeeShopsCSV: fileContent) else {
+        NSLog("Invalid data format")
+        break done
+    }
+
+    for coffeeShopWithDistance in coffeeShopsWithDistance {
+        let distance = String(format: "%.4f", coffeeShopWithDistance.distance)
+        NSLog("\(coffeeShopWithDistance.coffeeShop.name),\(distance)")
+    }
+} else {
+    NSLog("invalid paramenters for Coffee Shop application")
+}
+
+print("end")
