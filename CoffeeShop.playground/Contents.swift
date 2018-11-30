@@ -1,6 +1,5 @@
 import Foundation
 import XCTest
-import PlaygroundSupport
 
 // MARK: - Location
 struct Location: Equatable {
@@ -366,13 +365,24 @@ class CoffeeShopAppTest: XCTestCase {
 CoffeeShopAppTest.defaultTestSuite.run()
 
 var commandLineArguments = CommandLine.arguments
-commandLineArguments.removeFirst()
+let first = commandLineArguments.removeFirst()
+if first.hasSuffix(".app/CoffeeShop") {
+    // run from within playground, not command line
+    commandLineArguments = ["47.6", "-122.4", "coffee_shops.csv"]
+}
 
 done: if let app = CoffeeShopApp(commandLineArguments) {
 
-    let fileUrl = playgroundSharedDataDirectory.appendingPathComponent(app.shopDataFilename)
-    guard let fileContent = try? String(contentsOf: fileUrl) else {
-        NSLog("Unable to read \(app.shopDataFilename) from ~\\Documents\\Shared Playground Data")
+    guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+        NSLog("Failed retrieving user document directory")
+        break done
+    }
+    let fileUrl = documentDirectoryUrl.appendingPathComponent("Shared Playground Data").appendingPathComponent(app.shopDataFilename)
+    var fileContent = ""
+    do {
+        fileContent = try String(contentsOf: fileUrl, encoding: .utf8)
+    } catch {
+        NSLog("Failed reading \(app.shopDataFilename) from ~\\Documents\\Shared Playground Data. Error: \(error.localizedDescription)")
         break done
     }
 
@@ -385,8 +395,7 @@ done: if let app = CoffeeShopApp(commandLineArguments) {
         let distance = String(format: "%.4f", coffeeShopWithDistance.distance)
         NSLog("\(coffeeShopWithDistance.coffeeShop.name),\(distance)")
     }
+
 } else {
     NSLog("invalid paramenters for Coffee Shop application")
 }
-
-print("end")
