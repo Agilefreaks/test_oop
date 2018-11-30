@@ -1,5 +1,4 @@
 import Foundation
-import XCTest
 
 // MARK: - Location
 struct Location: Equatable {
@@ -10,38 +9,6 @@ struct Location: Equatable {
         return sqrt( pow(self.x - location.x, 2) + pow(self.y - location.y, 2) )
     }
 }
-
-class LocationTest: XCTestCase {
-
-    override func setUp() {
-    }
-
-    override func tearDown() {
-    }
-
-    func test_defaultLocation() {
-        let location = Location()
-        XCTAssertEqual(location.x, 0.0)
-        XCTAssertEqual(location.y, 0.0)
-    }
-
-    func test_specificLocation() {
-        var location = Location()
-        location.x = 1
-        location.y = 1
-        XCTAssertEqual(location.x, 1)
-        XCTAssertEqual(location.y, 1)
-    }
-
-    func test_distanceToLocation() {
-        let locationA = Location(x: -2, y: 1)
-        let locationB = Location(x: 1, y: 5)
-        XCTAssertEqual(locationA.distanceTo(locationB), 5)
-    }
-}
-
-LocationTest.defaultTestSuite.run()
-
 
 
 typealias CoffeeShopWithDistance = (coffeeShop: CoffeeShop, distance: Double)
@@ -93,6 +60,125 @@ struct CoffeeShop: Equatable {
             }
         }
         return coffeeShopWithDistance
+    }
+}
+
+// MARK: - CoffeeShopApp
+struct CoffeeShopApp {
+
+    var user = Location()
+    var shopDataFilename = ""
+
+    init?(_ arguments: [String]) {
+        guard arguments.count == 3,
+            let y = Double(arguments[0]),
+            let x = Double(arguments[1]),
+            CoffeeShopApp.isFilename(arguments[2])
+        else {
+            return nil
+        }
+        user.x = x
+        user.y = y
+        shopDataFilename = arguments[2]
+    }
+
+    static func isFilename(_ value: String) -> Bool {
+        guard value.contains("."),
+            let first = value.first, first != ".",
+            let last = value.last, last != "."
+        else {
+            return false
+        }
+        return true
+    }
+
+    func closestCoffeeShops(count: Int, coffeeShopsCSV fileContent: String) -> [CoffeeShopWithDistance]? {
+
+        guard let coffeeShops = CoffeeShop.coffeeShops(fromCSV: fileContent) else {
+            return nil
+        }
+
+        let coffeeShopsWithDistance = CoffeeShop.sort(coffeeShops: coffeeShops, byDistanceTo: self.user)
+
+        let itemsToPrint = min(count, coffeeShopsWithDistance.count)
+        return Array(coffeeShopsWithDistance.prefix(itemsToPrint))
+    }
+}
+
+
+// MARK: - main
+
+var commandLineArguments = CommandLine.arguments
+let first = commandLineArguments.removeFirst()
+if first.hasSuffix(".app/CoffeeShop") {
+    // run from within playground, not command line
+    commandLineArguments = ["47.6", "-122.4", "coffee_shops.csv"]
+}
+
+done: if let app = CoffeeShopApp(commandLineArguments) {
+
+    guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+        NSLog("Failed retrieving user document directory")
+        break done
+    }
+    let fileUrl = documentDirectoryUrl.appendingPathComponent("Shared Playground Data").appendingPathComponent(app.shopDataFilename)
+    var fileContent = ""
+    do {
+        fileContent = try String(contentsOf: fileUrl, encoding: .utf8)
+    } catch {
+        NSLog("Failed reading \(app.shopDataFilename) from ~\\Documents\\Shared Playground Data. Error: \(error.localizedDescription)")
+        break done
+    }
+
+    guard let coffeeShopsWithDistance = app.closestCoffeeShops(count: 3, coffeeShopsCSV: fileContent) else {
+        NSLog("Invalid data format")
+        break done
+    }
+
+    for coffeeShopWithDistance in coffeeShopsWithDistance {
+        let distance = String(format: "%.4f", coffeeShopWithDistance.distance)
+        NSLog("\(coffeeShopWithDistance.coffeeShop.name),\(distance)")
+    }
+
+} else {
+    NSLog("invalid paramenters for Coffee Shop application")
+}
+
+
+// MARK: - unit tests
+
+// uncomment to run tests
+
+/*
+import XCTest
+
+
+class LocationTest: XCTestCase {
+
+    override func setUp() {
+    }
+
+    override func tearDown() {
+    }
+
+    func test_defaultLocation() {
+        let location = Location()
+        XCTAssertEqual(location.x, 0.0)
+        XCTAssertEqual(location.y, 0.0)
+    }
+
+    func test_specificLocation() {
+        var location = Location()
+        location.x = 1
+        location.y = 1
+        XCTAssertEqual(location.x, 1)
+        XCTAssertEqual(location.y, 1)
+    }
+
+    func test_distanceToLocation() {
+        let locationA = Location(x: -2, y: 1)
+        let locationB = Location(x: 1, y: 5)
+        XCTAssertEqual(locationA.distanceTo(locationB), 5)
     }
 }
 
@@ -242,55 +328,12 @@ class CoffeeShopTest: XCTestCase {
     }
 }
 
-CoffeeShopTest.defaultTestSuite.run()
-
-// MARK: - CoffeeShopApp
-struct CoffeeShopApp {
-
-    var user = Location()
-    var shopDataFilename = ""
-
-    init?(_ arguments: [String]) {
-        guard arguments.count == 3,
-            let y = Double(arguments[0]),
-            let x = Double(arguments[1]),
-            CoffeeShopApp.isFilename(arguments[2])
-        else {
-            return nil
-        }
-        user.x = x
-        user.y = y
-        shopDataFilename = arguments[2]
-    }
-
-    static func isFilename(_ value: String) -> Bool {
-        guard value.contains("."),
-            let first = value.first, first != ".",
-            let last = value.last, last != "."
-        else {
-            return false
-        }
-        return true
-    }
-
-    func closestCoffeeShops(count: Int, coffeeShopsCSV fileContent: String) -> [CoffeeShopWithDistance]? {
-
-        guard let coffeeShops = CoffeeShop.coffeeShops(fromCSV: fileContent) else {
-            return nil
-        }
-
-        let coffeeShopsWithDistance = CoffeeShop.sort(coffeeShops: coffeeShops, byDistanceTo: self.user)
-
-        let itemsToPrint = min(count, coffeeShopsWithDistance.count)
-        return Array(coffeeShopsWithDistance.prefix(itemsToPrint))
-    }
-}
 
 class CoffeeShopAppTest: XCTestCase {
-    
+
     override func setUp() {
     }
-    
+
     override func tearDown() {
     }
 
@@ -362,40 +405,9 @@ class CoffeeShopAppTest: XCTestCase {
 
 }
 
+
+LocationTest.defaultTestSuite.run()
+CoffeeShopTest.defaultTestSuite.run()
 CoffeeShopAppTest.defaultTestSuite.run()
 
-var commandLineArguments = CommandLine.arguments
-let first = commandLineArguments.removeFirst()
-if first.hasSuffix(".app/CoffeeShop") {
-    // run from within playground, not command line
-    commandLineArguments = ["47.6", "-122.4", "coffee_shops.csv"]
-}
-
-done: if let app = CoffeeShopApp(commandLineArguments) {
-
-    guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-        NSLog("Failed retrieving user document directory")
-        break done
-    }
-    let fileUrl = documentDirectoryUrl.appendingPathComponent("Shared Playground Data").appendingPathComponent(app.shopDataFilename)
-    var fileContent = ""
-    do {
-        fileContent = try String(contentsOf: fileUrl, encoding: .utf8)
-    } catch {
-        NSLog("Failed reading \(app.shopDataFilename) from ~\\Documents\\Shared Playground Data. Error: \(error.localizedDescription)")
-        break done
-    }
-
-    guard let coffeeShopsWithDistance = app.closestCoffeeShops(count: 3, coffeeShopsCSV: fileContent) else {
-        NSLog("Invalid data format")
-        break done
-    }
-
-    for coffeeShopWithDistance in coffeeShopsWithDistance {
-        let distance = String(format: "%.4f", coffeeShopWithDistance.distance)
-        NSLog("\(coffeeShopWithDistance.coffeeShop.name),\(distance)")
-    }
-
-} else {
-    NSLog("invalid paramenters for Coffee Shop application")
-}
+*/
