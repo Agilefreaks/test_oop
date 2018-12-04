@@ -152,36 +152,6 @@ done: if let app = CoffeeShopApp(commandLineArguments) {
 /*
 import XCTest
 
-
-class LocationTest: XCTestCase {
-
-    override func setUp() {
-    }
-
-    override func tearDown() {
-    }
-
-    func test_defaultLocation() {
-        let location = Location()
-        XCTAssertEqual(location.x, 0.0)
-        XCTAssertEqual(location.y, 0.0)
-    }
-
-    func test_specificLocation() {
-        var location = Location()
-        location.x = 1
-        location.y = 1
-        XCTAssertEqual(location.x, 1)
-        XCTAssertEqual(location.y, 1)
-    }
-
-    func test_distanceToLocation() {
-        let locationA = Location(x: -2, y: 1)
-        let locationB = Location(x: 1, y: 5)
-        XCTAssertEqual(locationA.distanceTo(locationB), 5)
-    }
-}
-
 class CoffeeShopTest: XCTestCase {
 
     override func setUp() {
