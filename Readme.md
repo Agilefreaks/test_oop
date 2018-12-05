@@ -41,10 +41,4 @@ Starbucks SF,10.0793
 
 ## Test application
 
-To test the application you need to provide the coffee shop input file in user documents Shared Playground Data folder (~/Documents/Shared Playground Data).
-
-To run the playground with unit tests you need to open the playground in Xcode, uncomment the unit tests related code and run the playground. To provide different input data, you can edit the command line arguments provided under "run from within playground, not command line" comment.
-
-To run the playground from terminal provide the following command:
-swift <path_to_coffee_shop_playground>/CoffeeShop.playground/Contents.swift <user y coordinate> <user x coordinate> <shop data filename>
-The unit tests related code needs to be commented in this case.
+To test the application you need to open the playground in Xcode and run it. Any additional coffee shop input test files need to be provided in the Resources folder of the playground.
