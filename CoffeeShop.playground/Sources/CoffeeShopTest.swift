@@ -33,4 +33,9 @@ public class CoffeeShopTest: XCTestCase {
         XCTAssertNil(coffeeShop)
     }
 
+    public func test_coffeeShopFromStringLessData() {
+        let coffeeShop = CoffeeShop(from: "Starbucks Seattle,47.5809", separator: ",")
+        XCTAssertNil(coffeeShop)
+    }
+
 }
