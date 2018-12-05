@@ -16,15 +16,10 @@ public struct CoffeeShopApp {
     }
 
     public func orderedCoffeeShopsClosestToUserLocation() throws -> [(coffeeShop: CoffeeShop, distance: Double)] {
-        guard let _ = Bundle.main.url(forResource: shopDataFilename, withExtension: nil) else {
+        guard let fileUrl = Bundle.main.url(forResource: shopDataFilename, withExtension: nil) else {
             throw CustomError.runtimeError("\(shopDataFilename) not found in playground Resources file")
         }
-        let content = """
-                    Starbucks Seattle,9,40
-                    Starbucks Moscow,5,12
-                    Starbucks Rio De Janeiro,8,15
-                    Starbucks Sydney,3,4
-                    """
+        let content = try String(contentsOf: fileUrl, encoding: .utf8)
         let lines = content.components(separatedBy: .newlines)
         var result: [(coffeeShop: CoffeeShop, distance: Double)] = []
         for line in lines {
