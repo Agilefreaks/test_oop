@@ -1,14 +1,5 @@
 import Foundation
 
-// MARK: - Location
-struct Location: Equatable {
-    var x = 0.0
-    var y = 0.0
-
-    func distanceTo(_ location: Location) -> Double {
-        return sqrt( pow(self.x - location.x, 2) + pow(self.y - location.y, 2) )
-    }
-}
 
 
 typealias CoffeeShopWithDistance = (coffeeShop: CoffeeShop, distance: Double)
@@ -66,7 +57,7 @@ struct CoffeeShop: Equatable {
 // MARK: - CoffeeShopApp
 struct CoffeeShopApp {
 
-    var user = Location()
+    var user: Location
     var shopDataFilename = ""
 
     init?(_ arguments: [String]) {
@@ -77,8 +68,7 @@ struct CoffeeShopApp {
         else {
             return nil
         }
-        user.x = x
-        user.y = y
+        user = Location(x: x, y: y)
         shopDataFilename = arguments[2]
     }
 
@@ -375,9 +365,8 @@ class CoffeeShopAppTest: XCTestCase {
 
 }
 
+*/
 
 LocationTest.defaultTestSuite.run()
-CoffeeShopTest.defaultTestSuite.run()
-CoffeeShopAppTest.defaultTestSuite.run()
-
-*/
+//CoffeeShopTest.defaultTestSuite.run()
+//CoffeeShopAppTest.defaultTestSuite.run()
