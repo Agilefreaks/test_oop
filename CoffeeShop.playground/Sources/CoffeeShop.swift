@@ -16,10 +16,11 @@ public struct CoffeeShop {
         guard !separator.isEmpty,
             compoments.count == 3,
             !compoments[0].isEmpty,
-            let x = Double(compoments[1])
+            let x = Double(compoments[1]),
+            let y = Double(compoments[2])
             else {
             return nil
         }
-        self.init(name: compoments[0], location: Location(x: x, y: -122.3160))
+        self.init(name: compoments[0], location: Location(x: x, y: y))
     }
 }
