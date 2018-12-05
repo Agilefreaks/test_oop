@@ -31,4 +31,15 @@ public class CoffeeShopAppTest: XCTestCase {
             XCTFail("Failed retrieving ordered coffee shops closest to user location: \(error)")
         }
     }
+
+    func test_orderedCoffeeShopsClosestToUserLocationMissingFile() {
+        let userLocation = Location(x: 0, y: 0)
+        let app = CoffeeShopApp(userLocation: userLocation, coffeeShopFilename: "missing_file")
+        do {
+            let _ = try app.orderedCoffeeShopsClosestToUserLocation()
+            XCTFail("Should not get here. There should be no missing_file in playground Resources folder.")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
 }
