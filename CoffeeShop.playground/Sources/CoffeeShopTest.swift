@@ -42,4 +42,10 @@ public class CoffeeShopTest: XCTestCase {
         let coffeeShop = CoffeeShop(from: "Starbucks Seattle,47.5809,-122.3160,more,data", separator: ",")
         XCTAssertNil(coffeeShop)
     }
+
+    public func test_coffeeShopFromStringEmptyName() {
+        let coffeeShop = CoffeeShop(from: ",47.5809,-122.3160", separator: ",")
+        XCTAssertNil(coffeeShop)
+    }
+
 }
