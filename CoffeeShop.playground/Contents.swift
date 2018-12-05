@@ -1,39 +1,12 @@
 import Foundation
 
-
-
 typealias CoffeeShopWithDistance = (coffeeShop: CoffeeShop, distance: Double)
 
-// MARK: - CoffeeShop
-struct CoffeeShop: Equatable {
-
-    var name: String
-    var location: Location
-
-    init(name: String, location: Location) {
-        self.name = name
-        self.location = location
-    }
-
-    init?(_ line: String, separator: String) {
-        let components = line.components(separatedBy: separator)
-        guard !separator.isEmpty,
-            components.count == 3,
-            !components[0].isEmpty,
-            let x = Double(components[1]),
-            let y = Double(components[2])
-            else {
-                return nil
-        }
-
-        self.init(name: components[0], location: Location(x: x, y: y))
-    }
-
-    static func coffeeShops(fromCSV content: String) -> [CoffeeShop]? {
+    func coffeeShops(fromCSV content: String) -> [CoffeeShop]? {
         var coffeeShops = [CoffeeShop]()
         let lines = content.components(separatedBy: .newlines)
         for line in lines {
-            guard let coffeeShop = CoffeeShop(line, separator: ",") else {
+            guard let coffeeShop = CoffeeShop(from: line, separator: ",") else {
                 return nil
             }
             coffeeShops.append(coffeeShop)
@@ -41,7 +14,7 @@ struct CoffeeShop: Equatable {
         return coffeeShops
     }
 
-    static func sort(coffeeShops: [CoffeeShop], byDistanceTo location: Location, ascending: Bool = true) -> [CoffeeShopWithDistance] {
+    func sort(coffeeShops: [CoffeeShop], byDistanceTo location: Location, ascending: Bool = true) -> [CoffeeShopWithDistance] {
         var coffeeShopWithDistance = coffeeShops.map { CoffeeShopWithDistance(coffeeShop: $0, distance: $0.location.distanceTo(location)) }
         coffeeShopWithDistance.sort {
             if ascending {
@@ -52,7 +25,6 @@ struct CoffeeShop: Equatable {
         }
         return coffeeShopWithDistance
     }
-}
 
 // MARK: - CoffeeShopApp
 struct CoffeeShopApp {
@@ -84,11 +56,11 @@ struct CoffeeShopApp {
 
     func closestCoffeeShops(count: Int, coffeeShopsCSV fileContent: String) -> [CoffeeShopWithDistance]? {
 
-        guard let coffeeShops = CoffeeShop.coffeeShops(fromCSV: fileContent) else {
+        guard let coffeeShops = coffeeShops(fromCSV: fileContent) else {
             return nil
         }
 
-        let coffeeShopsWithDistance = CoffeeShop.sort(coffeeShops: coffeeShops, byDistanceTo: self.user)
+        let coffeeShopsWithDistance = sort(coffeeShops: coffeeShops, byDistanceTo: self.user)
 
         let itemsToPrint = min(count, coffeeShopsWithDistance.count)
         return Array(coffeeShopsWithDistance.prefix(itemsToPrint))

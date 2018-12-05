@@ -1,6 +1,12 @@
 import Foundation
 import XCTest
 
+extension CoffeeShop: Equatable {
+    public static func == (lhs: CoffeeShop, rhs: CoffeeShop) -> Bool {
+        return lhs.name == rhs.name && lhs.location == rhs.location
+    }
+}
+
 public class CoffeeShopTest: XCTestCase {
 
     public override func setUp() {
