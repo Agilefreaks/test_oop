@@ -24,7 +24,7 @@ public struct CoffeeShopApp {
         var result: [(coffeeShop: CoffeeShop, distance: Double)] = []
         for line in lines {
             guard let coffeeShop = CoffeeShop(from: line, separator: ",") else {
-                continue
+                throw CustomError.runtimeError("Invalid data format in \(shopDataFilename)")
             }
             result.append((coffeeShop: coffeeShop, distance: coffeeShop.location.distanceTo(userLocation)))
         }
