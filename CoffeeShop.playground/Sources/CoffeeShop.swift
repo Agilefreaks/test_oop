@@ -14,10 +14,11 @@ public struct CoffeeShop {
     public init?(from line: String, separator: String) {
         let compoments = line.components(separatedBy: separator)
         guard !separator.isEmpty,
-            compoments.count == 3
+            compoments.count == 3,
+            !compoments[0].isEmpty
             else {
             return nil
         }
-        self.init(name: "Starbucks Seattle", location: Location(x: 47.5809, y: -122.3160))
+        self.init(name: compoments[0], location: Location(x: 47.5809, y: -122.3160))
     }
 }
