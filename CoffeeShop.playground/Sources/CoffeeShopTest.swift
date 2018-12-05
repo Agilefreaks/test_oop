@@ -1,0 +1,25 @@
+import Foundation
+import XCTest
+
+public class CoffeeShopTest: XCTestCase {
+
+    public override func setUp() {
+    }
+
+    public override func tearDown() {
+    }
+
+    public func test_coffeeShop() {
+        let coffeeShop = CoffeeShop(name: "Starbucks Seattle", location: Location(x: 47.5809, y: -122.3160))
+        XCTAssertEqual(coffeeShop.name, "Starbucks Seattle")
+        XCTAssertEqual(coffeeShop.location, Location(x: 47.5809, y: -122.3160))
+    }
+
+    public func test_coffeeShopFromString() {
+        let coffeeShop = CoffeeShop(from: "Starbucks Seattle,47.5809,-122.3160", separator: ",")
+        XCTAssertNotNil(coffeeShop)
+        XCTAssertEqual(coffeeShop!.name, "Starbucks Seattle")
+        XCTAssertEqual(coffeeShop!.location, Location(x: 47.5809, y: -122.3160))
+    }
+
+}
