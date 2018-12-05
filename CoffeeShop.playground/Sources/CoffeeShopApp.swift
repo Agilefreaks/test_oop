@@ -3,6 +3,10 @@ import Foundation
 // MARK: - CoffeeShopApp
 public struct CoffeeShopApp {
 
+    public enum CustomError: Error {
+        case runtimeError(String)
+    }
+
     public let userLocation: Location
     public let shopDataFilename: String
 
@@ -12,6 +16,9 @@ public struct CoffeeShopApp {
     }
 
     public func orderedCoffeeShopsClosestToUserLocation() throws -> [(coffeeShop: CoffeeShop, distance: Double)] {
+        guard let _ = Bundle.main.url(forResource: shopDataFilename, withExtension: nil) else {
+            throw CustomError.runtimeError("\(shopDataFilename) not found in playground Resources file")
+        }
         let content = """
                     Starbucks Seattle,9,40
                     Starbucks Moscow,5,12
