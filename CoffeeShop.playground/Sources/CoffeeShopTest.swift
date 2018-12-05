@@ -28,4 +28,9 @@ public class CoffeeShopTest: XCTestCase {
         XCTAssertEqual(coffeeShop!.location, Location(x: 47.5809, y: -122.3160))
     }
 
+    public func test_coffeeShopFromStringEmptySeparator() {
+        let coffeeShop = CoffeeShop(from: "Starbucks Seattle,47.5809,-122.3160", separator: "")
+        XCTAssertNil(coffeeShop)
+    }
+
 }
