@@ -53,4 +53,9 @@ public class CoffeeShopTest: XCTestCase {
         XCTAssertNil(coffeeShop)
     }
 
+    public func test_coffeeShopFromStringInvalidY() {
+        let coffeeShop = CoffeeShop(from: "Starbucks Seattle,47.5809,-122.3160invalid", separator: ",")
+        XCTAssertNil(coffeeShop)
+    }
+
 }
