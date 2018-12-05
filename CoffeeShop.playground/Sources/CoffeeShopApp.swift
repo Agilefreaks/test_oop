@@ -10,4 +10,23 @@ public struct CoffeeShopApp {
         self.userLocation = userLocation
         self.shopDataFilename = coffeeShopFilename
     }
+
+    public func orderedCoffeeShopsClosestToUserLocation() throws -> [(coffeeShop: CoffeeShop, distance: Double)] {
+        let content = """
+                    Starbucks Seattle,9,40
+                    Starbucks Moscow,5,12
+                    Starbucks Rio De Janeiro,8,15
+                    Starbucks Sydney,3,4
+                    """
+        let lines = content.components(separatedBy: .newlines)
+        var result: [(coffeeShop: CoffeeShop, distance: Double)] = []
+        for line in lines {
+            guard let coffeeShop = CoffeeShop(from: line, separator: ",") else {
+                continue
+            }
+            result.append((coffeeShop: coffeeShop, distance: coffeeShop.location.distanceTo(userLocation)))
+        }
+        result.sort { $0.distance <= $1.distance}
+        return result
+    }
 }
