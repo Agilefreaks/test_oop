@@ -14,7 +14,7 @@ public struct CoffeeShop {
     public init?(from line: String, separator: String) {
         let compoments = line.components(separatedBy: separator)
         guard !separator.isEmpty,
-            compoments.count >= 3
+            compoments.count == 3
             else {
             return nil
         }
