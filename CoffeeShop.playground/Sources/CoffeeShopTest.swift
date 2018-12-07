@@ -1,19 +1,7 @@
 import Foundation
 import XCTest
 
-extension CoffeeShop: Equatable {
-    public static func == (lhs: CoffeeShop, rhs: CoffeeShop) -> Bool {
-        return lhs.name == rhs.name && lhs.location == rhs.location
-    }
-}
-
 public class CoffeeShopTest: XCTestCase {
-
-    public override func setUp() {
-    }
-
-    public override func tearDown() {
-    }
 
     public func test_coffeeShop() {
         let coffeeShop = CoffeeShop(name: "Starbucks Seattle", location: Location(x: 47.5809, y: -122.3160))
@@ -22,6 +10,7 @@ public class CoffeeShopTest: XCTestCase {
     }
 
     public func test_coffeeShopFromString() {
+        continueAfterFailure = false
         let coffeeShop = CoffeeShop(from: "Starbucks Seattle,-122.3160,47.5809", separator: ",")
         XCTAssertNotNil(coffeeShop)
         XCTAssertEqual(coffeeShop!.name, "Starbucks Seattle")

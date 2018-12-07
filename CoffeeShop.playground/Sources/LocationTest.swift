@@ -9,12 +9,6 @@ extension Location: Equatable {
 
 public class LocationTest: XCTestCase {
 
-    public override func setUp() {
-    }
-
-    public override func tearDown() {
-    }
-
     public func test_location() {
         let location = Location(x: 0, y: 0)
         XCTAssertEqual(location.x, 0.0)
