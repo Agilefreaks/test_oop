@@ -1,10 +1,11 @@
-import kotlin.math.abs
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 data class Location(val x: Double, val y: Double)
 
 fun distance(location1: Location, location2: Location): Double {
-    var (x1, y1) = location1
-    var (x2, y2) = location2
+    val (x1, y1) = location1
+    val (x2, y2) = location2
 
-    return abs(x1 - x2) + abs(y1 - y2)
+    return sqrt((x1 - x2).pow(2) + (y1 - y2).pow(2))
 }
