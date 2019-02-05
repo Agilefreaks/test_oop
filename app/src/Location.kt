@@ -9,3 +9,7 @@ fun distance(location1: Location, location2: Location): Double {
 
     return sqrt((x1 - x2).pow(2) + (y1 - y2).pow(2))
 }
+
+fun Double.roundTo4Digits(): String {
+    return "%.4f".format(this)
+}
