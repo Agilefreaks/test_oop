@@ -33,4 +33,17 @@ class CoffeeShopTest {
         val row = "Starbucks Sydney;-33.871843;151.206767"
         assertThrows <IllegalArgumentException> { row.toCoffeeShop() }
     }
+
+    @Test
+    fun `test coffee shops from csv rows`() {
+        val rows = arrayOf("Starbucks Rio De Janeiro,-22.923489,-43.234418", "Starbucks Sydney,-33.871843,151.206767")
+        val shops = rows.toCoffeeShops()
+        assertEquals(2, shops.size)
+        assertEquals("Starbucks Rio De Janeiro", shops[0].name)
+        assertEquals(-22.923489, shops[0].location.x)
+        assertEquals(-43.234418, shops[0].location.y)
+        assertEquals("Starbucks Sydney", shops[1].name)
+        assertEquals(-33.871843, shops[1].location.x)
+        assertEquals(151.206767, shops[1].location.y)
+    }
 }
