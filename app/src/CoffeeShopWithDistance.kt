@@ -7,3 +7,7 @@ data class CoffeeShopWithDistance(val shop: CoffeeShop, val location: Location) 
         return "${shop.name},${distance.roundTo4Digits()}"
     }
 }
+
+fun List<CoffeeShop>.toCoffeeShopsWithDistance(location: Location): List<CoffeeShopWithDistance> {
+    return this.map { CoffeeShopWithDistance(it, location) }
+}
