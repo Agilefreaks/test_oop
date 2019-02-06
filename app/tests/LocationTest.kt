@@ -15,4 +15,11 @@ class LocationTest {
         val location2 = Location(12.51, -50.12)
         assert(location1 == location2)
     }
+
+    @Test
+    fun `test location inequality fail`() {
+        val location1 = Location(12.51, -50.12)
+        val location2 = Location(12.51, -50.13)
+        assert(location1 != location2)
+    }
 }
