@@ -36,6 +36,7 @@ class CoffeeShopWithDistanceTest {
         assert(distance != other)
     }
 
+    @Test
     fun `test list of coffee shop to list of shops with distance (from example)`() {
         val location = Location(47.6, -122.4)
         val rows = listOf(
