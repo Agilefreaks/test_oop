@@ -22,4 +22,10 @@ class CoffeeShopWithDistanceTest {
     fun `test pretty print from example`() {
         assertEquals("Starbucks SF,10.0793", distance.toString())
     }
+
+    @Test
+    fun `test equality`() {
+        val other = CoffeeShopWithDistance(shop, location)
+        assert(distance == other)
+    }
 }
