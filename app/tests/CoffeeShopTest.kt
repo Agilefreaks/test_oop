@@ -48,8 +48,15 @@ class CoffeeShopTest {
     }
 
     @Test
-    fun `test cofee shops from invalid csv rows`() {
+    fun `test coffee shops from invalid csv rows`() {
         val rows = listOf("Starbucks Rio De Janeiro,-22.923489,-43.234418", "Starbucks Sydney;-33.871843;151.206767")
         assertThrows <IllegalArgumentException> { rows.toCoffeeShops() }
+    }
+
+    @Test
+    fun `test empty csv rows to coffee shops`() {
+        val rows = listOf<String>()
+        val shops = rows.toCoffeeShops()
+        assert(shops.isEmpty())
     }
 }
