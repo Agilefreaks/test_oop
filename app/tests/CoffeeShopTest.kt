@@ -59,4 +59,11 @@ class CoffeeShopTest {
         val shops = rows.toCoffeeShops()
         assert(shops.isEmpty())
     }
+
+    @Test
+    fun `test csv file to list of csv rows`() {
+        val filename = "coffee_shops.csv"
+        val rows = filename.readAllLinesAsCsvRows()
+        assertEquals(6, rows.size)
+    }
 }
