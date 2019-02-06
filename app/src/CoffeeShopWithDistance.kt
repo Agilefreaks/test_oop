@@ -11,3 +11,7 @@ data class CoffeeShopWithDistance(val shop: CoffeeShop, val location: Location) 
 fun List<CoffeeShop>.toCoffeeShopsWithDistance(location: Location): List<CoffeeShopWithDistance> {
     return this.map { CoffeeShopWithDistance(it, location) }
 }
+
+fun List<CoffeeShopWithDistance>.sortedByDistance(): List<CoffeeShopWithDistance> {
+    return this.sortedBy { it.distance }
+}
