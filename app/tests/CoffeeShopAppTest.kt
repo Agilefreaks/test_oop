@@ -9,4 +9,10 @@ class CoffeeShopAppTest {
         assertEquals(-122.4, app.y)
         assertEquals("coffee_shop.csv", app.filename)
     }
+
+    @Test
+    fun `test coffee shop app with example`() {
+        val app = CoffeeShopApp(47.6, -122.4, "coffee_shop.csv")
+        app.getNearestShops()
+    }
 }
