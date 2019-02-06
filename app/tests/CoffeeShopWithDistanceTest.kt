@@ -28,4 +28,11 @@ class CoffeeShopWithDistanceTest {
         val other = CoffeeShopWithDistance(shop, location)
         assert(distance == other)
     }
+
+    @Test
+    fun `test inequality`() {
+        val otherLocation = Location(20.12, 50.8)
+        val other = CoffeeShopWithDistance(shop, otherLocation)
+        assert(distance != other)
+    }
 }
