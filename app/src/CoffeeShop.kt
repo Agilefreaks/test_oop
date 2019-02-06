@@ -13,3 +13,8 @@ fun String.toCoffeeShop(): CoffeeShop {
         throw IllegalArgumentException("row is invalid csv: $this")
     }
 }
+
+fun Array<String>.toCoffeeShops(): Array<CoffeeShop> {
+    return this.map { it.toCoffeeShop() }.toTypedArray()
+}
+
