@@ -36,7 +36,7 @@ class CoffeeShopTest {
 
     @Test
     fun `test coffee shops from csv rows`() {
-        val rows = arrayOf("Starbucks Rio De Janeiro,-22.923489,-43.234418", "Starbucks Sydney,-33.871843,151.206767")
+        val rows = listOf("Starbucks Rio De Janeiro,-22.923489,-43.234418", "Starbucks Sydney,-33.871843,151.206767")
         val shops = rows.toCoffeeShops()
         assertEquals(2, shops.size)
         assertEquals("Starbucks Rio De Janeiro", shops[0].name)

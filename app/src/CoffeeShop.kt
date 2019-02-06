@@ -14,7 +14,7 @@ fun String.toCoffeeShop(): CoffeeShop {
     }
 }
 
-fun Array<String>.toCoffeeShops(): Array<CoffeeShop> {
-    return this.map { it.toCoffeeShop() }.toTypedArray()
+fun List<String>.toCoffeeShops(): List<CoffeeShop> {
+    return this.map { it.toCoffeeShop() }
 }
 
