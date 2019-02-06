@@ -14,5 +14,6 @@ class CoffeeShopAppTest {
     fun `test coffee shop app with example`() {
         val app = CoffeeShopApp(47.6, -122.4, "coffee_shop.csv")
         val shops: List<CoffeeShopWithDistance> = app.getNearestShops()
+        assertEquals(3, shops.size)
     }
 }
