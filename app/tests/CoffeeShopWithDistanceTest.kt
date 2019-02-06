@@ -50,4 +50,19 @@ class CoffeeShopWithDistanceTest {
         assertEquals("Starbucks SF,10.0793", distances[1].toString())
         assertEquals("Starbucks Seattle2,0.0645", distances[2].toString())
     }
+
+    @Test
+    fun `test list of coffee shops sorting`() {
+        val location = Location(47.6, -122.4)
+        val rows = listOf(
+            "Starbucks Seattle,47.5809,-122.3160",
+            "Starbucks SF,37.5209,-122.3340",
+            "Starbucks Seattle2,47.5869,-122.3368"
+        )
+        val shops = rows.toCoffeeShops()
+        val distances = shops.toCoffeeShopsWithDistance(location).sortedByDistance()
+        assertEquals("Starbucks Seattle2,0.0645", distances[0].toString())
+        assertEquals("Starbucks Seattle,0.0861", distances[1].toString())
+        assertEquals("Starbucks SF,10.0793", distances[2].toString())
+    }
 }
