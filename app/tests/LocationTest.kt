@@ -8,4 +8,11 @@ class LocationTest {
         assertEquals(12.51, location.x)
         assertEquals(-50.12, location.y)
     }
+
+    @Test
+    fun `test location equality`() {
+        val location1 = Location(12.51, -50.12)
+        val location2 = Location(12.51, -50.12)
+        assert(location1 == location2)
+    }
 }
