@@ -54,4 +54,13 @@ class CoffeeShopAppTest {
         val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_bad_csv_rows.csv")
         assertEquals("coffee_shops_bad_csv_rows.csv is not a valid file.", app.getOutput())
     }
+
+    @Test
+    fun `test output with 2 coffee shops`() {
+        val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_only_2.csv")
+        val output  = app.getOutput()
+
+        val ls = System.lineSeparator()
+        assertEquals("Starbucks Seattle,0.0861${ls}Starbucks SF,10.0793", output)
+    }
 }
