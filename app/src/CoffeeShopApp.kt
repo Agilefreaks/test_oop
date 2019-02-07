@@ -14,5 +14,8 @@ class CoffeeShopApp (val x: Double, val y: Double, val filename: String) {
         catch (e: FileNotFoundException) {
             return "$filename was not found."
         }
+        catch (e: IllegalArgumentException) {
+            return "$filename is not a valid file."
+        }
     }
 }
