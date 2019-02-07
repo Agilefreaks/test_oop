@@ -48,4 +48,10 @@ class CoffeeShopAppTest {
         val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_bad_csv_rows.csv")
         assertThrows <IllegalArgumentException> { app.getNearestShops() }
     }
+
+    @Test
+    fun `test output with bad csv rows`() {
+        val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_bad_csv_rows.csv")
+        assertEquals("coffee_shops_bad_csv_rows.csv is not a valid file.", app.getOutput())
+    }
 }
