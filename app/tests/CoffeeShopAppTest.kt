@@ -72,4 +72,12 @@ class CoffeeShopAppTest {
         val ls = System.lineSeparator()
         assertEquals("Starbucks SF,10.0793", output)
     }
+
+    @Test
+    fun `test output with an empty file`() {
+        val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_empty.csv")
+        val output  = app.getOutput()
+
+        assertEquals("No coffee shops was found in coffee_shops_empty.csv.", output)
+    }
 }
