@@ -42,4 +42,10 @@ class CoffeeShopAppTest {
         val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_not_found.csv")
         assertEquals("coffee_shops_not_found.csv was not found.", app.getOutput())
     }
+
+    @Test
+    fun `test app with bad csv rows`() {
+        val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_bad_csv_rows.csv")
+        assertThrows <IllegalArgumentException> { app.getNearestShops() }
+    }
 }
