@@ -13,5 +13,5 @@ fun List<CoffeeShop>.toCoffeeShopsWithDistance(location: Location): List<CoffeeS
 }
 
 fun List<CoffeeShopWithDistance>.sortedByDistance(): List<CoffeeShopWithDistance> {
-    return this.sortedBy { it.distance.value }
+    return this.sortedBy { it.distance }
 }

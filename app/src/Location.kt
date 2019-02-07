@@ -3,7 +3,11 @@ import kotlin.math.sqrt
 
 data class Location(val x: Double, val y: Double)
 
-data class Distance(val value: Double) {
+data class Distance(val value: Double) : Comparable<Distance> {
+    override fun compareTo(other: Distance): Int {
+        return this.value.compareTo(other.value)
+    }
+
     override fun toString(): String {
         return "%.4f".format(value)
     }
