@@ -36,4 +36,10 @@ class CoffeeShopAppTest {
         val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_not_found.csv")
         assertThrows <FileNotFoundException> { app.getNearestShops() }
     }
+
+    @Test
+    fun `test output with inexistent csv file`() {
+        val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_not_found.csv")
+        assertEquals("coffee_shops_not_found.csv was not found.", app.getOutput())
+    }
 }
