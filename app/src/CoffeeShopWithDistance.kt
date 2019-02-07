@@ -1,10 +1,10 @@
 data class CoffeeShopWithDistance(val shop: CoffeeShop, val location: Location) {
-    val distance: Double by lazy {
+    val distance: Distance by lazy {
         distance(location, shop.location)
     }
 
     override fun toString(): String {
-        return "${shop.name},${distance.roundTo4Digits()}"
+        return "${shop.name},$distance"
     }
 }
 
@@ -13,5 +13,5 @@ fun List<CoffeeShop>.toCoffeeShopsWithDistance(location: Location): List<CoffeeS
 }
 
 fun List<CoffeeShopWithDistance>.sortedByDistance(): List<CoffeeShopWithDistance> {
-    return this.sortedBy { it.distance }
+    return this.sortedBy { it.distance.value }
 }

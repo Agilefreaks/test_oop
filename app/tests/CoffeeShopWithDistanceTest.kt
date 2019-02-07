@@ -15,7 +15,7 @@ class CoffeeShopWithDistanceTest {
 
     @Test
     fun `test coffee shop with distance from example`() {
-        assertEquals(10.079316088406003, distance.distance)
+        assertEquals(Distance(10.079316088406003), distance.distance)
     }
 
     @Test

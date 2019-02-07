@@ -10,7 +10,7 @@ class DistanceTest {
         val seattle2 = Location(47.5869, -122.3368)
         val expectedDistanceToSeattle2 = "0.0645"
 
-        assertEquals(expectedDistanceToSeattle2, distance(user, seattle2).roundTo4Digits())
+        assertEquals(expectedDistanceToSeattle2, distance(user, seattle2).toString())
     }
 
     @Test
@@ -18,7 +18,7 @@ class DistanceTest {
         val seattle = Location(47.5809, -122.3160)
         val expectedDistanceToSeattle = "0.0861"
 
-        assertEquals(expectedDistanceToSeattle, distance(user, seattle).roundTo4Digits())
+        assertEquals(expectedDistanceToSeattle, distance(user, seattle).toString())
     }
 
     @Test
@@ -26,13 +26,13 @@ class DistanceTest {
         val sf = Location(37.5209, -122.3340)
         val expectedDistanceToSF = "10.0793"
 
-        assertEquals(expectedDistanceToSF, distance(user, sf).roundTo4Digits())
+        assertEquals(expectedDistanceToSF, distance(user, sf).toString())
     }
 
     @Test
     fun `test real distance from examples (user - seattle2)`() {
         val seattle2 = Location(47.5869, -122.3368)
-        val expectedDistanceToSeattle2 = 0.06454339625400246
+        val expectedDistanceToSeattle2 = Distance(0.06454339625400246)
 
         assertEquals(expectedDistanceToSeattle2, distance(user, seattle2))
     }
@@ -40,7 +40,7 @@ class DistanceTest {
     @Test
     fun `test real distance from examples (user - seattle)`() {
         val seattle = Location(47.5809, -122.3160)
-        val expectedDistanceToSeattle = 0.0861441234211632
+        val expectedDistanceToSeattle = Distance(0.0861441234211632)
 
         assertEquals(expectedDistanceToSeattle, distance(user, seattle))
     }
@@ -48,7 +48,7 @@ class DistanceTest {
     @Test
     fun `test real distance from examples (user - sf)`() {
         val sf = Location(37.5209, -122.3340)
-        val expectedDistanceToSF = 10.079316088406003
+        val expectedDistanceToSF = Distance(10.079316088406003)
 
         assertEquals(expectedDistanceToSF, distance(user, sf))
     }
