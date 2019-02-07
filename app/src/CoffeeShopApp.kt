@@ -4,4 +4,9 @@ class CoffeeShopApp (val x: Double, val y: Double, val filename: String) {
         return filename.readAllLinesAsCsvRows().toCoffeeShops().toCoffeeShopsWithDistance(user).sortedByDistance().take(3)
     }
 
+    fun getOutput(): String {
+        val shops = getNearestShops()
+        return shops.joinToString(separator = "\n")
+    }
+
 }
