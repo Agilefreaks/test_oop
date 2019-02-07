@@ -63,7 +63,7 @@ class CoffeeShopTest {
     @Test
     fun `test csv file to list of csv rows`() {
         val filename = "coffee_shops.csv"
-        val rows = filename.readAllLinesAsCsvRows()
+        val rows = readAllLinesAsCsvRows(filename)
         assertEquals(6, rows.size)
     }
 }

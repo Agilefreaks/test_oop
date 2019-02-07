@@ -1,9 +1,10 @@
+import java.io.File
 import java.io.FileNotFoundException
 
 class CoffeeShopApp (val x: Double, val y: Double, val filename: String) {
     fun getNearestShops(): List<CoffeeShopWithDistance> {
         val user = Location(x, y)
-        return filename.readAllLinesAsCsvRows().toCoffeeShops().toCoffeeShopsWithDistance(user).sortedByDistance().take(3)
+        return readAllLinesAsCsvRows(filename).toCoffeeShops().toCoffeeShopsWithDistance(user).sortedByDistance().take(3)
     }
 
     fun getOutput(): String {
@@ -25,4 +26,8 @@ class CoffeeShopApp (val x: Double, val y: Double, val filename: String) {
             return "$filename is not a valid file."
         }
     }
+}
+
+fun readAllLinesAsCsvRows(filename: String): List<String> {
+    return File(filename).readLines()
 }

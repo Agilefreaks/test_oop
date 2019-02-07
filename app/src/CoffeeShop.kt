@@ -1,5 +1,4 @@
 
-import java.io.File
 
 data class CoffeeShop (val name: String, val location: Location) {
     constructor(name: String, x: Double, y: Double) : this(name, Location(x, y))
@@ -19,8 +18,4 @@ fun String.toCoffeeShop(): CoffeeShop {
 
 fun List<String>.toCoffeeShops(): List<CoffeeShop> {
     return this.map { it.toCoffeeShop() }
-}
-
-fun String.readAllLinesAsCsvRows(): List<String> {
-    return File(this).readLines()
 }
