@@ -31,7 +31,7 @@ class CoffeeShopTest {
     @Test
     fun `test coffee shop from invalid csv row`() {
         val row = "Starbucks Sydney;-33.871843;151.206767"
-        assertThrows <IllegalArgumentException> { row.toCoffeeShop() }
+        assertThrows <CouldNotParseCsvRowException> { row.toCoffeeShop() }
     }
 
     @Test
@@ -50,7 +50,7 @@ class CoffeeShopTest {
     @Test
     fun `test coffee shops from invalid csv rows`() {
         val rows = listOf("Starbucks Rio De Janeiro,-22.923489,-43.234418", "Starbucks Sydney;-33.871843;151.206767")
-        assertThrows <IllegalArgumentException> { rows.toCoffeeShops() }
+        assertThrows <CouldNotParseCsvRowException> { rows.toCoffeeShops() }
     }
 
     @Test

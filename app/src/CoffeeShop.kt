@@ -13,7 +13,7 @@ fun String.toCoffeeShop(): CoffeeShop {
         return CoffeeShop(name, x, y)
     }
     catch (e: Throwable) {
-        throw IllegalArgumentException("row is invalid csv: $this")
+        throw CouldNotParseCsvRowException("row is invalid csv: $this")
     }
 }
 
