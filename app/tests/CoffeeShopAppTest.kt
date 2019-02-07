@@ -69,7 +69,6 @@ class CoffeeShopAppTest {
         val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_only_1.csv")
         val output  = app.getOutput()
 
-        val ls = System.lineSeparator()
         assertEquals("Starbucks SF,10.0793", output)
     }
 
