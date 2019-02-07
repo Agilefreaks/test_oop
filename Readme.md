@@ -25,11 +25,11 @@ Assume all coordinates lie on a plane.
 
 ## Example
 
-Using the [coffee_shop.csv](coffee_shop.csv)
+Using the [coffee_shops.csv](coffee_shops.csv)
 
 __Input__
 
-`47.6 -122.4 coffee_shop.csv`
+`47.6 -122.4 coffee_shops.csv`
 
 __Expected output__
 
