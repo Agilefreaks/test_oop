@@ -9,7 +9,14 @@ class CoffeeShopApp (val x: Double, val y: Double, val filename: String) {
     fun getOutput(): String {
         try {
             val shops = getNearestShops()
-            return shops.joinToString(separator = System.lineSeparator())
+
+            if (shops.isEmpty()) {
+                return "No coffee shops was found in $filename."
+            }
+            else {
+                return shops.joinToString(separator = System.lineSeparator())
+            }
+
         }
         catch (e: FileNotFoundException) {
             return "$filename was not found."
