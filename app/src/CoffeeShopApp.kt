@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException
+
 class CoffeeShopApp (val x: Double, val y: Double, val filename: String) {
     fun getNearestShops(): List<CoffeeShopWithDistance> {
         val user = Location(x, y)
@@ -5,7 +7,12 @@ class CoffeeShopApp (val x: Double, val y: Double, val filename: String) {
     }
 
     fun getOutput(): String {
-        val shops = getNearestShops()
-        return shops.joinToString(separator = System.lineSeparator())
+        try {
+            val shops = getNearestShops()
+            return shops.joinToString(separator = System.lineSeparator())
+        }
+        catch (e: FileNotFoundException) {
+            return "$filename was not found."
+        }
     }
 }
