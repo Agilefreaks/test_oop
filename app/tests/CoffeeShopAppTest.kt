@@ -80,4 +80,14 @@ class CoffeeShopAppTest {
 
         assertEquals("No coffee shops was found in coffee_shops_empty.csv.", output)
     }
+
+    @Test
+    fun `test output when many coffee shops are in the same location`() {
+        val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_same_place.csv")
+        val output  = app.getOutput()
+
+        val ls = System.lineSeparator()
+        assertEquals("Starbucks Seattle,0.0861${ls}Starbucks SF,0.0861${ls}Starbucks Moscow,0.0861", output)
+    }
+
 }
