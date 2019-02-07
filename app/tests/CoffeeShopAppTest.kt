@@ -12,7 +12,7 @@ class CoffeeShopAppTest {
 
     @Test
     fun `test coffee shop app with example`() {
-        val app = CoffeeShopApp(47.6, -122.4, "coffee_shop.csv")
+        val app = CoffeeShopApp(47.6, -122.4, "coffee_shops.csv")
         val shops: List<CoffeeShopWithDistance> = app.getNearestShops()
         assertEquals(3, shops.size)
         assertEquals("Starbucks Seattle2,0.0645", shops[0].toString())
