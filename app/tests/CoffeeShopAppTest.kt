@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import java.io.FileNotFoundException
 import kotlin.test.assertEquals
 
 class CoffeeShopAppTest {
@@ -27,5 +29,11 @@ class CoffeeShopAppTest {
 
         val ls = System.lineSeparator()
         assertEquals("Starbucks Seattle2,0.0645${ls}Starbucks Seattle,0.0861${ls}Starbucks SF,10.0793", output)
+    }
+
+    @Test
+    fun `test app with inexistent csv file`() {
+        val app = CoffeeShopApp(47.6, -122.4, "coffee_shops_not_found.csv")
+        assertThrows <FileNotFoundException> { app.getNearestShops() }
     }
 }
