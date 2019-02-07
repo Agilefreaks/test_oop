@@ -16,7 +16,7 @@ class CoffeeShopAppTest {
         val shops: List<CoffeeShopWithDistance> = app.getNearestShops()
         assertEquals(3, shops.size)
         assertEquals("Starbucks Seattle2,0.0645", shops[0].toString())
-        assertEquals("Starbucks Seattle,0.0861", shops[0].toString())
-        assertEquals("Starbucks SF,10.0793", shops[0].toString())
+        assertEquals("Starbucks Seattle,0.0861", shops[1].toString())
+        assertEquals("Starbucks SF,10.0793", shops[2].toString())
     }
 }
