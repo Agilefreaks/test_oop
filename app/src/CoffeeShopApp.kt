@@ -6,7 +6,6 @@ class CoffeeShopApp (val x: Double, val y: Double, val filename: String) {
 
     fun getOutput(): String {
         val shops = getNearestShops()
-        return shops.joinToString(separator = "\n")
+        return shops.joinToString(separator = System.lineSeparator())
     }
-
 }
