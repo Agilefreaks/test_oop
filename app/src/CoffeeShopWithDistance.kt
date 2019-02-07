@@ -1,6 +1,6 @@
 data class CoffeeShopWithDistance(val shop: CoffeeShop, val location: Location) {
     val distance: Distance by lazy {
-        distance(location, shop.location)
+        distance(location, shop)
     }
 
     override fun toString(): String {

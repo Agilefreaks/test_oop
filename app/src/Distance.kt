@@ -18,3 +18,7 @@ fun distance(location1: Location, location2: Location): Distance {
     val value = sqrt((x1 - x2).pow(2) + (y1 - y2).pow(2))
     return Distance(value)
 }
+
+fun distance(location: Location, shop: CoffeeShop): Distance {
+    return distance(location, shop.location)
+}
