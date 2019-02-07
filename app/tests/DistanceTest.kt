@@ -52,4 +52,12 @@ class DistanceTest {
 
         assertEquals(expectedDistanceToSF, distance(user, sf))
     }
+
+    @Test
+    fun `test real distance between location and shop`() {
+        val sf = CoffeeShop("SF", 37.5209, -122.3340)
+        val expectedDistanceToSF = Distance(10.079316088406003)
+
+        assertEquals(expectedDistanceToSF, distance(user, sf))
+    }
 }
