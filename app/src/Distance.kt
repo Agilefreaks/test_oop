@@ -1,7 +1,7 @@
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-data class Distance(val value: Double) : Comparable<Distance> {
+internal data class Distance(val value: Double) : Comparable<Distance> {
     override fun compareTo(other: Distance): Int {
         return this.value.compareTo(other.value)
     }
@@ -11,7 +11,7 @@ data class Distance(val value: Double) : Comparable<Distance> {
     }
 }
 
-fun distance(location1: Location, location2: Location): Distance {
+internal fun distance(location1: Location, location2: Location): Distance {
     val (x1, y1) = location1
     val (x2, y2) = location2
 
@@ -19,6 +19,6 @@ fun distance(location1: Location, location2: Location): Distance {
     return Distance(value)
 }
 
-fun distance(location: Location, shop: CoffeeShop): Distance {
+internal fun distance(location: Location, shop: CoffeeShop): Distance {
     return distance(location, shop.location)
 }

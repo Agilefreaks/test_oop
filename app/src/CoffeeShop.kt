@@ -1,10 +1,8 @@
-
-
-data class CoffeeShop (val name: String, val location: Location) {
+internal data class CoffeeShop (val name: String, val location: Location) {
     constructor(name: String, x: Double, y: Double) : this(name, Location(x, y))
 }
 
-fun String.toCoffeeShop(): CoffeeShop {
+internal fun String.toCoffeeShop(): CoffeeShop {
     try {
         val (name, xs, ys) = this.split(",")
         val x = xs.toDouble()
@@ -16,6 +14,6 @@ fun String.toCoffeeShop(): CoffeeShop {
     }
 }
 
-fun List<String>.toCoffeeShops(): List<CoffeeShop> {
+internal fun List<String>.toCoffeeShops(): List<CoffeeShop> {
     return this.map { it.toCoffeeShop() }
 }

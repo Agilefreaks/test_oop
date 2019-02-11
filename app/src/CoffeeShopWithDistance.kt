@@ -1,5 +1,5 @@
-data class CoffeeShopWithDistance(val shop: CoffeeShop, val location: Location) {
-    val distance: Distance by lazy {
+internal data class CoffeeShopWithDistance(val shop: CoffeeShop, val location: Location) {
+    internal val distance: Distance by lazy {
         distance(location, shop)
     }
 
@@ -8,10 +8,10 @@ data class CoffeeShopWithDistance(val shop: CoffeeShop, val location: Location) 
     }
 }
 
-fun List<CoffeeShop>.toCoffeeShopsWithDistance(location: Location): List<CoffeeShopWithDistance> {
+internal fun List<CoffeeShop>.toCoffeeShopsWithDistance(location: Location): List<CoffeeShopWithDistance> {
     return this.map { CoffeeShopWithDistance(it, location) }
 }
 
-fun List<CoffeeShopWithDistance>.sortedByDistance(): List<CoffeeShopWithDistance> {
+internal fun List<CoffeeShopWithDistance>.sortedByDistance(): List<CoffeeShopWithDistance> {
     return this.sortedBy { it.distance }
 }

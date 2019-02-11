@@ -1,1 +1,1 @@
-class CouldNotParseCsvRowException(message: String) : Exception(message)
+internal class CouldNotParseCsvRowException(message: String) : Exception(message)
