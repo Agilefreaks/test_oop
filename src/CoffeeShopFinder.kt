@@ -6,6 +6,7 @@ internal class CoffeeShopFinder(val userLocation: Coordinates, val filename: Str
     fun findClosestLocations(): String = try {
         val lines = File(filename).readLines().distinct()
         if (lines.isEmpty()) { throw EmptyCsvException("$filename is empty") }
+        val coffeeShops = Converter.convertLinesToCoffeeShops(lines)
 
         ""
     } catch (error: FileNotFoundException) {
