@@ -1,7 +1,7 @@
 
 
 internal object Converter {
-    fun convertLineToCoffeeShop(line: String): CoffeeShop = try {
+    fun lineToCoffeeShop(line: String): CoffeeShop = try {
         val coffeeShopDetailArray = line.split(",").toTypedArray()
         val name = coffeeShopDetailArray[0]
         val latitudeString = coffeeShopDetailArray[1]
@@ -12,10 +12,14 @@ internal object Converter {
         throw InvalidCsvException("line: \" $line \" is not valid")
     }
 
-    fun convertLinesToCoffeeShops(lines: List<String>): List<CoffeeShop> = try {
-        lines.map { convertLineToCoffeeShop(it) }
+    fun linesToCoffeeShops(lines: List<String>): List<CoffeeShop> = try {
+        lines.map { lineToCoffeeShop(it) }
     } catch (error: Throwable) {
         throw InvalidCsvException("CSV lines are not valid")
+    }
+
+    fun listToString(list: List<CoffeeShop>, closestCount: Int): String {
+        return list.map { it.name + "," + "%.4f".format(it.distanceFromUser) }.take(closestCount).joinToString(separator = "\n")
     }
 }
 
