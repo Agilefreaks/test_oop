@@ -3,7 +3,7 @@ import org.junit.jupiter.api.assertThrows
 import java.io.FileNotFoundException
 import java.lang.NumberFormatException
 
-internal class CoffeeShopLocatorKtTest {
+internal class MainKtTest {
 
     @Test
     fun locateWithInsufficientArgs() {
