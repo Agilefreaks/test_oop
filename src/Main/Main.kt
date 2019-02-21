@@ -2,7 +2,7 @@ import java.lang.NumberFormatException
 
 fun main(args: Array<String>) {
 
-    if (args.size != 3) { throw InvalidInput("Incorrect number of arguments") }
+    if (args.size != 3) { throw InvalidInput("Incorrect number of arguments, please provide 3 arguments in the following order:\n<user x coordinate> <user y coordinate> <shop data filename>") }
 
     try {
         val latitude: Double = args[0].toDouble()
