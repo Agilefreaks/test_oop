@@ -8,7 +8,7 @@ internal class ConverterTest {
     fun convertLineToCoffeeShop() {
         val expectedCoffeeShop = CoffeeShop(Coordinates(-22.923489,-43.234418),"Starbucks Rio De Janeiro")
         val line = "Starbucks Rio De Janeiro,-22.923489,-43.234418"
-        val computedCoffeeShop = Converter.lineToCoffeeShop(line)
+        val computedCoffeeShop = Converter().lineToCoffeeShop(line)
 
         assertEquals(expectedCoffeeShop.name, computedCoffeeShop.name)
         assertEquals(expectedCoffeeShop.coordinates.latitude, computedCoffeeShop.coordinates.latitude)
@@ -19,7 +19,7 @@ internal class ConverterTest {
     fun convertBadLineToCoffeeShop() {
         val line = "Starbucks Rio De Janeiro -22.923489,-43.234418"
 
-        assertThrows<InvalidCsvException> { Converter.lineToCoffeeShop(line) }
+        assertThrows<InvalidCsvException> { Converter().lineToCoffeeShop(line) }
     }
 
     @Test
@@ -28,7 +28,7 @@ internal class ConverterTest {
         val starbucksRio = CoffeeShop(Coordinates(-22.923489,-43.234418), "Starbucks Rio De Janeiro")
         val starbucksSF = CoffeeShop(Coordinates(12.923489,123.231418), "Starbucks San Francisco")
         val starbucksNY = CoffeeShop(Coordinates(2.923489,-44.234128), "Starbucks New York")
-        val computedCoffeeShopsList = Converter.linesToCoffeeShops(lines)
+        val computedCoffeeShopsList = Converter().linesToCoffeeShops(lines)
 
         assertEquals(starbucksRio.name, computedCoffeeShopsList[0].name)
         assertEquals(starbucksSF.coordinates.latitude, computedCoffeeShopsList[1].coordinates.latitude)
@@ -41,8 +41,8 @@ internal class ConverterTest {
         val list = listOf(CoffeeShop(Coordinates(32.4,122.3), "Costa"),
             CoffeeShop(Coordinates(42.3, 52.3), "Dunkin Donuts"),
             CoffeeShop(Coordinates(123.5, 89.0), "Monk's Cafe"))
-        list.forEach { it.distanceFromUser = DistanceUtility.calculateDistance(it.coordinates, testLocation) }
-        val computedOutput = Converter.listToString(list, 3)
+        list.forEach { it.distanceFromUser = DistanceUtility().calculateDistance(it.coordinates, testLocation) }
+        val computedOutput = Converter().listToString(list, 3)
         val expectedOutput = "Costa,245.1716\n" + "Dunkin Donuts,174.7804\n" + "Monk's Cafe,224.6125"
         assertEquals(expectedOutput, computedOutput)
     }

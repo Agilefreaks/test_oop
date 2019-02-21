@@ -8,7 +8,7 @@ internal class DistanceUtilityTest {
     @Test
     fun distanceFromSfStarbucks() {
         val sfStarbucks = Coordinates(37.5209,-122.3340)
-        val computedDistance = DistanceUtility.calculateDistance(sfStarbucks, testLocation)
+        val computedDistance = DistanceUtility().calculateDistance(sfStarbucks, testLocation)
 
         assertEquals(10.079316088406003, computedDistance)
     }
@@ -16,7 +16,7 @@ internal class DistanceUtilityTest {
     @Test
     fun distanceFromSydneyStarbucks() {
         val sydneyStarbucks = Coordinates(-33.871843,151.206767)
-        val computedDistance = DistanceUtility.calculateDistance(sydneyStarbucks, testLocation)
+        val computedDistance = DistanceUtility().calculateDistance(sydneyStarbucks, testLocation)
 
         assertEquals(285.47911333407376, computedDistance)
     }
@@ -27,7 +27,7 @@ internal class DistanceUtilityTest {
                           CoffeeShop(Coordinates(42.3, 52.3), "Dunkin Donuts"),
                           CoffeeShop(Coordinates(123.5, 89.0), "Monk's Cafe"))
         val expectedSortedList = listOf(list[1], list[2], list[0])
-        val computedSortedList = DistanceUtility.sortByDistance(list, testLocation)
+        val computedSortedList = DistanceUtility().sortByDistance(list, testLocation)
 
         assertEquals(expectedSortedList, computedSortedList)
     }
