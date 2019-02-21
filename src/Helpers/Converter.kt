@@ -17,7 +17,7 @@ internal class Converter {
     }
 
     fun listToString(list: List<CoffeeShop>, closestCount: Int): String {
-        return list.map { it.name + "," + "%.4f".format(it.distanceFromUser) }.take(closestCount).joinToString(separator = "\n")
+        return list.map { it.toString() }.take(closestCount).joinToString(separator = "\n")
     }
 }
 
