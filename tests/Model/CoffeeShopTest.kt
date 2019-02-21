@@ -11,4 +11,14 @@ internal class CoffeeShopTest {
         assertEquals(143.234, coffeeShop.coordinates.longitude)
     }
 
+    @Test
+    fun stringFromCoffeeShop() {
+        val coffeeShop = CoffeeShop(Coordinates(42.4,143.234), "Starbucks")
+        coffeeShop.distanceFromUser = 120.0
+        val expectedString = "Starbucks,120.0"
+        val computedString = coffeeShop.toString()
+
+        assertEquals(expectedString, computedString)
+    }
+
 }
