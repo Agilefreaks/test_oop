@@ -4,5 +4,3 @@ internal data class CoffeeShop(val coordinates: Coordinates, val name: String, v
         return name + "," + "%.4f".format(distanceFromUser)
     }
 }
-
-internal class DistanceError(message: String): Exception(message)
