@@ -8,7 +8,6 @@ internal class DistanceUtility {
     }
 
     fun sortByDistance(list: List<CoffeeShop>, location: Coordinates): List<CoffeeShop> {
-        list.forEach { it.distanceFromUser = calculateDistance(it.coordinates, location) }
         return list.sortedBy { it.distanceFromUser }
     }
 
