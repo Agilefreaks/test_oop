@@ -1,6 +1,8 @@
 package Helpers
 
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import java.io.FileNotFoundException
 import kotlin.test.assertEquals
 
 internal class CSVParserTest {
@@ -17,5 +19,12 @@ internal class CSVParserTest {
 
         assertEquals(expectedOutput, actualOutput)
     }
+
+    @Test
+    fun `transform missing CSV file into String list should throw error`() {
+        assertThrows<FileNotFoundException> { CSVParser().parseCsvFileWithName("random.csv") }
+    }
+
+
 
 }
