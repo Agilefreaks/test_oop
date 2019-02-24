@@ -1,13 +1,7 @@
 
-internal data class CoffeeShop(val coordinates: Coordinates, val name: String) {
-    var distanceFromUser: Double? = null
-
+internal data class CoffeeShop(val coordinates: Coordinates, val name: String, val distanceFromUser: Double) {
     override fun toString(): String {
-        if (distanceFromUser != null) {
-            return name + "," + "%.4f".format(distanceFromUser)
-        } else {
-            throw DistanceError("There was an error and the distance could not be calculated")
-        }
+        return name + "," + "%.4f".format(distanceFromUser)
     }
 }
 
