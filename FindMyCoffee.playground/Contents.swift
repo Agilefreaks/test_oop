@@ -10,12 +10,14 @@ Starbucks Rio De Janeiro,-22.923489,-43.234418
 Starbucks Sydney,-33.871843,151.206767
 """
 
+/* Run tests
 CoordinatesTests.defaultTestSuite.run()
 CoffeeShopTests.defaultTestSuite.run()
 CoffeeShopLocationsParserTests.defaultTestSuite.run()
 CoffeeShopFinderTests.defaultTestSuite.run()
+*/
 
 //Run from here
-FindMyCoffeApp.init(Coordinates.init(latitude: 47.6, longitude:-122.4),coffeeShopsDatabase: coffeeShopLocationsDatabase).showSolution()
+FindMyCoffeeApp.init(Coordinates.init(latitude: 47.6, longitude:-122.4),coffeeShopsDatabase: coffeeShopLocationsDatabase).showSolution()
 
 
