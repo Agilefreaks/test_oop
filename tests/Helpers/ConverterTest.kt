@@ -7,7 +7,7 @@ internal class ConverterTest {
     private val testUserLocation = Coordinates(122.4, 10.2)
 
     @Test
-    fun `transform CSV line into CoffeeShop object`() {
+    fun `transform CSV line into CoffeeShop object should work`() {
         val expectedCoffeeShop = CoffeeShop(Coordinates(-22.923489,-43.234418),"Starbucks Rio De Janeiro", 154.8358920991249)
         val line = "Starbucks Rio De Janeiro,-22.923489,-43.234418"
         val actualCoffeeShop = Converter().lineToCoffeeShop(line, testUserLocation)
@@ -25,7 +25,7 @@ internal class ConverterTest {
     }
 
     @Test
-    fun `transform list of CSV lines into CoffeeShop list`() {
+    fun `transform list of CSV lines into CoffeeShop list should work`() {
         val lines = listOf("Starbucks Rio De Janeiro, -22.923489,-43.234418", "Starbucks San Francisco, 12.923489,123.231418", "Starbucks New York, 2.923489,-44.234128")
         val starbucksRio = CoffeeShop(Coordinates(-22.923489,-43.234418), "Starbucks Rio De Janeiro",154.8358920991249)
         val starbucksSF = CoffeeShop(Coordinates(12.923489,123.231418), "Starbucks San Francisco", 157.356944288531)
@@ -38,7 +38,7 @@ internal class ConverterTest {
     }
 
     @Test
-    fun `transform list of CoffeeShops into string`() {
+    fun `transform list of CoffeeShops into string should work`() {
         val list = listOf(CoffeeShop(Coordinates(32.4,122.3), "Costa", 10.0),
             CoffeeShop(Coordinates(42.3, 52.3), "Dunkin Donuts", 20.0),
             CoffeeShop(Coordinates(123.5, 89.0), "Monk's Cafe", 30.0))

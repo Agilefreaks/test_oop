@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 internal class CSVParserTest {
 
     @Test
-    fun `transform valid CSV file into String list`() {
+    fun `transform valid CSV file into String list should work`() {
         val expectedOutput = listOf("Starbucks Seattle,47.5809,-122.3160",
                 "Starbucks SF,37.5209,-122.3340",
                 "Starbucks Moscow,55.752047,37.595242",
