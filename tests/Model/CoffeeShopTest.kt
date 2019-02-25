@@ -8,9 +8,9 @@ internal class CoffeeShopTest {
     fun `string from CoffeeShop object`() {
         val coffeeShop = CoffeeShop(Coordinates(42.4,143.234), "Starbucks",120.0)
         val expectedString = "Starbucks,120.0000"
-        val computedString = coffeeShop.toString()
+        val actualString = coffeeShop.toString()
 
-        assertEquals(expectedString, computedString)
+        assertEquals(expectedString, actualString)
     }
 
 }
