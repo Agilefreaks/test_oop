@@ -25,6 +25,9 @@ internal class CSVParserTest {
         assertThrows<FileNotFoundException> { CSVParser().parseCsvFileWithName("random.csv") }
     }
 
-
+    @Test
+    fun `retrieve list of closest coffee shops from empty CSV should throw error`() {
+        assertThrows <EmptyCsvException> { CSVParser().parseCsvFileWithName("coffee_shops_empty.csv") }
+    }
 
 }
