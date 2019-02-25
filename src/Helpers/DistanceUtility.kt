@@ -7,7 +7,7 @@ internal class DistanceUtility {
         return sqrt(((to.latitude - from.latitude).pow(2) + (to.longitude - from.longitude).pow(2)))
     }
 
-    fun sortByDistance(list: List<CoffeeShop>, location: Coordinates): List<CoffeeShop> {
+    fun sortByDistance(list: List<CoffeeShop>): List<CoffeeShop> {
         return list.sortedBy { it.distanceFromUser }
     }
 

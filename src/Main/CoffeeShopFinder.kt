@@ -5,7 +5,7 @@ internal class CoffeeShopFinder(private val userLocation: Coordinates, private v
     fun findClosestLocations(): String {
         val lines = CSVParser().parseCsvFileWithName(filename)
         val coffeeShops = Converter().linesToCoffeeShops(lines, userLocation)
-        val sortedCoffeeShops = DistanceUtility().sortByDistance(coffeeShops, userLocation)
+        val sortedCoffeeShops = DistanceUtility().sortByDistance(coffeeShops)
 
         return Converter().listToString(sortedCoffeeShops, 3)
     }

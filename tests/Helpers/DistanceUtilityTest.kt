@@ -27,7 +27,7 @@ internal class DistanceUtilityTest {
                           CoffeeShop(Coordinates(42.3, 52.3), "Dunkin Donuts", 10.0),
                           CoffeeShop(Coordinates(123.5, 89.0), "Monk's Cafe", 20.0))
         val expectedSortedList = listOf(list[1], list[2], list[0])
-        val actualSortedList = DistanceUtility().sortByDistance(list, testLocation)
+        val actualSortedList = DistanceUtility().sortByDistance(list)
 
         assertEquals(expectedSortedList, actualSortedList)
     }
