@@ -6,18 +6,12 @@ import java.lang.NumberFormatException
 internal class MainKtTest {
 
     @Test
-    fun locateWithInsufficientArgs() {
+    fun `find closest coffee shops with insufficient number of args should throw error`() {
         assertThrows<InvalidInput> { main(arrayOf("122.4", "41.3")) }
     }
 
     @Test
-    fun locateWithIncorrectArgs() {
+    fun `find closest coffee shops with incorrect type of args should throw error`() {
         assertThrows<NumberFormatException> { main(arrayOf("122.4", "coffee_shops.csv", "41.3")) }
     }
-
-    @Test
-    fun locateWithNonExistentFile() {
-        assertThrows<FileNotFoundException> { main(arrayOf("122.4", "41.3", "random.csv")) }
-    }
-
 }

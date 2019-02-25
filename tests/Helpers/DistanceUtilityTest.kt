@@ -3,22 +3,22 @@ import org.junit.jupiter.api.Test
 
 internal class DistanceUtilityTest {
 
-    val testLocation = Coordinates(47.6, -122.4)
+    private val testLocation = Coordinates(47.6, -122.4)
 
     @Test
     fun `calculate Distance from user to SF Starbucks`() {
         val sfStarbucks = Coordinates(37.5209,-122.3340)
-        val computedDistance = DistanceUtility().calculateDistance(sfStarbucks, testLocation)
+        val actualDistance = DistanceUtility().calculateDistance(sfStarbucks, testLocation)
 
-        assertEquals(10.079316088406003, computedDistance)
+        assertEquals(10.079316088406003, actualDistance)
     }
 
     @Test
     fun `calculate distance from user to Sydney Starbucks`() {
         val sydneyStarbucks = Coordinates(-33.871843,151.206767)
-        val computedDistance = DistanceUtility().calculateDistance(sydneyStarbucks, testLocation)
+        val actualDistance = DistanceUtility().calculateDistance(sydneyStarbucks, testLocation)
 
-        assertEquals(285.47911333407376, computedDistance)
+        assertEquals(285.47911333407376, actualDistance)
     }
 
     @Test
@@ -27,9 +27,9 @@ internal class DistanceUtilityTest {
                           CoffeeShop(Coordinates(42.3, 52.3), "Dunkin Donuts", 10.0),
                           CoffeeShop(Coordinates(123.5, 89.0), "Monk's Cafe", 20.0))
         val expectedSortedList = listOf(list[1], list[2], list[0])
-        val computedSortedList = DistanceUtility().sortByDistance(list, testLocation)
+        val actualSortedList = DistanceUtility().sortByDistance(list, testLocation)
 
-        assertEquals(expectedSortedList, computedSortedList)
+        assertEquals(expectedSortedList, actualSortedList)
     }
 
 }
