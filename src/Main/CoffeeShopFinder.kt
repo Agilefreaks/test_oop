@@ -1,18 +1,12 @@
 import Helpers.CSVParser
-import java.io.FileNotFoundException
 
-internal class CoffeeShopFinder(val userLocation: Coordinates, val filename: String) {
+internal class CoffeeShopFinder(private val userLocation: Coordinates, private val filename: String) {
 
-    fun findClosestLocations(): String = try {
+    fun findClosestLocations(): String {
         val lines = CSVParser().parseCsvFileWithName(filename)
-        val coffeeShops = Converter().linesToCoffeeShops(lines)
+        val coffeeShops = Converter().linesToCoffeeShops(lines, userLocation)
         val sortedCoffeeShops = DistanceUtility().sortByDistance(coffeeShops, userLocation)
 
-        Converter().listToString(sortedCoffeeShops, 3)
-
-    } catch (error: FileNotFoundException) {
-        throw FileNotFoundException("$filename was not found")
+        return Converter().listToString(sortedCoffeeShops, 3)
     }
 }
-
-internal class EmptyCsvException(message: String): Exception(message)

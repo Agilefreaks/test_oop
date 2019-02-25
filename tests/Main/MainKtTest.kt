@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import java.io.FileNotFoundException
 import java.lang.NumberFormatException
 
 internal class MainKtTest {
