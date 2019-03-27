@@ -16,9 +16,9 @@ class CalculateTest < Test::Unit::TestCase
     coffeeShopLongitude = Array.new
     coffeeShopLongitude.push 24.1465759
 
-    Calculate.DistanceBetweenCoffeeShopAndUser(coffeeShopName, coffeeShopLatitude, coffeeShopLongitude, 45.774937, 24.149587, distanceFromUserToCoffeeShop)
+    Calculate.DistanceBetweenCoffeeShopAndUser(coffeeShopName, coffeeShopLatitude, coffeeShopLongitude, 45.7838552, 24.1515281, distanceFromUserToCoffeeShop)
 
-    assert_equal([0.8857], distanceFromUserToCoffeeShop)
+    assert_equal([0.4078], distanceFromUserToCoffeeShop)
 
   end
 end
