@@ -50,6 +50,8 @@ Open terminal and type the following command:
 
 __Example__
 
+Using the [coffee_shops.csv](INeedCoffee/coffee_shops.csv)
+
 `$ ruby coffeeShop.rb 45.7838552 24.1515281 coffee_shops.csv`
 
 __Expected output__
@@ -66,6 +68,3 @@ Open terminal and type the following command:
 
 `$ ruby runAllTests.rb`
 
-## Example
-
-Using the [INeedCoffee/coffee_shops.csv](coffee_shops.csv)
