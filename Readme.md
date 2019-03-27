@@ -28,13 +28,13 @@ __Linux/Ubuntu__
 
 After Ruby On Rails was successfully installed, follow the next steps:
 
-Step 1
+__Step 1__
 
 Open terminal and go to the path where the application is located:
 
 `$ cd <application path>`
 
-Step 2
+__Step 2__
 
 Type the following command in the terminal:
 
@@ -62,7 +62,7 @@ Starbucks Sibiu Piata Mare, 1.5017
 Starbucks Cluj Iulius Mall, 117.1099
 ```
 
-## How to run the tests of the application
+## How to run tests for the application
 
 Open terminal and type the following command:
 
