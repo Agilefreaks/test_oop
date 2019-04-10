@@ -6,7 +6,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 
-class CSVFileOps(var parser: Parser<CoffeeShop>) : FileOperations<CoffeeShop>() {
+class CSVFileOperations(var parser: Parser<CoffeeShop>) : FileOperations<CoffeeShop>() {
     override fun readFile(filename: String): List<CoffeeShop> {
         val list: List<CoffeeShop>
         list = ArrayList()

@@ -1,5 +1,5 @@
 package com.madalinb.coffeeshop.abstractions.validations
 
-interface ValidString {
+interface StringValidator {
     fun isValidName(name: String): Boolean
 }

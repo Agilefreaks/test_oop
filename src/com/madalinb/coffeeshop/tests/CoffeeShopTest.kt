@@ -13,22 +13,22 @@ class CoffeeShopTest {
     }
 
     @Test
-    fun distanceTo() {
+    fun testComputeDistanceToAPoint() {
         assert(coffeeShop?.distanceTo(47.6, -122.4) == 0.0861441234211632)
     }
 
     @Test
-    fun getName() {
+    fun testCheckCoffeeShopName() {
         assert(coffeeShop?.name == "Starbucks Seattle")
     }
 
     @Test
-    fun getX() {
+    fun testCheckXCoordinate() {
         assert(coffeeShop?.x == 47.5809)
     }
 
     @Test
-    fun getY() {
+    fun testCheckYCoordinate() {
         assert(coffeeShop?.y == -122.3160)
     }
 }

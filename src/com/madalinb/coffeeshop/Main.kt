@@ -2,14 +2,14 @@ package com.madalinb.coffeeshop
 
 import com.madalinb.coffeeshop.csv.CSVParser
 import com.madalinb.coffeeshop.csv.CSVValidator
-import com.madalinb.coffeeshop.data.CSVFileOps
+import com.madalinb.coffeeshop.data.CSVFileOperations
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
 fun main(args: Array<String>) {
     val validator = CSVValidator()
     val parser = CSVParser(validator)
-    val fileOps = CSVFileOps(parser)
+    val fileOps = CSVFileOperations(parser)
 
     val map = mutableMapOf<Double, String>()
     val df = DecimalFormat("#.####")

@@ -1,5 +1,5 @@
 package com.madalinb.coffeeshop.abstractions.validations
 
-interface Arguments {
+interface ArgumentsValidator {
     fun hasEnoughArguments(line: List<String>): Boolean
 }
