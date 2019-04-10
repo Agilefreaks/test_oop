@@ -1,0 +1,11 @@
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/bin/Debug/netcoreapp2.1/INeedCoffee.deps.json
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/bin/Debug/netcoreapp2.1/INeedCoffee.runtimeconfig.json
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/bin/Debug/netcoreapp2.1/INeedCoffee.runtimeconfig.dev.json
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/bin/Debug/netcoreapp2.1/INeedCoffee.dll
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/bin/Debug/netcoreapp2.1/INeedCoffee.pdb
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/obj/Debug/netcoreapp2.1/INeedCoffee.csprojAssemblyReference.cache
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/obj/Debug/netcoreapp2.1/INeedCoffee.csproj.CoreCompileInputs.cache
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/obj/Debug/netcoreapp2.1/INeedCoffee.AssemblyInfoInputs.cache
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/obj/Debug/netcoreapp2.1/INeedCoffee.AssemblyInfo.cs
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/obj/Debug/netcoreapp2.1/INeedCoffee.dll
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee/obj/Debug/netcoreapp2.1/INeedCoffee.pdb

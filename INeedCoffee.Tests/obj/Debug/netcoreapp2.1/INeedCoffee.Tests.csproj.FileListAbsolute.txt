@@ -1,0 +1,17 @@
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/obj/Debug/netcoreapp2.1/INeedCoffee.Tests.csprojAssemblyReference.cache
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/obj/Debug/netcoreapp2.1/INeedCoffee.Tests.csproj.CoreCompileInputs.cache
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/obj/Debug/netcoreapp2.1/INeedCoffee.Tests.AssemblyInfoInputs.cache
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/obj/Debug/netcoreapp2.1/INeedCoffee.Tests.AssemblyInfo.cs
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/bin/Debug/netcoreapp2.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/bin/Debug/netcoreapp2.1/xunit.runner.reporters.netcoreapp10.dll
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/bin/Debug/netcoreapp2.1/xunit.runner.utility.netcoreapp10.dll
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/bin/Debug/netcoreapp2.1/INeedCoffee.Tests.deps.json
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/bin/Debug/netcoreapp2.1/INeedCoffee.Tests.runtimeconfig.json
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/bin/Debug/netcoreapp2.1/INeedCoffee.Tests.runtimeconfig.dev.json
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/bin/Debug/netcoreapp2.1/INeedCoffee.Tests.dll
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/bin/Debug/netcoreapp2.1/INeedCoffee.Tests.pdb
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/bin/Debug/netcoreapp2.1/INeedCoffee.dll
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/bin/Debug/netcoreapp2.1/INeedCoffee.pdb
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/obj/Debug/netcoreapp2.1/INeedCoffee.Tests.csproj.CopyComplete
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/obj/Debug/netcoreapp2.1/INeedCoffee.Tests.dll
+/Users/alin.schueller/Projects/INeedCoffee/INeedCoffee.Tests/obj/Debug/netcoreapp2.1/INeedCoffee.Tests.pdb

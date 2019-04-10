@@ -3,39 +3,55 @@
 You have been hired by a company that builds a mobile app for coffee addicts.  You are 
 responsible for taking the user’s location and returning a list of the three closest coffee shops.
 
-## Input
+## Coffee Addict 101
 
-The coffee shop list is a comma separated file with rows of the following form:
-`Name,Y Coordinate,X Coordinate`
+The application for the addicted ones has been created.
 
-The quality of data in this list of coffee shops may vary.  Malformed entries should cause the 
-program to exit appropriately. 
+## How and what to install to run the application
 
-Your program will be executed directly from the command line and will be provided three 
-arguments in the following order:
-`<user x coordinate> <user y coordinate> <shop data filename>`
+In order to be able to run the application, you will need to install .NET Core:
 
-## Output
+`https://dotnet.microsoft.com/download`
 
-Write a program that takes the user’s coordinates encoded as listed above and prints out a 
-newline­separated list of the three closest coffee shops (including distance from the user) in 
-order of closest to farthest.  These distances should be rounded to four decimal places. 
+## How to run the application
 
-Assume all coordinates lie on a plane.
+After .NET Core was successfully installed, follow the next steps:
 
-## Example
+__Step 1__
 
-Using the [coffee_shops.csv](coffee_shops.csv)
+Open terminal and go to the path where the solution is located:
 
-__Input__
+`$ cd <solution path>`
 
-`47.6 -122.4 coffee_shops.csv`
+__Step 2__
+
+Inside this folder, you can find another folder called INeedCoffee_ReadyToRun that contains the application's dll file:
+
+`$ cd INeedCoffee_ReadyToRun`
+
+__Step 3__
+
+Open terminal and type the following command:
+
+`$ dotnet INeedCoffee.dll <user latitude> <user longitude> <coffee shop CSV file name>`
+
+__Example__
+
+Using the [coffee_shops.csv](INeedCoffee_ReadyToRun/coffee_shops.csv)
+
+`$ dotnet INeedCoffee.dll 45.7838552 24.1515281 coffee_shops.csv`
 
 __Expected output__
 
 ```
-Starbucks Seattle2,0.0645
-Starbucks Seattle,0.0861
-Starbucks SF,10.0793
+Starbucks Sibiu Oituz, 0.408
+Starbucks Sibiu Piata Mare, 1.5021
+Starbucks Cluj Iulius Mall, 117.1429
 ```
+
+## How to run tests for the application
+
+Navigate to solution path and type the following command:
+
+`$ dotnet test`
 
