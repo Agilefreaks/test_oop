@@ -44,8 +44,9 @@ fun main(args: Array<String>) {
         return
     }
 
+    var distance:Double
     coffeeShops.forEach {
-        val distance = it.distanceTo(x, y)
+        distance = it.distanceTo(x, y)
         map[distance] = it.name
     }
 
