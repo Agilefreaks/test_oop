@@ -45,8 +45,8 @@ fun main(args: Array<String>) {
     }
 
     coffeeShops.forEach {
-        val distance = it.distanceTo(x, y);
-        map[distance] = it.name!!
+        val distance = it.distanceTo(x, y)
+        map[distance] = it.name
     }
 
     val sortedMap = map.toSortedMap()

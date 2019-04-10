@@ -1,7 +1,8 @@
 package com.madalinb.coffeeshop.abstractions
 
-interface Validator {
-    fun hasEnoughArguments(line: List<String>): Boolean
-    fun isValidName(name: String): Boolean
-    fun isValidDouble(value: String): Boolean
+import com.madalinb.coffeeshop.abstractions.validations.Arguments
+import com.madalinb.coffeeshop.abstractions.validations.ValidDouble
+import com.madalinb.coffeeshop.abstractions.validations.ValidString
+
+interface Validator: Arguments, ValidString, ValidDouble {
 }
