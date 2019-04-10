@@ -53,9 +53,9 @@ fun main(args: Array<String>) {
     val sortedMap = map.toSortedMap()
     var counter = 0
 
-    for ((distance, name) in sortedMap) {
+    for ((dist, name) in sortedMap) {
         if (counter < 3) {
-            println("$name, ${df.format(distance)}")
+            println("$name, ${df.format(dist)}")
             counter++
         } else
             return
