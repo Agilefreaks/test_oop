@@ -1,5 +1,7 @@
 package com.madalinb.coffeeshop.tests
 
+import com.madalinb.coffeeshop.CoffeeShopFinder
+import com.madalinb.coffeeshop.CoffeeShopFinder.distanceTo
 import com.madalinb.coffeeshop.data.CoffeeShop
 import org.junit.Before
 import org.junit.Test
@@ -14,7 +16,7 @@ class CoffeeShopTest {
 
     @Test
     fun testComputeDistanceToAPoint() {
-        assert(coffeeShop?.distanceTo(47.6, -122.4) == 0.0861441234211632)
+        assert(CoffeeShopFinder.distanceTo(coffeeShop!!.x, coffeeShop!!.y,47.6, -122.4) == 0.0861441234211632)
     }
 
     @Test
