@@ -1,3 +1,15 @@
+## How to run the code
+
+You must have installed [Node.js](https://nodejs.org/en/download/).
+
+Just open a terminal session in the same directory where the project is and run [CoffeeShop.js](CoffeeShop.js) through Node.
+
+```
+node CoffeeShop.js 47.6 -122.4 coffee_shops.csv
+```
+
+In order to execute the unit tests, just open the [SpecRunner.html](https://github.com/Xxshark888xX/test_oop/blob/master/jasmine/SpecRunner.html) file
+
 ## Overview
 
 You have been hired by a company that builds a mobile app for coffee addicts.  You are 
