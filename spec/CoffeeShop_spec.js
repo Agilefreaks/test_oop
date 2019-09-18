@@ -27,7 +27,7 @@ describe("Coffee Shop App | Unit Tests", function() {
 
 		describe("Starbucks SF", function() {
 			it("Should return: 10.0793", function() {
-				expect(test.GetDistanceBetweenTwoPointsFlatSurface(47.6, -122.4, 37.5209, -122.3340).toFixed(4)).toBeCloseTo("10.0793");
+				expect(test.GetDistanceBetweenTwoPointsFlatSurface(47.6, -122.4, 37.5209, -122.3340).toFixed(4)).toBe("10.0793");
 			});
 		});
     });
