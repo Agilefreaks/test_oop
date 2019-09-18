@@ -1,65 +1,13 @@
-class File {
-	static Exists(filePath) {
-		if (require("fs").existsSync(filePath))
-			return true;
+/**
+ * Parses the given args
+ * @return [0] User X Coordinates, [1] User Y Coordinates, [2] CSV File Path
+ */
+function ParseArgs(args) {
+	let user_xcoo;
+	let user_ycoo;
+	let csvFile_path;
 
-		return false;
-	}
-
-	static ReadAllLines(filePath) {
-		return require("fs").readFileSync(filePath).toString().split('\n')
-	}
-}
-
-function ParseCSV(filePath) {
-	var rawData = File.ReadAllLines(filePath);
-	var arrData = Array.from(Array(rawData.length), () => new Array(3));
-
-	try {
-		for (var i = 0; i < rawData.length; i++) {
-			if ((rawData[i].split(',').length - 1) != 2)
-				throw new Error(`Corrupted CSV template (check for the commas) -> row [${i + 1}]`);
-
-			// Retrieves the coffee shop name
-			arrData[i][0] = rawData[i].slice(0, rawData[i].indexOf(','));
-
-			// Retrieves the X user coordinate
-			arrData[i][1] = rawData[i].slice(rawData[i].indexOf(',') + 1, rawData[i].lastIndexOf(','));
-
-			if (isNaN(arrData[i][1]))
-				throw new Error(`Invalid [X] coordinate -> row [${i + 1}]`);
-			// Retrieves the Y user coordinate
-			arrData[i][2] = rawData[i].slice(rawData[i].lastIndexOf(',') + 1);
-
-			if (isNaN(arrData[i][2]))
-				throw new Error(`Invalid [Y] coordinate -> row [${i + 1}]`);
-		}
-	} catch(e) {
-		throw new Error(`Can't parse the selected CSV file!\n   > : {${e}}`);
-	}
-
-	return arrData;
-}
-
-function CalculateDistance(x, y, x1, y1) {
-  const p = 0.017453292519943295; // Math.PI / 180
-  const c = Math.cos;
-  const a = 0.5 - c((x1 - x) * p) / 2 + 
-          c(x * p) * c(x1 * p) * 
-          (1 - c((y1 - y) * p)) / 2;
-
-  return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
-}
-
-
-function Main() {
-	var user_xcoo         = 0.00; // User X coordinates
-	var user_ycoo         = 0.00; // User Y coordinates
-	var shopCsv_filePath  = "";   // Shops CSV local file path
-	var shopCsv_fileData;         // Shops CSV file data
-
-	// # ARGUMENT PARSING # //
-	process.argv.forEach(function(val, index, array) {
+	args.forEach(function(val, index, array) {
 		switch(index) {
 			case 2:
 				user_xcoo = parseFloat(val);
@@ -78,29 +26,75 @@ function Main() {
 			break;
 
 			case 4:
-				shopCsv_filePath = val;
+				csvFile_path = val;
 
-				if (File.Exists(shopCsv_filePath) == false)
-					throw new Error(`File '${shopCsv_filePath}' not found!`);
+				if (require("fs").existsSync(csvFile_path) == false)
+					throw new Error(`File '${csvFile_path}' not found!`);
 
 			break;
 		}
 	});
 
-
-	// # MAIN CODE # //
-
-	// Retrieves the first 3 nearest coffee shop
-	(shopCsv_fileData = ParseCSV(shopCsv_filePath)).sort(function(a, b) {
-		return CalculateDistance(user_xcoo, user_ycoo, a[1], a[2]) - CalculateDistance(user_xcoo, user_ycoo, b[1], b[2]);
-	});
-
-	// Retrieves the individual distance in km for the nearest coffee shop
-	console.log("\n\n===OUTPUT===\n")
-	for (var i = 0; i < 3; i++) {
-		console.log(`${shopCsv_fileData[i][0]}, ${CalculateDistance(shopCsv_fileData[i][1], shopCsv_fileData[i][2], user_xcoo, user_ycoo).toFixed(4)} (km)`);
-	}
+	return [user_xcoo, user_ycoo, csvFile_path];
 }
 
-// Entry point
+/**
+ * Parses the CSV file row by row and returns the data into an array which structure is the below:
+ * arr[i][0] = Shop's name
+ *       [1] = User X coordinates
+ *	     [2] = User Y coordinates
+ */
+function ParseCSV(filePath) {
+	let rawCsvData       = require("fs").readFileSync(filePath).toString().split('\n');
+	let processedCsvData = Array.from(Array(rawCsvData .length), () => new Array(3));
+
+	try {
+		for (let i = 0; i < rawCsvData.length; i++) {
+			// Checks if the CSV template is corrupted
+			// We do this by knowing that every row in the CSV must have 3 columns -> 2 commas per row
+			if ((rawCsvData[i].split(',').length - 1) != 2)
+				throw new Error(`Corrupted CSV template (check for missing commas between the columns) -> row [${i + 1}]`);
+
+			// Retrieves the coffee shop name
+			processedCsvData[i][0] = rawCsvData[i].slice(0, rawCsvData[i].indexOf(','));
+
+			// Retrieves the X user coordinate
+			processedCsvData[i][1] = rawCsvData[i].slice(rawCsvData[i].indexOf(',') + 1, rawCsvData[i].lastIndexOf(','));
+
+			if (isNaN(processedCsvData[i][1]))
+				throw new Error(`Invalid [X] coordinate -> row [${i + 1}]`);
+
+			// Retrieves the Y user coordinate
+			processedCsvData[i][2] = rawCsvData[i].slice(rawCsvData[i].lastIndexOf(',') + 1);
+
+			if (isNaN(processedCsvData[i][2]))
+				throw new Error(`Invalid [Y] coordinate -> row [${i + 1}]`);
+		}
+	} catch(e) {
+		throw new Error(`Can't parse the selected CSV file!\n   > : {${e}}`);
+	}
+
+	return processedCsvData;
+}
+
+function GetDistanceBetweenTwoPointsFlatSurface(x, y, x1, y1) {
+	return Math.sqrt(Math.pow(x - x1, 2) + Math.pow(y - y1, 2));
+}
+
+function Main() {
+	//user_xcoo;    // User X coordinates (float)
+	//user_ycoo;    // User Y coordinates (float)
+	//csvFile_path; // Shops CSV local file path (str)
+	//csvFile_data; // Shops CSV file data (multidimensional array)
+	const [user_xcoo, user_ycoo, csvFile_path] = ParseArgs(process.argv);
+
+	(csvFile_data = ParseCSV(csvFile_path)).sort(function(a, b) {
+		return GetDistanceBetweenTwoPointsFlatSurface(user_xcoo, user_ycoo, a[1], a[2]) - GetDistanceBetweenTwoPointsFlatSurface(user_xcoo, user_ycoo, b[1], b[2]);
+	});
+
+	console.log("\n\n===OUTPUT===\n")
+	for (let i = 0; i < 3; i++) {
+		console.log(`${csvFile_data[i][0]}, ${GetDistanceBetweenTwoPointsFlatSurface(csvFile_data[i][1], csvFile_data[i][2], user_xcoo, user_ycoo).toFixed(4)}`);
+	}
+}
 Main();
