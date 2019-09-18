@@ -1,6 +1,6 @@
 ## How to run the code
 
-You must have installed [Node.js](https://nodejs.org/en/download/).
+You must have installed [Node.js](https://nodejs.org/en/download/) and [Jasmine](https://jasmine.github.io/setup/nodejs.html)
 
 Just open a terminal session in the same directory where the project is and run [CoffeeShop.js](CoffeeShop.js) through Node.
 
@@ -8,7 +8,11 @@ Just open a terminal session in the same directory where the project is and run 
 node CoffeeShop.js 47.6 -122.4 coffee_shops.csv
 ```
 
-In order to execute the unit tests, just open the [SpecRunner.html](https://github.com/Xxshark888xX/test_oop/blob/master/jasmine/SpecRunner.html) file
+To launch the unit tests just execute this command in the terminal session.
+
+```
+jasmine spec/CoffeeShop_spec.js
+```
 
 ## Overview
 
