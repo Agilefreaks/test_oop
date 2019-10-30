@@ -1,0 +1,72 @@
+from openpyxl import load_workbook
+import pprint
+
+NAME = "Name"
+LATITUDE = "Latitude"
+LONGITUDE = "Longitude"
+
+topics_excel = load_workbook(filename='Starbucks.xlsx')
+backlog_sheet = topics_excel["Backlog"]
+
+
+class Starbucks:
+    def __init__(self):
+        self.topic = {
+            'Name': None,
+            'Latitude': None,
+            'Longitude': None
+        }
+
+        self.topics_list = []
+
+    def fill_topic(self):
+        for i in range(0, backlog_sheet.get_highest_row()):
+            if backlog_sheet.cell(row=i, column=0).value is None:
+                break
+            for j in range(0, backlog_sheet.get_highest_column()):
+                if backlog_sheet.cell(row=1, column=j).value is None:
+                    break
+                if backlog_sheet.cell(row=0, column=j).value == NAME:
+                    self.topic['Name'] = backlog_sheet.cell(row=i, column=j).value
+                elif backlog_sheet.cell(row=0, column=j).value == LATITUDE:
+                    self.topic['Latitude'] = backlog_sheet.cell(row=i, column=j).value
+                elif backlog_sheet.cell(row=0, column=j).value == LONGITUDE:
+                    self.topic['Longitude'] = backlog_sheet.cell(row=i, column=j).value
+            self.topics_list.append(dict(self.topic))
+        pp = pprint.PrettyPrinter(indent=4)
+        pp.pprint(self.topics_list)
+
+    def get_topics_list(self):
+        return self.topics_list
+
+
+class Checker:
+
+    fill_work = {}
+
+    fh = open("report.doc", "w")
+    table = "TEST REPORT".center(65) + "\n" + "\n" + "\n"
+    fh.writelines(table)
+
+    def check00_duplicate(self, topics_list):
+        check_00 = "FILL WORD:".center(25) + "\n" + "\n"
+        self.fh.writelines(check_00)
+        for item in topics_list:
+            if item['Name'] not in self.fill_work:
+                self.fill_work[item['Name']] = 0
+            self.fill_work[item['Name']] = self.fill_work[item['Name']] + 1
+        for key in self.fill_work.keys():
+            if self.fill_work[key] > 1:
+                lines_of_text = "DETAILS: " + str(key) + " occurs " + str(
+                    self.fill_work[key]) + " times in the list"
+                self.fh.writelines(lines_of_text)
+                self.fh.writelines("\n \n \n")
+        return self.fill_work
+
+
+if __name__ == "__main__":
+    topics = Starbucks()
+    topics.fill_topic()
+    topics_01 = Checker()
+    topics_01.check00_duplicate(topics.get_topics_list())
+    topics_01.fh.close()
