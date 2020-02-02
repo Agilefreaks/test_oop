@@ -13,4 +13,9 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CoffeeNation.Core\CoffeeNation.Core.csproj" />
+    <ProjectReference Include="..\CoffeeNation.UnitTestsCommon\CoffeeNation.UnitTestsCommon.csproj" />
+  </ItemGroup>
+
 </Project>

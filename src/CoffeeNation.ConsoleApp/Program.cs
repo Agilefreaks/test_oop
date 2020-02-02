@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using CoffeeNation.Core.Entities;
+﻿using System.Threading.Tasks;
 using CoffeeNation.Dependency;
+using CoffeeNation.Service.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace CoffeeNation.ConsoleApp
 {
@@ -11,32 +9,11 @@ namespace CoffeeNation.ConsoleApp
     {
         static async Task Main(string[] args)
         {
-            var serviceProvider = RegisterServices();
+            var serviceProvider = new ServiceCollection().ConfigureDependencies(args).BuildServiceProvider();
 
-            ConfigureServices(serviceProvider);
+            var coffeeShopMapService = serviceProvider.GetRequiredService<ICoffeeShopsMapService>();
 
-            await RunApplication(serviceProvider, args);
+            await coffeeShopMapService.DisplayClosestCoffeeShops();
         }
-
-        private static IServiceProvider RegisterServices()
-        {
-            var services = new ServiceCollection();
-
-            services.AddLogging();
-            services.AddCoreRegistrations();
-
-            return services.BuildServiceProvider();
-        }
-
-        private static void ConfigureServices(IServiceProvider serviceProvider)
-        {
-            
-        }
-
-        private static async Task RunApplication(IServiceProvider serviceProvider, string[] args)
-        {
-
-        }
-
     }
 }

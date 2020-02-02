@@ -8,4 +8,11 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoffeeNation.Core\CoffeeNation.Core.csproj" />
+    <ProjectReference Include="..\CoffeeNation.Data\CoffeeNation.Data.csproj" />
+    <ProjectReference Include="..\CoffeeNation.Repository\CoffeeNation.Repository.csproj" />
+    <ProjectReference Include="..\CoffeeNation.Service\CoffeeNation.Service.csproj" />
+  </ItemGroup>
+
 </Project>
