@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CoffeeNation.Core.Exceptions;
 using CoffeeNation.UnitTestsCommon;
 using Xunit;
 
@@ -8,29 +9,29 @@ namespace CoffeeNation.Core.UnitTests
     public class CartesianDistanceCalculatorTests
     {
         [Fact]
-        public async Task TestThat_CalculateDistanceToDestination_When_SourceIsNull_Throws_ArgumentNullException()
+        public async Task TestThat_CalculateDistanceToDestination_When_SourceIsNull_Throws_ArgumentValidationException()
         {
             // Arrange
             var distanceCalculator = new CartesianDistanceCalculator();
 
             // Act
-            async Task Act() => await distanceCalculator.CalculateDistanceToDestination(MockData.NullShopLocation, MockData.ShopLocation1);
+            async Task Act() => await distanceCalculator.CalculateDistanceToDestination(MockData.NullUserLocation, MockData.ShopLocation1);
 
             // Assert
-            await Assert.ThrowsAsync<ArgumentNullException>(Act);
+            await Assert.ThrowsAsync<ArgumentValidationException>(Act);
         }
 
         [Fact]
-        public async Task TestThat_CalculateDistanceToDestination_When_DestinationIsNull_Throws_ArgumentNullException()
+        public async Task TestThat_CalculateDistanceToDestination_When_DestinationIsNull_Throws_ArgumentValidationException()
         {
             // Arrange
             var distanceCalculator = new CartesianDistanceCalculator();
 
             // Act
-            async Task Act() => await distanceCalculator.CalculateDistanceToDestination(MockData.NullShopLocation, MockData.ShopLocation1);
+            async Task Act() => await distanceCalculator.CalculateDistanceToDestination(MockData.UserLocation1, MockData.NullShopLocation);
 
             // Assert
-            await Assert.ThrowsAsync<ArgumentNullException>(Act);
+            await Assert.ThrowsAsync<ArgumentValidationException>(Act);
         }
 
         [Fact]
