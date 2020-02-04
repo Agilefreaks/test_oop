@@ -28,6 +28,24 @@ namespace CoffeeNation.Repository.UnitTests
         }
 
         [Fact]
+        public async Task TestThat_GetUserLocation_When_DataReaderThrowsDataProviderException_Throws_DataProviderException()
+        {
+            // Arrange
+            var dataReaderMock = new Mock<IUserLocationDataReader>();
+            dataReaderMock
+                .Setup(x => x.ReadUserLocation())
+                .Throws<DataProviderException>();
+
+            var userLocationRepository = new UserLocationRepository(dataReaderMock.Object);
+
+            // Act
+            async Task Act() => await userLocationRepository.GetUserLocation();
+
+            // Assert
+            await Assert.ThrowsAsync<DataProviderException>(Act);
+        }
+
+        [Fact]
         public async Task TestThat_GetUserLocation_When_DataReaderReturnsItems_Returns_NotNullLocation()
         {
             // Arrange

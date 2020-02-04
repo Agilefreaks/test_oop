@@ -29,6 +29,24 @@ namespace CoffeeNation.Repository.UnitTests
         }
 
         [Fact]
+        public async Task TestThat_GetCoffeeShopLocations_When_DataReaderThrowsDataProviderException_Throws_DataProviderException()
+        {
+            // Arrange
+            var dataReaderMock = new Mock<ICoffeeShopLocationDataReader>();
+            dataReaderMock
+                .Setup(x => x.ReadCoffeeShopLocations())
+                .Throws<DataProviderException>();
+
+            var coffeeShopLocationRepository = new CoffeeShopLocationRepository(dataReaderMock.Object);
+
+            // Act
+            async Task Act() => await coffeeShopLocationRepository.GetCoffeeShopLocations();
+
+            // Assert
+            await Assert.ThrowsAsync<DataProviderException>(Act);
+        }
+
+        [Fact]
         public async Task TestThat_GetCoffeeShopLocations_When_DataReaderReturnsNoItems_Returns_EmptyLocationList()
         {
             // Arrange

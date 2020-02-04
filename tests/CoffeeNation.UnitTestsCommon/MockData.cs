@@ -101,6 +101,8 @@ namespace CoffeeNation.UnitTestsCommon
 
         public static IEnumerable<Distance> NullShopDistances => null;
 
+        public static IEnumerable<Distance> EmptyShopDistances => new List<Distance>();
+
         public static IEnumerable<Distance> LessThanThreeShopDistances => new List<Distance>
         {
             ShopDistance1,

@@ -6,6 +6,6 @@ namespace CoffeeNation.Repository.Interfaces
 {
     public interface ICoffeeShopDistanceRepository
     {
-        Task WriteCoffeeShopDistances(IEnumerable<Distance> distances);
+        Task SetCoffeeShopDistances(IEnumerable<Distance> distances);
     }
 }
