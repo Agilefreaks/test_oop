@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using CoffeeNation.Core;
 using CoffeeNation.Core.Interfaces;
+using CoffeeNation.Repository;
+using CoffeeNation.Repository.Interfaces;
 using CoffeeNation.Service;
 using CoffeeNation.Service.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,7 +36,7 @@ namespace CoffeeNation.Dependency
 
         private static void AddRepositoryRegistrations(this IServiceCollection services)
         {
-
+            services.AddTransient<ICoffeeShopLocationRepository, CoffeeShopLocationRepository>();
         }
 
         private static void AddDataRegistrations(this IServiceCollection services, string[] arguments)
