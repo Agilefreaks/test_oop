@@ -37,6 +37,7 @@ namespace CoffeeNation.Dependency
         private static void AddRepositoryRegistrations(this IServiceCollection services)
         {
             services.AddTransient<ICoffeeShopLocationRepository, CoffeeShopLocationRepository>();
+            services.AddTransient<IUserLocationRepository, UserLocationRepository>();
         }
 
         private static void AddDataRegistrations(this IServiceCollection services, string[] arguments)

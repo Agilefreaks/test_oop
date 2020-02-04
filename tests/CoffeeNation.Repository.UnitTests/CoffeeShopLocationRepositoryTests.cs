@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Exceptions;
@@ -47,7 +46,6 @@ namespace CoffeeNation.Repository.UnitTests
             Assert.Empty(locations);
         }
 
-
         [Fact]
         public async Task TestThat_GetCoffeeShopLocations_When_DataReaderReturnsItems_Returns_NotNullLocationList()
         {
@@ -83,6 +81,5 @@ namespace CoffeeNation.Repository.UnitTests
             // Assert
             Assert.Equal(5, locations.Count());
         }
-
     }
 }
