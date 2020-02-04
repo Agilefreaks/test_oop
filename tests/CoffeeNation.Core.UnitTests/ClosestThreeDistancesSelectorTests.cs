@@ -6,13 +6,13 @@ using Xunit;
 
 namespace CoffeeNation.Core.UnitTests
 {
-    public class ClosestThreeDistanceSelectorTests
+    public class ClosestThreeDistancesSelectorTests
     {
         [Fact]
         public async Task TestThat_SelectDistances_When_InputDistancesListIsNull_Throws_ArgumentValidationException()
         {
             // Arrange
-            var distanceSelector = new ClosestThreeDistanceSelector();
+            var distanceSelector = new ClosestThreeDistancesSelector();
 
             // Act
             async Task Act() => await distanceSelector.SelectDistances(MockData.NullShopDistances);
@@ -25,7 +25,7 @@ namespace CoffeeNation.Core.UnitTests
         public async Task TestThat_SelectDistances_When_InputDistancesListIsLessThanThree_Throws_ArgumentValidationException()
         {
             // Arrange
-            var distanceSelector = new ClosestThreeDistanceSelector();
+            var distanceSelector = new ClosestThreeDistancesSelector();
 
             // Act
             async Task Act() => await distanceSelector.SelectDistances(MockData.LessThanThreeShopDistances);
@@ -38,7 +38,7 @@ namespace CoffeeNation.Core.UnitTests
         public async Task TestThat_SelectDistances_When_InputDistancesListIsValid_Returns_NotNullDistanceList()
         {
             // Arrange
-            var distanceSelector = new ClosestThreeDistanceSelector();
+            var distanceSelector = new ClosestThreeDistancesSelector();
 
             // Act
             var distances = await distanceSelector.SelectDistances(MockData.AllShopDistances);
@@ -51,7 +51,7 @@ namespace CoffeeNation.Core.UnitTests
         public async Task TestThat_SelectDistances_When_InputDistancesListIsValid_Returns_ExpectedNumberOfElements()
         {
             // Arrange
-            var distanceSelector = new ClosestThreeDistanceSelector();
+            var distanceSelector = new ClosestThreeDistancesSelector();
 
             // Act
             var distances = await distanceSelector.SelectDistances(MockData.AllShopDistances);

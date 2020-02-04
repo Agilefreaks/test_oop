@@ -43,6 +43,8 @@ namespace CoffeeNation.UnitTestsCommon
             Y = 236.7
         };
 
+        public static IEnumerable<Location> EmptyShopLocations => new List<Location>();
+
         public static IEnumerable<Location> ValidCoffeeShopLocations => new List<Location>
         {
             ShopLocation1,

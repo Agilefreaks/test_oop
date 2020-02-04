@@ -7,7 +7,7 @@ using CoffeeNation.Core.Interfaces;
 
 namespace CoffeeNation.Core
 {
-    public class ClosestThreeDistanceSelector : IDistanceSelector
+    public class ClosestThreeDistancesSelector : IDistanceSelector
     {
         private const int DefaultOutputCount = 3;
 
