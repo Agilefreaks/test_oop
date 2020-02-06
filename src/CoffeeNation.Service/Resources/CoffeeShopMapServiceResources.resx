@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DistanceCalculatorExceptionMessage" xml:space="preserve">
-    <value>Error encountered while calculating distance</value>
+  <data name="DataProviderExceptionMessage" xml:space="preserve">
+    <value>The application needs to close due to external dependencies error</value>
   </data>
-  <data name="GetCoffeeShopLocationsExceptionMessage" xml:space="preserve">
-    <value>Error encountered while reading coffee shop locations</value>
+  <data name="DataValidationExceptionMessage" xml:space="preserve">
+    <value>The application needs to close due to data validation error</value>
   </data>
-  <data name="GetUserLocationExceptionMessage" xml:space="preserve">
-    <value>Error encountered while retrieving user location</value>
+  <data name="GenericExceptionMessage" xml:space="preserve">
+    <value>The application needs to close due to unknown error</value>
   </data>
 </root>

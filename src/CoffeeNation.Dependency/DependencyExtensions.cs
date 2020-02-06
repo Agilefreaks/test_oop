@@ -2,7 +2,9 @@
 using CoffeeNation.Core;
 using CoffeeNation.Core.Interfaces;
 using CoffeeNation.Data;
+using CoffeeNation.Data.Formatter;
 using CoffeeNation.Data.Interfaces;
+using CoffeeNation.Data.Interfaces.Formatter;
 using CoffeeNation.Data.Interfaces.Parser;
 using CoffeeNation.Data.Interfaces.Provider;
 using CoffeeNation.Data.Parser;
@@ -44,14 +46,18 @@ namespace CoffeeNation.Dependency
             services.AddTransient<IUserLocationRepository, UserLocationRepository>();
             services.AddTransient<ICoffeeShopLocationRepository, CoffeeShopLocationRepository>();
             services.AddTransient<ICoffeeShopDistanceRepository, CoffeeShopDistanceRepository>();
+            services.AddTransient<IOutputMessageRepository, OutputMessageRepository>();
         }
 
         private static void AddDataRegistrations(this IServiceCollection services, string[] arguments)
         {
             services.AddTransient<ICoffeeShopLocationDataReader, CsvCoffeeShopLocationDataReader>();
             services.AddTransient<IUserLocationDataReader, UserLocationDataReader>();
+            services.AddTransient<ICoffeeShopDistanceDataWriter, CoffeeShopDistanceDataWriter>();
+            services.AddTransient<IMessageDataWriter, ConsoleMessageDataWriter>();
 
             services.AddTransient<ICsvLineParser, CsvLineParser>();
+            services.AddTransient<ICoffeeShopDistanceFormatter, CoffeeShopDistanceFormatter>();
 
             var userLocationX = arguments[0];
             var userLocationY = arguments[1];
@@ -59,6 +65,8 @@ namespace CoffeeNation.Dependency
 
             var csvFileName = arguments[2];
             services.AddTransient<ICsvContentProvider>(factory => new FileCsvContentProvider(csvFileName));
+
+            services.AddTransient<IConsoleOutputProvider, ConsoleOutputProvider>();
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,28 +14,6 @@ namespace CoffeeNation.Service.UnitTests
     public class CoffeeShopsMapServiceTests
     {
         [Fact]
-        public async Task TestThat_DisplayClosestCoffeeShops_Throws_NotImplementedException()
-        {
-            // Arrange
-            var userLocationRepositoryMock = new Mock<IUserLocationRepository>();
-            var coffeeShopLocationRepositoryMock = new Mock<ICoffeeShopLocationRepository>();
-            var distanceCalculatorMock = new Mock<IDistanceCalculator>();
-            var distanceSelectorMock = new Mock<IDistanceSelector>();
-
-            var coffeeShopsMapService = new CoffeeShopsMapService(
-                userLocationRepositoryMock.Object, 
-                coffeeShopLocationRepositoryMock.Object, 
-                distanceCalculatorMock.Object, 
-                distanceSelectorMock.Object);
-
-            // Act
-            async Task Act() => await coffeeShopsMapService.DisplayClosestCoffeeShops();
-
-            // Assert
-            await Assert.ThrowsAsync<NotImplementedException>(Act);
-        }
-
-        [Fact]
         public async Task TestThat_GetClosestCoffeeShops_When_DistanceCalculatorThrowsArgumentValidationException_Throws_ArgumentValidationException()
         {
             // Arrange
@@ -50,6 +27,9 @@ namespace CoffeeNation.Service.UnitTests
                 .Setup(x => x.GetCoffeeShopLocations())
                 .ReturnsAsync(MockData.ValidCoffeeShopLocations);
 
+            var coffeeShopDistanceRepositoryMock = new Mock<ICoffeeShopDistanceRepository>();
+            var outputMessageRepositoryMock = new Mock<IOutputMessageRepository>();
+
             var distanceCalculatorMock = new Mock<IDistanceCalculator>();
             distanceCalculatorMock
                 .Setup(x => x.CalculateDistanceToDestination(It.IsAny<Location>(), It.IsAny<Location>()))
@@ -60,6 +40,8 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsMapService = new CoffeeShopsMapService(
                 userLocationRepositoryMock.Object,
                 coffeeShopLocationRepositoryMock.Object,
+                coffeeShopDistanceRepositoryMock.Object,
+                outputMessageRepositoryMock.Object,
                 distanceCalculatorMock.Object,
                 distanceSelectorMock.Object);
 
@@ -76,6 +58,10 @@ namespace CoffeeNation.Service.UnitTests
             // Arrange
             var userLocationRepositoryMock = new Mock<IUserLocationRepository>();
             var coffeeShopLocationRepositoryMock = new Mock<ICoffeeShopLocationRepository>();
+
+            var coffeeShopDistanceRepositoryMock = new Mock<ICoffeeShopDistanceRepository>();
+            var outputMessageRepositoryMock = new Mock<IOutputMessageRepository>();
+
             var distanceCalculatorMock = new Mock<IDistanceCalculator>();
 
             var distanceSelectorMock = new Mock<IDistanceSelector>();
@@ -86,6 +72,8 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsMapService = new CoffeeShopsMapService(
                 userLocationRepositoryMock.Object,
                 coffeeShopLocationRepositoryMock.Object,
+                coffeeShopDistanceRepositoryMock.Object,
+                outputMessageRepositoryMock.Object,
                 distanceCalculatorMock.Object,
                 distanceSelectorMock.Object);
 
@@ -106,12 +94,18 @@ namespace CoffeeNation.Service.UnitTests
                 .Throws(new DataValidationException(MockValues.CommandLineDataValidationExceptionMessage));
 
             var coffeeShopLocationRepositoryMock = new Mock<ICoffeeShopLocationRepository>();
+
+            var coffeeShopDistanceRepositoryMock = new Mock<ICoffeeShopDistanceRepository>();
+            var outputMessageRepositoryMock = new Mock<IOutputMessageRepository>();
+
             var distanceCalculatorMock = new Mock<IDistanceCalculator>();
             var distanceSelectorMock = new Mock<IDistanceSelector>();
 
             var coffeeShopsMapService = new CoffeeShopsMapService(
                 userLocationRepositoryMock.Object,
                 coffeeShopLocationRepositoryMock.Object,
+                coffeeShopDistanceRepositoryMock.Object,
+                outputMessageRepositoryMock.Object,
                 distanceCalculatorMock.Object,
                 distanceSelectorMock.Object);
 
@@ -134,12 +128,17 @@ namespace CoffeeNation.Service.UnitTests
                 .Setup(x => x.GetCoffeeShopLocations())
                 .Throws(new DataValidationException(MockValues.CsvDataValidationExceptionMessage));
 
+            var coffeeShopDistanceRepositoryMock = new Mock<ICoffeeShopDistanceRepository>();
+            var outputMessageRepositoryMock = new Mock<IOutputMessageRepository>();
+
             var distanceCalculatorMock = new Mock<IDistanceCalculator>();
             var distanceSelectorMock = new Mock<IDistanceSelector>();
 
             var coffeeShopsMapService = new CoffeeShopsMapService(
                 userLocationRepositoryMock.Object,
                 coffeeShopLocationRepositoryMock.Object,
+                coffeeShopDistanceRepositoryMock.Object,
+                outputMessageRepositoryMock.Object,
                 distanceCalculatorMock.Object,
                 distanceSelectorMock.Object);
 
@@ -156,8 +155,10 @@ namespace CoffeeNation.Service.UnitTests
         {
             // Arrange
             var userLocationRepositoryMock = new Mock<IUserLocationRepository>();
-
             var coffeeShopLocationRepositoryMock = new Mock<ICoffeeShopLocationRepository>();
+
+            var coffeeShopDistanceRepositoryMock = new Mock<ICoffeeShopDistanceRepository>();
+            var outputMessageRepositoryMock = new Mock<IOutputMessageRepository>();
 
             var distanceCalculatorMock = new Mock<IDistanceCalculator>();
             var distanceSelectorMock = new Mock<IDistanceSelector>();
@@ -165,6 +166,8 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsMapService = new CoffeeShopsMapService(
                 userLocationRepositoryMock.Object,
                 coffeeShopLocationRepositoryMock.Object,
+                coffeeShopDistanceRepositoryMock.Object,
+                outputMessageRepositoryMock.Object,
                 distanceCalculatorMock.Object,
                 distanceSelectorMock.Object);
 
@@ -189,6 +192,9 @@ namespace CoffeeNation.Service.UnitTests
                 .Setup(x => x.GetCoffeeShopLocations())
                 .ReturnsAsync(MockData.ValidCoffeeShopLocations);
 
+            var coffeeShopDistanceRepositoryMock = new Mock<ICoffeeShopDistanceRepository>();
+            var outputMessageRepositoryMock = new Mock<IOutputMessageRepository>();
+
             var distanceCalculatorMock = new Mock<IDistanceCalculator>();
             distanceCalculatorMock
                 .Setup(x => x.CalculateDistanceToDestination(It.IsAny<Location>(), It.IsAny<Location>()))
@@ -202,6 +208,8 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsMapService = new CoffeeShopsMapService(
                 userLocationRepositoryMock.Object,
                 coffeeShopLocationRepositoryMock.Object,
+                coffeeShopDistanceRepositoryMock.Object,
+                outputMessageRepositoryMock.Object,
                 distanceCalculatorMock.Object,
                 distanceSelectorMock.Object);
 

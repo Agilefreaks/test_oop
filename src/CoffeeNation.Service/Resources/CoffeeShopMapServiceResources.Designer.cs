@@ -61,29 +61,29 @@ namespace CoffeeNation.Service.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error encountered while calculating distance.
+        ///   Looks up a localized string similar to The application needs to close due to external dependencies error.
         /// </summary>
-        internal static string DistanceCalculatorExceptionMessage {
+        internal static string DataProviderExceptionMessage {
             get {
-                return ResourceManager.GetString("DistanceCalculatorExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("DataProviderExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error encountered while reading coffee shop locations.
+        ///   Looks up a localized string similar to The application needs to close due to data validation error.
         /// </summary>
-        internal static string GetCoffeeShopLocationsExceptionMessage {
+        internal static string DataValidationExceptionMessage {
             get {
-                return ResourceManager.GetString("GetCoffeeShopLocationsExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("DataValidationExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error encountered while retrieving user location.
+        ///   Looks up a localized string similar to The application needs to close due to unknown error.
         /// </summary>
-        internal static string GetUserLocationExceptionMessage {
+        internal static string GenericExceptionMessage {
             get {
-                return ResourceManager.GetString("GetUserLocationExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("GenericExceptionMessage", resourceCulture);
             }
         }
     }

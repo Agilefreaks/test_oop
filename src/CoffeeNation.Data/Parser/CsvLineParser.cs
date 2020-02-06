@@ -15,7 +15,7 @@ namespace CoffeeNation.Data.Parser
         {
             ValidateCsvLineString(csvLine);
 
-            var csvLineTokens = GetCsvLineTokens(csvLine);
+            var csvLineTokens = await GetCsvLineTokens(csvLine);
 
             ValidateCsvLineTokens(csvLineTokens);
 
@@ -78,11 +78,12 @@ namespace CoffeeNation.Data.Parser
             }
         }
 
-        private string[] GetCsvLineTokens(string csvLine)
+        private async Task<string[]> GetCsvLineTokens(string csvLine)
         {
-            return csvLine != null
-                ? csvLine.Split(SeparatorCharacter)
-                : new string[] { };
+            return await Task.Run(
+                () => csvLine != null
+                    ? csvLine.Split(SeparatorCharacter)
+                    : new string[] { });
         }
     }
 }
