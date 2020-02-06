@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Exceptions;
@@ -7,6 +8,7 @@ using CoffeeNation.Data.Interfaces.Provider;
 
 namespace CoffeeNation.Data.Provider
 {
+    [ExcludeFromCodeCoverage]
     public class FileCsvContentProvider : ICsvContentProvider
     {
         private readonly string _fileName;

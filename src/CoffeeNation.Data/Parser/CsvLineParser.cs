@@ -9,17 +9,15 @@ namespace CoffeeNation.Data.Parser
     public class CsvLineParser : ICsvLineParser
     {
         private const char SeparatorCharacter = ',';
+        private const int RequiredTokensCount = 3;
 
         public async Task<Location> GetCoffeeShopLocation(string csvLine)
         {
-            if (string.IsNullOrEmpty(csvLine))
-            {
-                throw new DataValidationException(ExceptionMessageResources.NullOrEmptyCsvLineExceptionMessage);
-            }
-
-            // TODO: Add the rest of validation scenarios
+            ValidateCsvLineString(csvLine);
 
             var csvLineTokens = GetCsvLineTokens(csvLine);
+
+            ValidateCsvLineTokens(csvLineTokens);
 
             return new Location()
             {
@@ -27,6 +25,57 @@ namespace CoffeeNation.Data.Parser
                 X = double.Parse(csvLineTokens[1]),
                 Y = double.Parse(csvLineTokens[2])
             };
+        }
+
+        private static void ValidateCsvLineString(string csvLine)
+        {
+            if (string.IsNullOrEmpty(csvLine))
+            {
+                throw new DataValidationException(ExceptionMessageResources.NullOrEmptyCsvLineExceptionMessage);
+            }
+        }
+
+        private void ValidateCsvLineTokens(string[] csvLineTokens)
+        {
+            ValidateTokensCount(csvLineTokens);
+
+            ValidateFirstToken(csvLineTokens);
+
+            ValidateSecondToken(csvLineTokens);
+
+            ValidateThirdToken(csvLineTokens);
+        }
+
+        private static void ValidateTokensCount(string[] csvLineTokens)
+        {
+            if (csvLineTokens.Length != RequiredTokensCount)
+            {
+                throw new DataValidationException(ExceptionMessageResources.IncorrectNumberOfTokensCsvLineExceptionMessage);
+            }
+        }
+
+        private static void ValidateFirstToken(string[] csvLineTokens)
+        {
+            if (string.IsNullOrEmpty(csvLineTokens[0]))
+            {
+                throw new DataValidationException(ExceptionMessageResources.IncorrectValuePosition1CsvLineExceptionMessage);
+            }
+        }
+
+        private static void ValidateSecondToken(string[] csvLineTokens)
+        {
+            if (!double.TryParse(csvLineTokens[1], out _))
+            {
+                throw new DataValidationException(ExceptionMessageResources.IncorrectValuePosition2CsvLineExceptionMessage);
+            }
+        }
+
+        private static void ValidateThirdToken(string[] csvLineTokens)
+        {
+            if (!double.TryParse(csvLineTokens[2], out _))
+            {
+                throw new DataValidationException(ExceptionMessageResources.IncorrectValuePosition3CsvLineExceptionMessage);
+            }
         }
 
         private string[] GetCsvLineTokens(string csvLine)

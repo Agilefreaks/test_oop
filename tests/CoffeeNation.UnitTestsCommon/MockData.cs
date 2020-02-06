@@ -149,6 +149,11 @@ namespace CoffeeNation.UnitTestsCommon
         // Csv content
         public static string StringNullCsvLine => null;
         public static string StringEmptyCsvLine => null;
+        public static string LessThanThreeTokensCsvLine => "Starbucks Seattle,47.5809";
+        public static string MoreThanThreeTokensCsvLine => "Starbucks Seattle,47.5809,-122.3160,asd";
+        public static string Token1ErrorCsvLine => ",47.5809,-122.3160";
+        public static string Token2ErrorCsvLine => "Starbucks Seattle,asd,-122.3160";
+        public static string Token3ErrorCsvLine => "Starbucks Seattle,47.5809,qwe";
 
         public static string ValidCsvLine1 => "Starbucks Seattle,47.5809,-122.3160";
         public static string ValidCsvLine2 => "Starbucks SF,37.5209,-122.3340";

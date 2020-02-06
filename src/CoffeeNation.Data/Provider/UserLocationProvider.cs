@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Exceptions;
 using CoffeeNation.Data.Interfaces.Provider;
 
 namespace CoffeeNation.Data.Provider
 {
+    [ExcludeFromCodeCoverage]
     public class UserLocationProvider : IUserLocationProvider
     {
         private readonly string _locationX;
