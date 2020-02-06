@@ -1,4 +1,6 @@
-﻿namespace CoffeeNation.UnitTestsCommon
+﻿using System;
+
+namespace CoffeeNation.UnitTestsCommon
 {
     public static class MockValues
     {
@@ -17,5 +19,6 @@
         public const string IncorrectValuePosition2CsvLineExceptionMessage = "The value expected on CSV line position 2 (coffee shop coordinate X) is incorrect";
         public const string IncorrectValuePosition3CsvLineExceptionMessage = "The value expected on CSV line position 3 (coffee shop coordinate Y) is incorrect";
 
+        public static readonly string GenericExceptionMessage = Guid.NewGuid().ToString();
     }
 }

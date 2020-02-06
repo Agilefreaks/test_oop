@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace CoffeeNation.Service.UnitTests
     public class CoffeeShopsMapServiceTests
     {
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_DistanceCalculatorThrowsArgumentValidationException_Throws_ArgumentValidationException()
+        public async Task TestThat_GetClosestCoffeeShops_When_DistanceCalculatorThrowsArgumentNullException_Throws_ArgumentNullException()
         {
             // Arrange
             var userLocationRepositoryMock = new Mock<IUserLocationRepository>();
@@ -33,7 +34,7 @@ namespace CoffeeNation.Service.UnitTests
             var distanceCalculatorMock = new Mock<IDistanceCalculator>();
             distanceCalculatorMock
                 .Setup(x => x.CalculateDistanceToDestination(It.IsAny<Location>(), It.IsAny<Location>()))
-                .Throws<ArgumentValidationException>();
+                .Throws<ArgumentNullException>();
 
             var distanceSelectorMock = new Mock<IDistanceSelector>();
 
@@ -49,11 +50,11 @@ namespace CoffeeNation.Service.UnitTests
             async Task Act() => await coffeeShopsMapService.GetClosestCoffeeShops();
 
             // Assert
-            await Assert.ThrowsAsync<ArgumentValidationException>(Act);
+            await Assert.ThrowsAsync<ArgumentNullException>(Act);
         }
 
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_DistanceSelectorThrowsArgumentValidationException_Throws_ArgumentValidationException()
+        public async Task TestThat_GetClosestCoffeeShops_When_DistanceSelectorThrowsArgumentNullException_Throws_ArgumentNullException()
         {
             // Arrange
             var userLocationRepositoryMock = new Mock<IUserLocationRepository>();
@@ -67,7 +68,7 @@ namespace CoffeeNation.Service.UnitTests
             var distanceSelectorMock = new Mock<IDistanceSelector>();
             distanceSelectorMock
                 .Setup(x => x.SelectDistances(It.IsAny<IEnumerable<Distance>>()))
-                .Throws<ArgumentValidationException>();
+                .Throws<ArgumentNullException>();
 
             var coffeeShopsMapService = new CoffeeShopsMapService(
                 userLocationRepositoryMock.Object,
@@ -81,7 +82,39 @@ namespace CoffeeNation.Service.UnitTests
             async Task Act() => await coffeeShopsMapService.GetClosestCoffeeShops();
 
             // Assert
-            await Assert.ThrowsAsync<ArgumentValidationException>(Act);
+            await Assert.ThrowsAsync<ArgumentNullException>(Act);
+        }
+
+        [Fact]
+        public async Task TestThat_GetClosestCoffeeShops_When_DistanceSelectorThrowsArgumentOutOfRangeException_Throws_ArgumentOutOfRangeException()
+        {
+            // Arrange
+            var userLocationRepositoryMock = new Mock<IUserLocationRepository>();
+            var coffeeShopLocationRepositoryMock = new Mock<ICoffeeShopLocationRepository>();
+
+            var coffeeShopDistanceRepositoryMock = new Mock<ICoffeeShopDistanceRepository>();
+            var outputMessageRepositoryMock = new Mock<IOutputMessageRepository>();
+
+            var distanceCalculatorMock = new Mock<IDistanceCalculator>();
+
+            var distanceSelectorMock = new Mock<IDistanceSelector>();
+            distanceSelectorMock
+                .Setup(x => x.SelectDistances(It.IsAny<IEnumerable<Distance>>()))
+                .Throws<ArgumentOutOfRangeException>();
+
+            var coffeeShopsMapService = new CoffeeShopsMapService(
+                userLocationRepositoryMock.Object,
+                coffeeShopLocationRepositoryMock.Object,
+                coffeeShopDistanceRepositoryMock.Object,
+                outputMessageRepositoryMock.Object,
+                distanceCalculatorMock.Object,
+                distanceSelectorMock.Object);
+
+            // Act
+            async Task Act() => await coffeeShopsMapService.GetClosestCoffeeShops();
+
+            // Assert
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(Act);
         }
 
         [Fact]

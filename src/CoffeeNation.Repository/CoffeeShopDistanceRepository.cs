@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Entities;
@@ -20,13 +21,13 @@ namespace CoffeeNation.Repository
         {
             if (distances == null)
             {
-                throw new ArgumentValidationException(nameof(distances));
+                throw new ArgumentNullException(nameof(distances));
             }
 
             var distancesList = distances.ToList();
             if (distancesList.Count == 0)
             {
-                throw new ArgumentValidationException(nameof(distances));
+                throw new ArgumentOutOfRangeException(nameof(distances));
             }
 
             await _dataWriter.WriteCoffeeShopDistances(distancesList);

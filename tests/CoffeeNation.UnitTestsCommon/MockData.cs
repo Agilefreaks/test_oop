@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using CoffeeNation.Core.Entities;
 using CoffeeNation.Core.Exceptions;
 
@@ -81,7 +83,6 @@ namespace CoffeeNation.UnitTestsCommon
 
 
         // Distance
-
         public static Distance NullShopDistance => null;
 
         public static Distance ShopDistance1 => new Distance
@@ -172,5 +173,14 @@ namespace CoffeeNation.UnitTestsCommon
         public static IEnumerable<string> NullCommandLineArguments => null;
         public static (double, double) ValidRawUserLocation1 => (47.6, -122.4);
         public static (double, double) ValidRawUserLocation99 => (47.6, -122.4);
+
+
+        // Exception
+        public static Exception GenericException => new Exception(MockValues.GenericExceptionMessage);
+
+        // Message
+        public static string NullMessage => null;
+        public static string ValidMessage => Guid.NewGuid().ToString();
+
     }
 }

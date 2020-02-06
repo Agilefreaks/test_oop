@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
-using CoffeeNation.Core.Exceptions;
 using CoffeeNation.UnitTestsCommon;
 using Xunit;
 
@@ -18,7 +18,7 @@ namespace CoffeeNation.Core.UnitTests
             async Task Act() => await distanceSelector.SelectDistances(MockData.NullShopDistances);
 
             // Assert
-            await Assert.ThrowsAsync<ArgumentValidationException>(Act);
+            await Assert.ThrowsAsync<ArgumentNullException>(Act);
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace CoffeeNation.Core.UnitTests
             async Task Act() => await distanceSelector.SelectDistances(MockData.LessThanThreeShopDistances);
 
             // Assert
-            await Assert.ThrowsAsync<ArgumentValidationException>(Act);
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(Act);
         }
 
         [Fact]

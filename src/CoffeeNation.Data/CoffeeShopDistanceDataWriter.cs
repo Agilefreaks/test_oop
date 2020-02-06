@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Entities;
 using CoffeeNation.Core.Exceptions;
@@ -10,12 +11,12 @@ namespace CoffeeNation.Data
 {
     public class CoffeeShopDistanceDataWriter : ICoffeeShopDistanceDataWriter
     {
-        private readonly ICoffeeShopDistanceFormatter _formatter;
+        private readonly ICoffeeShopDistanceFormatter _distanceFormatter;
         private readonly IConsoleOutputProvider _outputProvider;
 
-        public CoffeeShopDistanceDataWriter(ICoffeeShopDistanceFormatter formatter, IConsoleOutputProvider outputProvider)
+        public CoffeeShopDistanceDataWriter(ICoffeeShopDistanceFormatter distanceFormatter, IConsoleOutputProvider outputProvider)
         {
-            _formatter = formatter;
+            _distanceFormatter = distanceFormatter;
             _outputProvider = outputProvider;
         }
 
@@ -23,12 +24,12 @@ namespace CoffeeNation.Data
         {
             if (coffeeShopDistances == null)
             {
-                throw new ArgumentValidationException(nameof(coffeeShopDistances));
+                throw new ArgumentNullException(nameof(coffeeShopDistances));
             }
 
             foreach (var coffeeShopDistance in coffeeShopDistances)
             {
-                var formattedDistance = await _formatter.GetFormattedDistance(coffeeShopDistance);
+                var formattedDistance = await _distanceFormatter.GetFormattedDistance(coffeeShopDistance);
 
                 await _outputProvider.OutputStringLine(formattedDistance);
             }

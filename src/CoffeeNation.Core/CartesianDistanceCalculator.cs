@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Entities;
-using CoffeeNation.Core.Exceptions;
 using CoffeeNation.Core.Interfaces;
 
 namespace CoffeeNation.Core
@@ -12,12 +11,12 @@ namespace CoffeeNation.Core
         {
             if (source == null)
             {
-                throw new ArgumentValidationException(nameof(source));
+                throw new ArgumentNullException(nameof(source));
             }
 
             if (destination == null)
             {
-                throw new ArgumentValidationException(nameof(destination));
+                throw new ArgumentNullException(nameof(destination));
             }
 
             return new Distance()

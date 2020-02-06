@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using CoffeeNation.Core.Exceptions;
+﻿using System;
+using System.Threading.Tasks;
 using CoffeeNation.Data.Interfaces;
 using CoffeeNation.Repository.Interfaces;
 
@@ -18,7 +18,7 @@ namespace CoffeeNation.Repository
         {
             if (message == null)
             {
-                throw new ArgumentValidationException(nameof(message));
+                throw new ArgumentNullException(nameof(message));
             }
 
             await _dataWriter.WriteMessage(message);

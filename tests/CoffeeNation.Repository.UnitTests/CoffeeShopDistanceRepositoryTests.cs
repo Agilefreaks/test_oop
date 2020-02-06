@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Entities;
@@ -24,7 +25,7 @@ namespace CoffeeNation.Repository.UnitTests
             async Task Act() => await coffeeShopDistanceRepository.SetCoffeeShopDistances(MockData.NullShopDistances);
 
             // Assert
-            await Assert.ThrowsAsync<ArgumentValidationException>(Act);
+            await Assert.ThrowsAsync<ArgumentNullException>(Act);
         }
 
         [Fact]
@@ -39,7 +40,7 @@ namespace CoffeeNation.Repository.UnitTests
             async Task Act() => await coffeeShopDistanceRepository.SetCoffeeShopDistances(MockData.EmptyShopDistances);
 
             // Assert
-            await Assert.ThrowsAsync<ArgumentValidationException>(Act);
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(Act);
         }
 
         [Fact]

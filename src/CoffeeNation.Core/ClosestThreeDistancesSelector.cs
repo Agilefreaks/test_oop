@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Entities;
@@ -15,13 +16,13 @@ namespace CoffeeNation.Core
         {
             if (distances == null)
             {
-                throw new ArgumentValidationException(nameof(distances));
+                throw new ArgumentNullException(nameof(distances));
             }
 
             var distancesList = distances.ToList();
             if (distancesList.Count < DefaultOutputCount)
             {
-                throw new ArgumentValidationException(nameof(distances));
+                throw new ArgumentOutOfRangeException(nameof(distances));
             }
 
             return await Task.Run(() => distancesList.OrderBy(d => d.Value).Take(DefaultOutputCount));

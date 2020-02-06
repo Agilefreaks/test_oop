@@ -18,7 +18,7 @@ namespace CoffeeNation.Core.UnitTests
             async Task Act() => await distanceCalculator.CalculateDistanceToDestination(MockData.NullUserLocation, MockData.ShopLocation1);
 
             // Assert
-            await Assert.ThrowsAsync<ArgumentValidationException>(Act);
+            await Assert.ThrowsAsync<ArgumentNullException>(Act);
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace CoffeeNation.Core.UnitTests
             async Task Act() => await distanceCalculator.CalculateDistanceToDestination(MockData.UserLocation1, MockData.NullShopLocation);
 
             // Assert
-            await Assert.ThrowsAsync<ArgumentValidationException>(Act);
+            await Assert.ThrowsAsync<ArgumentNullException>(Act);
         }
 
         [Fact]

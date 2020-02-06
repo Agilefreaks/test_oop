@@ -81,13 +81,13 @@ namespace CoffeeNation.Service
         {
             if (coffeeShopDistances == null)
             {
-                throw new ArgumentValidationException(nameof(coffeeShopDistances));
+                throw new ArgumentNullException(nameof(coffeeShopDistances));
             }
 
             var coffeeShopDistancesList = coffeeShopDistances.ToList();
             if (coffeeShopDistancesList.Count == 0)
             {
-                throw new ArgumentValidationException(nameof(coffeeShopDistances));
+                throw new ArgumentOutOfRangeException(nameof(coffeeShopDistances));
             }
 
             await _coffeeShopDistanceRepository.SetCoffeeShopDistances(coffeeShopDistancesList);
