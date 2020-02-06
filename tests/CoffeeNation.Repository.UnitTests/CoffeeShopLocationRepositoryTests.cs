@@ -11,13 +11,13 @@ namespace CoffeeNation.Repository.UnitTests
     public class CoffeeShopLocationRepositoryTests
     {
         [Fact]
-        public async Task TestThat_GetCoffeeShopLocations_When_DataReaderThrowsDataValidationException_Throws_DataValidationException()
+        public async Task TestThat_GetCoffeeShopLocations_When_DataReaderThrowsDataValidationException_Throws_DataValidationExceptionWithExpectedMessage()
         {
             // Arrange
             var dataReaderMock = new Mock<ICoffeeShopLocationDataReader>();
             dataReaderMock
                 .Setup(x => x.ReadCoffeeShopLocations())
-                .Throws<DataValidationException>();
+                .Throws(new DataValidationException(MockValues.CsvDataValidationExceptionMessage));
 
             var coffeeShopLocationRepository = new CoffeeShopLocationRepository(dataReaderMock.Object);
 
@@ -25,17 +25,18 @@ namespace CoffeeNation.Repository.UnitTests
             async Task Act() => await coffeeShopLocationRepository.GetCoffeeShopLocations();
 
             // Assert
-            await Assert.ThrowsAsync<DataValidationException>(Act);
+            var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
+            Assert.Equal(MockValues.CsvDataValidationExceptionMessage, exception.Message);
         }
 
         [Fact]
-        public async Task TestThat_GetCoffeeShopLocations_When_DataReaderThrowsDataProviderException_Throws_DataProviderException()
+        public async Task TestThat_GetCoffeeShopLocations_When_DataReaderThrowsDataProviderException_Throws_DataProviderExceptionWithExpectedMessage()
         {
             // Arrange
             var dataReaderMock = new Mock<ICoffeeShopLocationDataReader>();
             dataReaderMock
                 .Setup(x => x.ReadCoffeeShopLocations())
-                .Throws<DataProviderException>();
+                .Throws(new DataProviderException(MockValues.CsvDataProviderExceptionMessage));
 
             var coffeeShopLocationRepository = new CoffeeShopLocationRepository(dataReaderMock.Object);
 
@@ -43,7 +44,8 @@ namespace CoffeeNation.Repository.UnitTests
             async Task Act() => await coffeeShopLocationRepository.GetCoffeeShopLocations();
 
             // Assert
-            await Assert.ThrowsAsync<DataProviderException>(Act);
+            var exception = await Assert.ThrowsAsync<DataProviderException>(Act);
+            Assert.Equal(MockValues.CsvDataProviderExceptionMessage, exception.Message);
         }
 
         [Fact]

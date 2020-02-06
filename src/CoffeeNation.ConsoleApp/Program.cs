@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using CoffeeNation.Dependency;
 using CoffeeNation.Service.Interfaces;
@@ -15,7 +16,25 @@ namespace CoffeeNation.ConsoleApp
 
             var coffeeShopMapService = serviceProvider.GetRequiredService<ICoffeeShopsMapService>();
 
-            await coffeeShopMapService.DisplayClosestCoffeeShops();
+            // await coffeeShopMapService.DisplayClosestCoffeeShops();
+
+            // TODO: Handle exceptions properly
+            try
+            {
+                var distances = await coffeeShopMapService.GetClosestCoffeeShops();
+
+                // TODO: Output via output provider abstraction
+                foreach (var distance in distances)
+                {
+                    Console.WriteLine($@"{distance.Tag} {distance.Value:F4}");
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+
+            Console.ReadLine();
         }
     }
 }

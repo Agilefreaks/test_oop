@@ -43,13 +43,13 @@ namespace CoffeeNation.Repository.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_SetCoffeeShopDistances_When_DataWriterThrowsDataProviderException_Throws_DataProviderException()
+        public async Task TestThat_SetCoffeeShopDistances_When_DataWriterThrowsDataProviderException_Throws_DataProviderExceptionWithExpectedMessage()
         {
             // Arrange
             var dataWriterMock = new Mock<ICoffeeShopDistanceDataWriter>();
             dataWriterMock
                 .Setup(x => x.WriteCoffeeShopDistances(It.IsAny<IEnumerable<Distance>>()))
-                .Throws<DataProviderException>();
+                .Throws(new DataProviderException(MockValues.OutputDataProviderExceptionMessage));
 
             var coffeeShopDistanceRepository = new CoffeeShopDistanceRepository(dataWriterMock.Object);
 
@@ -57,7 +57,8 @@ namespace CoffeeNation.Repository.UnitTests
             async Task Act() => await coffeeShopDistanceRepository.SetCoffeeShopDistances(MockData.SelectedShopDistances);
 
             // Assert
-            await Assert.ThrowsAsync<DataProviderException>(Act);
+            var exception = await Assert.ThrowsAsync<DataProviderException>(Act);
+            Assert.Equal(MockValues.OutputDataProviderExceptionMessage, exception.Message);
         }
 
         [Fact]

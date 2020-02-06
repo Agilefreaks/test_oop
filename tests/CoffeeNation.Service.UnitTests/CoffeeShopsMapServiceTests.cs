@@ -97,13 +97,13 @@ namespace CoffeeNation.Service.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_UserLocationRepositoryThrowsDataValidationException_Throws_DataValidationException()
+        public async Task TestThat_GetClosestCoffeeShops_When_UserLocationRepositoryThrowsDataValidationException_Throws_DataValidationExceptionWithExpectedMessage()
         {
             // Arrange
             var userLocationRepositoryMock = new Mock<IUserLocationRepository>();
             userLocationRepositoryMock
                 .Setup(x => x.GetUserLocation())
-                .Throws<DataValidationException>();
+                .Throws(new DataValidationException(MockValues.CommandLineDataValidationExceptionMessage));
 
             var coffeeShopLocationRepositoryMock = new Mock<ICoffeeShopLocationRepository>();
             var distanceCalculatorMock = new Mock<IDistanceCalculator>();
@@ -119,11 +119,12 @@ namespace CoffeeNation.Service.UnitTests
             async Task Act() => await coffeeShopsMapService.GetClosestCoffeeShops();
 
             // Assert
-            await Assert.ThrowsAsync<DataValidationException>(Act);
+            var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
+            Assert.Equal(MockValues.CommandLineDataValidationExceptionMessage, exception.Message);
         }
 
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_CoffeeShopLocationRepositoryThrowsDataValidationException_Throws_DataValidationException()
+        public async Task TestThat_GetClosestCoffeeShops_When_CoffeeShopLocationRepositoryThrowsDataValidationException_Throws_DataValidationExceptionWithExpectedMessage()
         {
             // Arrange
             var userLocationRepositoryMock = new Mock<IUserLocationRepository>();
@@ -131,7 +132,7 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopLocationRepositoryMock = new Mock<ICoffeeShopLocationRepository>();
             coffeeShopLocationRepositoryMock
                 .Setup(x => x.GetCoffeeShopLocations())
-                .Throws<DataValidationException>();
+                .Throws(new DataValidationException(MockValues.CsvDataValidationExceptionMessage));
 
             var distanceCalculatorMock = new Mock<IDistanceCalculator>();
             var distanceSelectorMock = new Mock<IDistanceSelector>();
@@ -146,7 +147,8 @@ namespace CoffeeNation.Service.UnitTests
             async Task Act() => await coffeeShopsMapService.GetClosestCoffeeShops();
 
             // Assert
-            await Assert.ThrowsAsync<DataValidationException>(Act);
+            var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
+            Assert.Equal(MockValues.CsvDataValidationExceptionMessage, exception.Message);
         }
 
         [Fact]

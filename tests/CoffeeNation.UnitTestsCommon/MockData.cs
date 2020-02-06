@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CoffeeNation.Core.Entities;
+using CoffeeNation.Core.Exceptions;
 
 namespace CoffeeNation.UnitTestsCommon
 {
@@ -43,6 +44,13 @@ namespace CoffeeNation.UnitTestsCommon
             Y = 236.7
         };
 
+        public static Location ShopLocation99 => new Location
+        {
+            Tag = "Starbucks Seattle",
+            X = 47.5809,
+            Y = -122.3160
+        };
+
         public static IEnumerable<Location> EmptyShopLocations => new List<Location>();
 
         public static IEnumerable<Location> ValidCoffeeShopLocations => new List<Location>
@@ -61,6 +69,13 @@ namespace CoffeeNation.UnitTestsCommon
             Tag = "User",
             X = -74.546,
             Y = -346.7654
+        };
+
+        public static Location UserLocation99 => new Location
+        {
+            Tag = "User",
+            X = 47.6,
+            Y = -122.4
         };
 
 
@@ -99,6 +114,12 @@ namespace CoffeeNation.UnitTestsCommon
             Value = 7.86535
         };
 
+        public static Distance ShopDistance99 => new Distance
+        {
+            Tag = "Starbucks Seattle2",
+            Value = 0.0645
+        };
+
         public static IEnumerable<Distance> NullShopDistances => null;
 
         public static IEnumerable<Distance> EmptyShopDistances => new List<Distance>();
@@ -124,5 +145,27 @@ namespace CoffeeNation.UnitTestsCommon
             ShopDistance5,
             ShopDistance3
         };
+
+        // Csv content
+        public static string StringNullCsvLine => null;
+        public static string StringEmptyCsvLine => null;
+
+        public static string ValidCsvLine1 => "Starbucks Seattle,47.5809,-122.3160";
+        public static string ValidCsvLine2 => "Starbucks SF,37.5209,-122.3340";
+        public static string ValidCsvLine3 => "Starbucks Moscow,55.752047,37.595242";
+
+        public static string ValidCsvLine99 => "Starbucks Seattle,47.5809,-122.3160";
+
+        public static IEnumerable<string> ValidCsvContent => new List<string>
+        {
+            ValidCsvLine1,
+            ValidCsvLine2,
+            ValidCsvLine3
+        };
+
+        // Command Line Arguments
+        public static IEnumerable<string> NullCommandLineArguments => null;
+        public static (double, double) ValidRawUserLocation1 => (47.6, -122.4);
+        public static (double, double) ValidRawUserLocation99 => (47.6, -122.4);
     }
 }

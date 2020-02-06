@@ -10,13 +10,13 @@ namespace CoffeeNation.Repository.UnitTests
     public class UserLocationRepositoryTests
     {
         [Fact]
-        public async Task TestThat_GetUserLocation_When_DataReaderThrowsDataValidationException_Throws_DataValidationException()
+        public async Task TestThat_GetUserLocation_When_DataReaderThrowsDataValidationException_Throws_DataValidationExceptionWithExpectedMessage()
         {
             // Arrange
             var dataReaderMock = new Mock<IUserLocationDataReader>();
             dataReaderMock
                 .Setup(x => x.ReadUserLocation())
-                .Throws<DataValidationException>();
+                .Throws(new DataValidationException(MockValues.CommandLineDataValidationExceptionMessage));
 
             var userLocationRepository = new UserLocationRepository(dataReaderMock.Object);
 
@@ -24,17 +24,18 @@ namespace CoffeeNation.Repository.UnitTests
             async Task Act() => await userLocationRepository.GetUserLocation();
 
             // Assert
-            await Assert.ThrowsAsync<DataValidationException>(Act);
+            var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
+            Assert.Equal(MockValues.CommandLineDataValidationExceptionMessage, exception.Message);
         }
 
         [Fact]
-        public async Task TestThat_GetUserLocation_When_DataReaderThrowsDataProviderException_Throws_DataProviderException()
+        public async Task TestThat_GetUserLocation_When_DataReaderThrowsDataProviderException_Throws_DataProviderExceptionWithExpectedMessage()
         {
             // Arrange
             var dataReaderMock = new Mock<IUserLocationDataReader>();
             dataReaderMock
                 .Setup(x => x.ReadUserLocation())
-                .Throws<DataProviderException>();
+                .Throws(new DataProviderException(MockValues.UserLocationDataProviderExceptionMessage));
 
             var userLocationRepository = new UserLocationRepository(dataReaderMock.Object);
 
@@ -42,7 +43,8 @@ namespace CoffeeNation.Repository.UnitTests
             async Task Act() => await userLocationRepository.GetUserLocation();
 
             // Assert
-            await Assert.ThrowsAsync<DataProviderException>(Act);
+            var exception = await Assert.ThrowsAsync<DataProviderException>(Act);
+            Assert.Equal(MockValues.UserLocationDataProviderExceptionMessage, exception.Message);
         }
 
         [Fact]

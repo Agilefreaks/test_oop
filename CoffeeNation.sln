@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeNation.Service.UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeNation.Repository.UnitTests", "tests\CoffeeNation.Repository.UnitTests\CoffeeNation.Repository.UnitTests.csproj", "{C5D5A8DA-054A-4723-8568-C594EF7AF2D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeNation.Data.UnitTests", "tests\CoffeeNation.Data.UnitTests\CoffeeNation.Data.UnitTests.csproj", "{5A2EEF99-04DE-4E20-8012-D0B48692651B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{C5D5A8DA-054A-4723-8568-C594EF7AF2D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5D5A8DA-054A-4723-8568-C594EF7AF2D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5D5A8DA-054A-4723-8568-C594EF7AF2D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A2EEF99-04DE-4E20-8012-D0B48692651B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A2EEF99-04DE-4E20-8012-D0B48692651B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A2EEF99-04DE-4E20-8012-D0B48692651B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A2EEF99-04DE-4E20-8012-D0B48692651B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{30539CA3-CDE9-4CDD-80FA-EE5A306CCCB0} = {D9E591CC-40FB-4AE8-9541-DB361395533A}
 		{3D88E7C6-8FC6-48B4-B52F-7E68CE99284C} = {D9E591CC-40FB-4AE8-9541-DB361395533A}
 		{C5D5A8DA-054A-4723-8568-C594EF7AF2D1} = {D9E591CC-40FB-4AE8-9541-DB361395533A}
+		{5A2EEF99-04DE-4E20-8012-D0B48692651B} = {D9E591CC-40FB-4AE8-9541-DB361395533A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA50D10E-09C7-4CB8-979C-229C7E6FD750}

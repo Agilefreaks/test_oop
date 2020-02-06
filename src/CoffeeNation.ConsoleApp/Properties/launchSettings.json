@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CoffeeNation.ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "47.6 -122.4 coffee_shops.csv"
+    }
+  }
+}
