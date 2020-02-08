@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CoffeeNation.Core.Exceptions;
 using CoffeeNation.Data.Parser;
 using CoffeeNation.UnitTestsCommon;
-using Moq;
 using Xunit;
 
 namespace CoffeeNation.Data.UnitTests.Parser

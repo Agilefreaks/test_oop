@@ -14,7 +14,7 @@ namespace CoffeeNation.Data.Formatter
                 throw new ArgumentNullException(nameof(distance));
             }
 
-            return await Task.Run(() => $@"{distance.Tag} {distance.Value:F4}");
+            return await Task.Run(() => $@"{distance.Tag},{distance.Value:F4}");
         }
     }
 }

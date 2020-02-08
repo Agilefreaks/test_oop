@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Entities;
-using CoffeeNation.Core.Exceptions;
 using CoffeeNation.Core.Interfaces;
 
 namespace CoffeeNation.Core

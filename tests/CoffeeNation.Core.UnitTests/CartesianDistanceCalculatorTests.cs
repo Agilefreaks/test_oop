@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CoffeeNation.Core.Exceptions;
 using CoffeeNation.UnitTestsCommon;
 using Xunit;
 
@@ -9,7 +8,7 @@ namespace CoffeeNation.Core.UnitTests
     public class CartesianDistanceCalculatorTests
     {
         [Fact]
-        public async Task TestThat_CalculateDistanceToDestination_When_SourceIsNull_Throws_ArgumentValidationException()
+        public async Task TestThat_CalculateDistanceToDestination_When_SourceIsNull_Throws_ArgumentNullException()
         {
             // Arrange
             var distanceCalculator = new CartesianDistanceCalculator();
@@ -22,7 +21,7 @@ namespace CoffeeNation.Core.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_CalculateDistanceToDestination_When_DestinationIsNull_Throws_ArgumentValidationException()
+        public async Task TestThat_CalculateDistanceToDestination_When_DestinationIsNull_Throws_ArgumentNullException()
         {
             // Arrange
             var distanceCalculator = new CartesianDistanceCalculator();

@@ -4,10 +4,8 @@ using CoffeeNation.Core.Entities;
 
 namespace CoffeeNation.Service.Interfaces
 {
-    public interface ICoffeeShopsMapService
+    public interface ICoffeeShopsDisplayService
     {
-        Task DisplayClosestCoffeeShops();
-
-        Task<IEnumerable<Distance>> GetClosestCoffeeShops();
+        Task DisplayCoffeeShopDistances(IEnumerable<Distance> coffeeShopDistances);
     }
 }

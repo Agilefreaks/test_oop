@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Entities;
-using CoffeeNation.Core.Exceptions;
 using CoffeeNation.Data.Interfaces;
 using CoffeeNation.Data.Interfaces.Formatter;
 using CoffeeNation.Data.Interfaces.Provider;

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CoffeeNation.Core.Exceptions;
 using CoffeeNation.Data.Interfaces.Provider;
 using CoffeeNation.UnitTestsCommon;
@@ -29,7 +30,28 @@ namespace CoffeeNation.Data.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_ReadUserLocation_When_ParserAndProviderDoNotFail_Returns_NotNullLocation()
+        public async Task TestThat_ReadUserLocation_When_ProviderThrowsException_Throws_SameException()
+        {
+            // Arrange
+            var mockException = MockData.GenericException;
+
+            var userLocationProviderMock = new Mock<IUserLocationProvider>();
+            userLocationProviderMock
+                .Setup(x => x.GetUserLocationCoordinates())
+                .Throws(mockException);
+
+            var dataReader = new UserLocationDataReader(userLocationProviderMock.Object);
+
+            // Act
+            async Task Act() => await dataReader.ReadUserLocation();
+
+            // Assert
+            var exception = await Assert.ThrowsAnyAsync<Exception>(Act);
+            Assert.Equal(mockException, exception);
+        }
+
+        [Fact]
+        public async Task TestThat_ReadUserLocation_When_ParserAndProviderDoNotThrowException_Returns_NotNullLocation()
         {
             // Arrange
             var userLocationProviderMock = new Mock<IUserLocationProvider>();
@@ -47,7 +69,7 @@ namespace CoffeeNation.Data.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_ReadUserLocation_When_ParserAndProviderDoNotFail_Returns_LocationWithExpectedValues()
+        public async Task TestThat_ReadUserLocation_When_ParserAndProviderDoNotThrowException_Returns_LocationWithExpectedValues()
         {
             // Arrange
             var userLocationMock = MockData.UserLocation99;

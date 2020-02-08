@@ -12,7 +12,9 @@ using CoffeeNation.Data.Provider;
 using CoffeeNation.Repository;
 using CoffeeNation.Repository.Interfaces;
 using CoffeeNation.Service;
+using CoffeeNation.Service.Facade;
 using CoffeeNation.Service.Interfaces;
+using CoffeeNation.Service.Interfaces.Facade;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoffeeNation.Dependency
@@ -38,7 +40,12 @@ namespace CoffeeNation.Dependency
 
         private static void AddServiceRegistrations(this IServiceCollection services)
         {
-            services.AddTransient<ICoffeeShopsMapService, CoffeeShopsMapService>();
+            services.AddTransient<ICoffeeShopsQueryService, CoffeeShopsQueryService>();
+            services.AddTransient<ICoffeeShopsDisplayService, CoffeeShopsDisplayService>();
+            services.AddTransient<IMessagingService, MessagingService>();
+
+            services.AddTransient<ICoffeeShopsQueryFacade, CoffeeShopsQueryFacade>();
+            services.AddTransient<ICoffeeShopsDisplayFacade, CoffeeShopsDisplayFacade>();
         }
 
         private static void AddRepositoryRegistrations(this IServiceCollection services)

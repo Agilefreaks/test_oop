@@ -50,16 +50,16 @@ namespace CoffeeNation.Repository.UnitTests
         {
             // Arrange
             var dataWriterMock = new Mock<IMessageDataWriter>();
-            
+
+            var mockMessage = MockData.ValidMessage;
+
             var outputMessageRepository = new OutputMessageRepository(dataWriterMock.Object);
 
-            var message = MockData.ValidMessage;
-
             // Act
-            await outputMessageRepository.SendMessage(message);
+            await outputMessageRepository.SendMessage(mockMessage);
 
             // Assert
-            dataWriterMock.Verify(x => x.WriteMessage(message), Times.Once);
+            dataWriterMock.Verify(x => x.WriteMessage(mockMessage), Times.Once);
         }
     }
 }

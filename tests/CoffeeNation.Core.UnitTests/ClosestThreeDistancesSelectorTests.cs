@@ -9,7 +9,7 @@ namespace CoffeeNation.Core.UnitTests
     public class ClosestThreeDistancesSelectorTests
     {
         [Fact]
-        public async Task TestThat_SelectDistances_When_InputDistancesListIsNull_Throws_ArgumentValidationException()
+        public async Task TestThat_SelectDistances_When_InputDistancesListIsNull_Throws_ArgumentNullException()
         {
             // Arrange
             var distanceSelector = new ClosestThreeDistancesSelector();
@@ -22,7 +22,7 @@ namespace CoffeeNation.Core.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_SelectDistances_When_InputDistancesListIsLessThanThree_Throws_ArgumentValidationException()
+        public async Task TestThat_SelectDistances_When_InputDistancesListIsLessThanThree_Throws_ArgumentOutOfRangeException()
         {
             // Arrange
             var distanceSelector = new ClosestThreeDistancesSelector();

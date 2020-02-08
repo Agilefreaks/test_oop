@@ -87,13 +87,13 @@ namespace CoffeeNation.UnitTestsCommon
 
         public static Distance ShopDistance1 => new Distance
         {
-            Tag = "CoffeeShop1",
+            Tag = "Coffee Shop1",
             Value = 423.21343245
         };
 
         public static Distance ShopDistance2 => new Distance
         {
-            Tag = "CoffeeShop2",
+            Tag = "Coffee-Shop2",
             Value = 56.234568
         };
 
@@ -105,13 +105,13 @@ namespace CoffeeNation.UnitTestsCommon
 
         public static Distance ShopDistance4 => new Distance
         {
-            Tag = "CoffeeShop4",
+            Tag = "Coffee Shop4",
             Value = 5.325
         };
 
         public static Distance ShopDistance5 => new Distance
         {
-            Tag = "CoffeeShop5",
+            Tag = "Coffee Shop5",
             Value = 7.86535
         };
 
@@ -147,6 +147,8 @@ namespace CoffeeNation.UnitTestsCommon
             ShopDistance3
         };
 
+        public const string FormattedCoffeeShopDistance1 = "Coffee Shop1,423.2134";
+
         // Csv content
         public static string StringNullCsvLine => null;
         public static string StringEmptyCsvLine => null;
@@ -176,11 +178,20 @@ namespace CoffeeNation.UnitTestsCommon
 
 
         // Exception
+
+        public static Exception NullException => null;
         public static Exception GenericException => new Exception(MockValues.GenericExceptionMessage);
+
+        public static DataValidationException DataValidationException => new DataValidationException(MockValues.DataValidationExceptionMessage);
+        public static DataProviderException DataProviderException => new DataProviderException(MockValues.DataProviderExceptionMessage);
 
         // Message
         public static string NullMessage => null;
+        public static string EmptyMessage => "";
         public static string ValidMessage => Guid.NewGuid().ToString();
+
+        public static string ValidErrorDetailsMessage => MockValues.ValidErrorDetailsMessage;
+        public static string ValidErrorDetailsString => $"{MockValues.ValidErrorDetailsMessage}: {MockValues.GenericExceptionMessage}";
 
     }
 }

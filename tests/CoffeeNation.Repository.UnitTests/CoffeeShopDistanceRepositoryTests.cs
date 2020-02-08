@@ -14,7 +14,7 @@ namespace CoffeeNation.Repository.UnitTests
     public class CoffeeShopDistanceRepositoryTests
     {
         [Fact]
-        public async Task TestThat_SetCoffeeShopDistances_When_DistancesListIsNull_Throws_ArgumentValidationException()
+        public async Task TestThat_SetCoffeeShopDistances_When_DistancesListIsNull_Throws_ArgumentNullException()
         {
             // Arrange
             var dataWriterMock = new Mock<ICoffeeShopDistanceDataWriter>();
@@ -29,7 +29,7 @@ namespace CoffeeNation.Repository.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_SetCoffeeShopDistances_When_DistancesListIsEmpty_Throws_ArgumentValidationException()
+        public async Task TestThat_SetCoffeeShopDistances_When_DistancesListIsEmpty_Throws_ArgumentOutOfRangeException()
         {
             // Arrange
             var dataWriterMock = new Mock<ICoffeeShopDistanceDataWriter>();

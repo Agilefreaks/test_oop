@@ -9,19 +9,4 @@
     <ProjectReference Include="..\CoffeeNation.Repository\CoffeeNation.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Resources\CoffeeShopMapServiceResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CoffeeShopMapServiceResources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\CoffeeShopMapServiceResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CoffeeShopMapServiceResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
 </Project>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CoffeeNation.Core.Exceptions;
 using CoffeeNation.Data.Interfaces;
 using CoffeeNation.Data.Interfaces.Provider;
 

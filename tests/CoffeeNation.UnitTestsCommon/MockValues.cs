@@ -19,6 +19,18 @@ namespace CoffeeNation.UnitTestsCommon
         public const string IncorrectValuePosition2CsvLineExceptionMessage = "The value expected on CSV line position 2 (coffee shop coordinate X) is incorrect";
         public const string IncorrectValuePosition3CsvLineExceptionMessage = "The value expected on CSV line position 3 (coffee shop coordinate Y) is incorrect";
 
+        // Application exceptionMessages
+        public const string DataValidationExceptionApplicationMessage = "The application needs to close due to data validation error";
+        public const string DataProviderExceptionApplicationMessage = "The application needs to close due to external dependencies error";
+        public const string GenericExceptionApplicationMessage = "The application needs to close due to unknown error";
+
+        
+
+        // Generic exception messages
+        public static readonly string ValidErrorDetailsMessage = Guid.NewGuid().ToString();
+
         public static readonly string GenericExceptionMessage = Guid.NewGuid().ToString();
+        public static readonly string DataValidationExceptionMessage = Guid.NewGuid().ToString();
+        public static readonly string DataProviderExceptionMessage = Guid.NewGuid().ToString();
     }
 }

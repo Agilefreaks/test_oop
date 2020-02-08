@@ -11,25 +11,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.ConsoleApp", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.Core", "src\CoffeeNation.Core\CoffeeNation.Core.csproj", "{4C42912F-1B3A-4F94-839D-EE6CC2C6997E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeNation.ConsoleApp.UnitTests", "tests\CoffeNation.ConsoleApp.UnitTests\CoffeNation.ConsoleApp.UnitTests.csproj", "{0E7873CC-2094-427E-9E65-399231C1AEFF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.Core.UnitTests", "tests\CoffeeNation.Core.UnitTests\CoffeeNation.Core.UnitTests.csproj", "{A38F4CB0-CD38-441D-83A8-776E399D8F51}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.Dependency", "src\CoffeeNation.Dependency\CoffeeNation.Dependency.csproj", "{968333F5-10B3-4DB8-88F1-D0A7D5DC7999}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeNation.Data", "src\CoffeeNation.Data\CoffeeNation.Data.csproj", "{FBED5562-5D16-460E-BBDE-F6B03EF94289}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.Data", "src\CoffeeNation.Data\CoffeeNation.Data.csproj", "{FBED5562-5D16-460E-BBDE-F6B03EF94289}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.Repository", "src\CoffeeNation.Repository\CoffeeNation.Repository.csproj", "{40150F72-B671-4B26-BEB8-5517C27916CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeNation.Service", "src\CoffeeNation.Service\CoffeeNation.Service.csproj", "{32CB21E6-9A5F-487E-817F-C5643E377C54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.Service", "src\CoffeeNation.Service\CoffeeNation.Service.csproj", "{32CB21E6-9A5F-487E-817F-C5643E377C54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeNation.UnitTestsCommon", "tests\CoffeeNation.UnitTestsCommon\CoffeeNation.UnitTestsCommon.csproj", "{30539CA3-CDE9-4CDD-80FA-EE5A306CCCB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.UnitTestsCommon", "tests\CoffeeNation.UnitTestsCommon\CoffeeNation.UnitTestsCommon.csproj", "{30539CA3-CDE9-4CDD-80FA-EE5A306CCCB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeNation.Service.UnitTests", "tests\CoffeeNation.Service.UnitTests\CoffeeNation.Service.UnitTests.csproj", "{3D88E7C6-8FC6-48B4-B52F-7E68CE99284C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.Service.UnitTests", "tests\CoffeeNation.Service.UnitTests\CoffeeNation.Service.UnitTests.csproj", "{3D88E7C6-8FC6-48B4-B52F-7E68CE99284C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeNation.Repository.UnitTests", "tests\CoffeeNation.Repository.UnitTests\CoffeeNation.Repository.UnitTests.csproj", "{C5D5A8DA-054A-4723-8568-C594EF7AF2D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.Repository.UnitTests", "tests\CoffeeNation.Repository.UnitTests\CoffeeNation.Repository.UnitTests.csproj", "{C5D5A8DA-054A-4723-8568-C594EF7AF2D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeNation.Data.UnitTests", "tests\CoffeeNation.Data.UnitTests\CoffeeNation.Data.UnitTests.csproj", "{5A2EEF99-04DE-4E20-8012-D0B48692651B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.Data.UnitTests", "tests\CoffeeNation.Data.UnitTests\CoffeeNation.Data.UnitTests.csproj", "{5A2EEF99-04DE-4E20-8012-D0B48692651B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeNation.ConsoleApp.UnitTests", "tests\CoffeeNation.ConsoleApp.UnitTests\CoffeeNation.ConsoleApp.UnitTests.csproj", "{867C099D-028A-4630-9C2C-1FBCF736912B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +45,6 @@ Global
 		{4C42912F-1B3A-4F94-839D-EE6CC2C6997E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C42912F-1B3A-4F94-839D-EE6CC2C6997E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C42912F-1B3A-4F94-839D-EE6CC2C6997E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E7873CC-2094-427E-9E65-399231C1AEFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E7873CC-2094-427E-9E65-399231C1AEFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E7873CC-2094-427E-9E65-399231C1AEFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E7873CC-2094-427E-9E65-399231C1AEFF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A38F4CB0-CD38-441D-83A8-776E399D8F51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A38F4CB0-CD38-441D-83A8-776E399D8F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A38F4CB0-CD38-441D-83A8-776E399D8F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -85,6 +81,10 @@ Global
 		{5A2EEF99-04DE-4E20-8012-D0B48692651B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A2EEF99-04DE-4E20-8012-D0B48692651B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A2EEF99-04DE-4E20-8012-D0B48692651B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{867C099D-028A-4630-9C2C-1FBCF736912B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{867C099D-028A-4630-9C2C-1FBCF736912B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{867C099D-028A-4630-9C2C-1FBCF736912B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{867C099D-028A-4630-9C2C-1FBCF736912B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,7 +92,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{78087C25-0C98-457D-89A6-3F476F6A5F2B} = {F9709BE6-8A06-4C0E-A9AA-76C868BDDE49}
 		{4C42912F-1B3A-4F94-839D-EE6CC2C6997E} = {F9709BE6-8A06-4C0E-A9AA-76C868BDDE49}
-		{0E7873CC-2094-427E-9E65-399231C1AEFF} = {D9E591CC-40FB-4AE8-9541-DB361395533A}
 		{A38F4CB0-CD38-441D-83A8-776E399D8F51} = {D9E591CC-40FB-4AE8-9541-DB361395533A}
 		{968333F5-10B3-4DB8-88F1-D0A7D5DC7999} = {F9709BE6-8A06-4C0E-A9AA-76C868BDDE49}
 		{FBED5562-5D16-460E-BBDE-F6B03EF94289} = {F9709BE6-8A06-4C0E-A9AA-76C868BDDE49}
@@ -102,6 +101,7 @@ Global
 		{3D88E7C6-8FC6-48B4-B52F-7E68CE99284C} = {D9E591CC-40FB-4AE8-9541-DB361395533A}
 		{C5D5A8DA-054A-4723-8568-C594EF7AF2D1} = {D9E591CC-40FB-4AE8-9541-DB361395533A}
 		{5A2EEF99-04DE-4E20-8012-D0B48692651B} = {D9E591CC-40FB-4AE8-9541-DB361395533A}
+		{867C099D-028A-4630-9C2C-1FBCF736912B} = {D9E591CC-40FB-4AE8-9541-DB361395533A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA50D10E-09C7-4CB8-979C-229C7E6FD750}

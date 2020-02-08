@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeNation.Core.Exceptions;
@@ -36,6 +37,32 @@ namespace CoffeeNation.Data.UnitTests
         }
 
         [Fact]
+        public async Task TestThat_ReadCoffeeShopLocations_When_ParserThrowsException_Throws_SameException()
+        {
+            // Arrange
+            var mockException = MockData.GenericException; 
+
+            var csvContentProviderMock = new Mock<ICsvContentProvider>();
+            csvContentProviderMock
+                .Setup(x => x.GetCsvLines())
+                .ReturnsAsync(MockData.ValidCsvContent);
+
+            var csvContentParserMock = new Mock<ICsvLineParser>();
+            csvContentParserMock
+                .Setup(x => x.GetCoffeeShopLocation(It.IsAny<string>()))
+                .Throws(mockException);
+
+            var dataReader = new CsvCoffeeShopLocationDataReader(csvContentProviderMock.Object, csvContentParserMock.Object);
+
+            // Act
+            async Task Act() => await dataReader.ReadCoffeeShopLocations();
+
+            // Assert
+            var exception = await Assert.ThrowsAnyAsync<Exception>(Act);
+            Assert.Equal(mockException, exception);
+        }
+
+        [Fact]
         public async Task TestThat_ReadCoffeeShopLocations_When_ProviderThrowsDataProviderException_Throws_DataProviderExceptionWithExpectedMessage()
         {
             // Arrange
@@ -59,7 +86,32 @@ namespace CoffeeNation.Data.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_ReadUserLocation_When_ParserAndProviderDoNotFail_Returns_NotNullLocation()
+        public async Task TestThat_ReadCoffeeShopLocations_When_ProviderThrowsException_Throws_SameException()
+        {
+            // Arrange
+            var mockException = MockData.GenericException;
+
+            var csvContentProviderMock = new Mock<ICsvContentProvider>();
+            csvContentProviderMock.Setup(x => x.GetCsvLines())
+                .Throws(mockException);
+
+            var csvContentParserMock = new Mock<ICsvLineParser>();
+            csvContentParserMock
+                .Setup(x => x.GetCoffeeShopLocation(It.IsAny<string>()))
+                .ReturnsAsync(MockData.ShopLocation1);
+
+            var dataReader = new CsvCoffeeShopLocationDataReader(csvContentProviderMock.Object, csvContentParserMock.Object);
+
+            // Act
+            async Task Act() => await dataReader.ReadCoffeeShopLocations();
+
+            // Assert
+            var exception = await Assert.ThrowsAnyAsync<Exception>(Act);
+            Assert.Equal(mockException, exception);
+        }
+
+        [Fact]
+        public async Task TestThat_ReadCoffeeShopLocations_When_ParserAndProviderDoNotThrowExceptions_Returns_NotNullLocation()
         {
             // Arrange
             var csvContentProviderMock = new Mock<ICsvContentProvider>();
@@ -82,7 +134,7 @@ namespace CoffeeNation.Data.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_ReadUserLocation_When_ParserAndProviderDoNotFail_Returns_LocationWithExpectedValues()
+        public async Task TestThat_ReadCoffeeShopLocations_When_ParserAndProviderDoNotThrowExceptions_Returns_LocationWithExpectedValues()
         {
             // Arrange
             var csvContentMock = MockData.ValidCsvContent.ToList();
