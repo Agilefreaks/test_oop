@@ -259,3 +259,13 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+#Batch build, code coverage and report files
+_[Bb]uildOutput/
+_[Bb]uildReports/
+[Tt]estResults/
+**/*.trx
+**/*.cobertura.xml
+
+#Tools
+_[Tt]ools
