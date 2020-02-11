@@ -43,7 +43,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
             var mockException = MockObjects.DataValidationException;
 
             _queryServiceMock
-                .Setup(x => x.GetClosestCoffeeShops())
+                .Setup(x => x.GetShortestCoffeeShopDistances())
                 .Throws(mockException);
 
             var application = new Application(_serviceProviderMock.Object);
@@ -62,7 +62,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
             var mockException = MockObjects.DataProviderException;
 
             _queryServiceMock
-                .Setup(x => x.GetClosestCoffeeShops())
+                .Setup(x => x.GetShortestCoffeeShopDistances())
                 .Throws(mockException);
 
             var application = new Application(_serviceProviderMock.Object);
@@ -81,7 +81,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
             var mockException = MockObjects.GenericException;
 
             _queryServiceMock
-                .Setup(x => x.GetClosestCoffeeShops())
+                .Setup(x => x.GetShortestCoffeeShopDistances())
                 .Throws(mockException);
 
             var application = new Application(_serviceProviderMock.Object);
@@ -155,7 +155,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
         {
             // Arrange
             _queryServiceMock
-                .Setup(x => x.GetClosestCoffeeShops())
+                .Setup(x => x.GetShortestCoffeeShopDistances())
                 .ReturnsAsync(MockObjects.SelectedShopDistances);
 
             _displayServiceMock
@@ -167,7 +167,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
             await application.DisplayClosestCoffeeShops();
 
             // Assert
-            _queryServiceMock.Verify(x => x.GetClosestCoffeeShops(), Times.Once);
+            _queryServiceMock.Verify(x => x.GetShortestCoffeeShopDistances(), Times.Once);
         }
 
         [Fact]
@@ -177,7 +177,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
             var mockDistances = MockObjects.SelectedShopDistances.ToList();
 
             _queryServiceMock
-                .Setup(x => x.GetClosestCoffeeShops())
+                .Setup(x => x.GetShortestCoffeeShopDistances())
                 .ReturnsAsync(mockDistances);
 
             _displayServiceMock

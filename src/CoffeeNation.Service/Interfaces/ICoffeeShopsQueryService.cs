@@ -6,6 +6,6 @@ namespace CoffeeNation.Service.Interfaces
 {
     public interface ICoffeeShopsQueryService
     {
-        Task<IEnumerable<Distance>> GetClosestCoffeeShops();
+        Task<IEnumerable<Distance>> GetShortestCoffeeShopDistances();
     }
 }

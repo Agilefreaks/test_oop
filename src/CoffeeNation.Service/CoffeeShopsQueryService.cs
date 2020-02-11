@@ -24,7 +24,7 @@ namespace CoffeeNation.Service
             _distanceSelector = queryFacade.DistanceSelector;
         }
 
-        public async Task<IEnumerable<Distance>> GetClosestCoffeeShops()
+        public async Task<IEnumerable<Distance>> GetShortestCoffeeShopDistances()
         {
             var userLocation = await _userLocationRepository.GetUserLocation();
             var coffeeShopLocations = await _coffeeShopLocationRepository.GetCoffeeShopLocations();

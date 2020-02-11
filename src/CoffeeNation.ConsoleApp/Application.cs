@@ -24,7 +24,7 @@ namespace CoffeeNation.ConsoleApp
         {
             try
             {
-                var coffeeShopDistances = await _queryService.GetClosestCoffeeShops();
+                var coffeeShopDistances = await _queryService.GetShortestCoffeeShopDistances();
 
                 await _displayService.DisplayCoffeeShopDistances(coffeeShopDistances);
             }

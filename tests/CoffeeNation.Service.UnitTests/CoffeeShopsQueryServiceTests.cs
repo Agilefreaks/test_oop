@@ -41,7 +41,7 @@ namespace CoffeeNation.Service.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_DistanceCalculatorThrowsArgumentNullException_Throws_ArgumentNullException()
+        public async Task TestThat_GetShortestCoffeeShopDistances_When_DistanceCalculatorThrowsArgumentNullException_Throws_ArgumentNullException()
         {
             // Arrange
             _userLocationRepositoryMock
@@ -59,14 +59,14 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsQueryService = new CoffeeShopsQueryService(_queryFacadeMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopsQueryService.GetClosestCoffeeShops();
+            async Task Act() => await coffeeShopsQueryService.GetShortestCoffeeShopDistances();
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
         }
 
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_DistanceSelectorThrowsArgumentNullException_Throws_ArgumentNullException()
+        public async Task TestThat_GetShortestCoffeeShopDistances_When_DistanceSelectorThrowsArgumentNullException_Throws_ArgumentNullException()
         {
             // Arrange
             _distanceSelectorMock
@@ -76,14 +76,14 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsQueryService = new CoffeeShopsQueryService(_queryFacadeMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopsQueryService.GetClosestCoffeeShops();
+            async Task Act() => await coffeeShopsQueryService.GetShortestCoffeeShopDistances();
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
         }
 
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_DistanceSelectorThrowsArgumentOutOfRangeException_Throws_ArgumentOutOfRangeException()
+        public async Task TestThat_GetShortestCoffeeShopDistances_When_DistanceSelectorThrowsArgumentOutOfRangeException_Throws_ArgumentOutOfRangeException()
         {
             // Arrange
             _distanceSelectorMock
@@ -93,14 +93,14 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsQueryService = new CoffeeShopsQueryService(_queryFacadeMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopsQueryService.GetClosestCoffeeShops();
+            async Task Act() => await coffeeShopsQueryService.GetShortestCoffeeShopDistances();
 
             // Assert
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(Act);
         }
 
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_UserLocationRepositoryThrowsDataValidationException_Throws_DataValidationExceptionWithExpectedMessage()
+        public async Task TestThat_GetShortestCoffeeShopDistances_When_UserLocationRepositoryThrowsDataValidationException_Throws_DataValidationExceptionWithExpectedMessage()
         {
             // Arrange
             _userLocationRepositoryMock
@@ -110,7 +110,7 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsQueryService = new CoffeeShopsQueryService(_queryFacadeMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopsQueryService.GetClosestCoffeeShops();
+            async Task Act() => await coffeeShopsQueryService.GetShortestCoffeeShopDistances();
 
             // Assert
             var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
@@ -118,7 +118,7 @@ namespace CoffeeNation.Service.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_CoffeeShopLocationRepositoryThrowsDataValidationException_Throws_DataValidationExceptionWithExpectedMessage()
+        public async Task TestThat_GetShortestCoffeeShopDistances_When_CoffeeShopLocationRepositoryThrowsDataValidationException_Throws_DataValidationExceptionWithExpectedMessage()
         {
             // Arrange
             _coffeeShopLocationRepositoryMock
@@ -128,7 +128,7 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsQueryService = new CoffeeShopsQueryService(_queryFacadeMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopsQueryService.GetClosestCoffeeShops();
+            async Task Act() => await coffeeShopsQueryService.GetShortestCoffeeShopDistances();
 
             // Assert
             var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
@@ -136,7 +136,7 @@ namespace CoffeeNation.Service.UnitTests
         }
 
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_NoExceptionThrown_Returns_NotNullDistanceList()
+        public async Task TestThat_GetShortestCoffeeShopDistances_When_NoExceptionThrown_Returns_NotNullDistanceList()
         {
             // Arrange
             _userLocationRepositoryMock
@@ -158,14 +158,14 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsQueryService = new CoffeeShopsQueryService(_queryFacadeMock.Object);
 
             // Act
-            var distances = await coffeeShopsQueryService.GetClosestCoffeeShops();
+            var distances = await coffeeShopsQueryService.GetShortestCoffeeShopDistances();
 
             // Assert
             Assert.NotNull(distances);
         }
 
         [Fact]
-        public async Task TestThat_GetClosestCoffeeShops_When_NoExceptionThrown_Returns_ExpectedElementsCount()
+        public async Task TestThat_GetShortestCoffeeShopDistances_When_NoExceptionThrown_Returns_ExpectedElementsCount()
         {
             // Arrange
             _userLocationRepositoryMock
@@ -187,7 +187,7 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsQueryService = new CoffeeShopsQueryService(_queryFacadeMock.Object);
 
             // Act
-            var distances = await coffeeShopsQueryService.GetClosestCoffeeShops();
+            var distances = await coffeeShopsQueryService.GetShortestCoffeeShopDistances();
 
             // Assert
             Assert.Equal(MockValues.DefaultOutputDistancesCount, distances.Count());
