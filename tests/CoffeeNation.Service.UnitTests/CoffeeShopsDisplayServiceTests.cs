@@ -31,7 +31,7 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsDisplayService = new CoffeeShopsDisplayService(_displayFacadeMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopsDisplayService.DisplayCoffeeShopDistances(MockData.NullShopDistances);
+            async Task Act() => await coffeeShopsDisplayService.DisplayCoffeeShopDistances(MockObjects.NullShopDistances);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
@@ -44,7 +44,7 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsDisplayService = new CoffeeShopsDisplayService(_displayFacadeMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopsDisplayService.DisplayCoffeeShopDistances(MockData.EmptyShopDistances);
+            async Task Act() => await coffeeShopsDisplayService.DisplayCoffeeShopDistances(MockObjects.EmptyShopDistances);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(Act);
@@ -54,7 +54,7 @@ namespace CoffeeNation.Service.UnitTests
         public async Task TestThat_DisplayCoffeeShops_When_RepositoryThrowsException_Throws_SameException()
         {
             // Arrange
-            var mockException = MockData.GenericException;
+            var mockException = MockObjects.GenericException;
 
             _coffeeShopDistanceRepositoryMock
                 .Setup(x => x.SetCoffeeShopDistances(It.IsAny<IEnumerable<Distance>>()))
@@ -63,7 +63,7 @@ namespace CoffeeNation.Service.UnitTests
             var coffeeShopsDisplayService = new CoffeeShopsDisplayService(_displayFacadeMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopsDisplayService.DisplayCoffeeShopDistances(MockData.SelectedShopDistances);
+            async Task Act() => await coffeeShopsDisplayService.DisplayCoffeeShopDistances(MockObjects.SelectedShopDistances);
 
             // Assert
             var exception = await Assert.ThrowsAnyAsync<Exception>(Act);
@@ -74,7 +74,7 @@ namespace CoffeeNation.Service.UnitTests
         public async Task TestThat_DisplayCoffeeShops_When_DistancesListIsValid_Calls_RepositoryOutputMethod_Once()
         {
             // Arrange
-            var mockDistances = MockData.SelectedShopDistances.ToList();
+            var mockDistances = MockObjects.SelectedShopDistances.ToList();
 
             var coffeeShopsDisplayService = new CoffeeShopsDisplayService(_displayFacadeMock.Object);
 

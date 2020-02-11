@@ -15,7 +15,7 @@ namespace CoffeeNation.Core.UnitTests
             var distanceSelector = new ClosestThreeDistancesSelector();
 
             // Act
-            async Task Act() => await distanceSelector.SelectDistances(MockData.NullShopDistances);
+            async Task Act() => await distanceSelector.SelectDistances(MockObjects.NullShopDistances);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
@@ -28,7 +28,7 @@ namespace CoffeeNation.Core.UnitTests
             var distanceSelector = new ClosestThreeDistancesSelector();
 
             // Act
-            async Task Act() => await distanceSelector.SelectDistances(MockData.LessThanThreeShopDistances);
+            async Task Act() => await distanceSelector.SelectDistances(MockObjects.LessThanThreeShopDistances);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(Act);
@@ -41,7 +41,7 @@ namespace CoffeeNation.Core.UnitTests
             var distanceSelector = new ClosestThreeDistancesSelector();
 
             // Act
-            var distances = await distanceSelector.SelectDistances(MockData.AllShopDistances);
+            var distances = await distanceSelector.SelectDistances(MockObjects.AllShopDistances);
 
             // Assert
             Assert.NotNull(distances);
@@ -54,7 +54,7 @@ namespace CoffeeNation.Core.UnitTests
             var distanceSelector = new ClosestThreeDistancesSelector();
 
             // Act
-            var distances = await distanceSelector.SelectDistances(MockData.AllShopDistances);
+            var distances = await distanceSelector.SelectDistances(MockObjects.AllShopDistances);
 
             // Assert
             Assert.Equal(MockValues.DefaultOutputDistancesCount, distances.Count());

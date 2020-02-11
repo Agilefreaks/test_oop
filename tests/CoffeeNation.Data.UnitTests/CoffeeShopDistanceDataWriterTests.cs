@@ -22,7 +22,7 @@ namespace CoffeeNation.Data.UnitTests
             var dataWriter = new CoffeeShopDistanceDataWriter(distanceFormatterMock.Object, outputProviderMock.Object);
 
             // Act
-            async Task Act() => await dataWriter.WriteCoffeeShopDistances(MockData.NullShopDistances);
+            async Task Act() => await dataWriter.WriteCoffeeShopDistances(MockObjects.NullShopDistances);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
@@ -32,7 +32,7 @@ namespace CoffeeNation.Data.UnitTests
         public async Task TestThat_WriteCoffeeShopDistances_When_DistanceFormatterThrowsException_Throws_SameException()
         {
             // Arrange
-            var mockException = MockData.GenericException;
+            var mockException = MockObjects.GenericException;
 
             var distanceFormatterMock = new Mock<ICoffeeShopDistanceFormatter>();
             distanceFormatterMock
@@ -44,7 +44,7 @@ namespace CoffeeNation.Data.UnitTests
             var dataWriter = new CoffeeShopDistanceDataWriter(distanceFormatterMock.Object, outputProviderMock.Object);
 
             // Act
-            async Task Act() => await dataWriter.WriteCoffeeShopDistances(MockData.AllShopDistances);
+            async Task Act() => await dataWriter.WriteCoffeeShopDistances(MockObjects.AllShopDistances);
 
             // Assert
             var exception = await Assert.ThrowsAnyAsync<Exception>(Act);
@@ -55,7 +55,7 @@ namespace CoffeeNation.Data.UnitTests
         public async Task TestThat_WriteCoffeeShopDistances_When_OutputProviderThrowsException_Throws_SameException()
         {
             // Arrange
-            var mockException = MockData.GenericException;
+            var mockException = MockObjects.GenericException;
 
             var distanceFormatterMock = new Mock<ICoffeeShopDistanceFormatter>();
 
@@ -67,7 +67,7 @@ namespace CoffeeNation.Data.UnitTests
             var dataWriter = new CoffeeShopDistanceDataWriter(distanceFormatterMock.Object, outputProviderMock.Object);
 
             // Act
-            async Task Act() => await dataWriter.WriteCoffeeShopDistances(MockData.AllShopDistances);
+            async Task Act() => await dataWriter.WriteCoffeeShopDistances(MockObjects.AllShopDistances);
 
             // Assert
             var exception = await Assert.ThrowsAnyAsync<Exception>(Act);
@@ -85,11 +85,11 @@ namespace CoffeeNation.Data.UnitTests
             var dataWriter = new CoffeeShopDistanceDataWriter(distanceFormatterMock.Object, outputProviderMock.Object);
 
             // Act
-            await dataWriter.WriteCoffeeShopDistances(MockData.AllShopDistances);
+            await dataWriter.WriteCoffeeShopDistances(MockObjects.AllShopDistances);
 
             // Assert
             distanceFormatterMock.Verify(
-                x => x.GetFormattedDistance(It.IsAny<Distance>()), Times.Exactly(MockData.AllShopDistances.Count()));
+                x => x.GetFormattedDistance(It.IsAny<Distance>()), Times.Exactly(MockObjects.AllShopDistances.Count()));
         }
 
         [Fact]
@@ -103,11 +103,11 @@ namespace CoffeeNation.Data.UnitTests
             var dataWriter = new CoffeeShopDistanceDataWriter(distanceFormatterMock.Object, outputProviderMock.Object);
 
             // Act
-            await dataWriter.WriteCoffeeShopDistances(MockData.AllShopDistances);
+            await dataWriter.WriteCoffeeShopDistances(MockObjects.AllShopDistances);
 
             // Assert
             outputProviderMock.Verify(
-                x => x.OutputStringLine(It.IsAny<string>()), Times.Exactly(MockData.AllShopDistances.Count()));
+                x => x.OutputStringLine(It.IsAny<string>()), Times.Exactly(MockObjects.AllShopDistances.Count()));
         }
     }
 }

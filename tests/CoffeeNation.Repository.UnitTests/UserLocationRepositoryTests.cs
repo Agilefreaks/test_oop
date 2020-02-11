@@ -54,7 +54,7 @@ namespace CoffeeNation.Repository.UnitTests
             var dataReaderMock = new Mock<IUserLocationDataReader>();
             dataReaderMock
                 .Setup(x => x.ReadUserLocation())
-                .ReturnsAsync(MockData.UserLocation1);
+                .ReturnsAsync(MockObjects.UserLocation1);
 
             var userLocationRepository = new UserLocationRepository(dataReaderMock.Object);
 
@@ -69,7 +69,7 @@ namespace CoffeeNation.Repository.UnitTests
         public async Task TestThat_GetUserLocation_When_DataReaderReturnsItems_Returns_LocationWithExpectedValues()
         {
             // Arrange
-            var mockLocation = MockData.UserLocation1;
+            var mockLocation = MockObjects.UserLocation1;
 
             var dataReaderMock = new Mock<IUserLocationDataReader>();
             dataReaderMock

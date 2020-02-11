@@ -33,7 +33,7 @@ namespace CoffeeNation.Data.UnitTests
         public async Task TestThat_ReadUserLocation_When_ProviderThrowsException_Throws_SameException()
         {
             // Arrange
-            var mockException = MockData.GenericException;
+            var mockException = MockObjects.GenericException;
 
             var userLocationProviderMock = new Mock<IUserLocationProvider>();
             userLocationProviderMock
@@ -57,7 +57,7 @@ namespace CoffeeNation.Data.UnitTests
             var userLocationProviderMock = new Mock<IUserLocationProvider>();
             userLocationProviderMock
                 .Setup(x => x.GetUserLocationCoordinates())
-                .ReturnsAsync(MockData.ValidRawUserLocation1);
+                .ReturnsAsync(MockObjects.ValidRawUserLocation1);
 
             var dataReader = new UserLocationDataReader(userLocationProviderMock.Object);
 
@@ -72,12 +72,12 @@ namespace CoffeeNation.Data.UnitTests
         public async Task TestThat_ReadUserLocation_When_ParserAndProviderDoNotThrowException_Returns_LocationWithExpectedValues()
         {
             // Arrange
-            var userLocationMock = MockData.UserLocation99;
+            var userLocationMock = MockObjects.UserLocation99;
 
             var userLocationProviderMock = new Mock<IUserLocationProvider>();
             userLocationProviderMock
                 .Setup(x => x.GetUserLocationCoordinates())
-                .ReturnsAsync(MockData.ValidRawUserLocation99);
+                .ReturnsAsync(MockObjects.ValidRawUserLocation99);
 
             var dataReader = new UserLocationDataReader(userLocationProviderMock.Object);
 

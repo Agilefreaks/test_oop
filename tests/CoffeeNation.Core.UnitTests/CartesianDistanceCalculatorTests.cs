@@ -14,7 +14,7 @@ namespace CoffeeNation.Core.UnitTests
             var distanceCalculator = new CartesianDistanceCalculator();
 
             // Act
-            async Task Act() => await distanceCalculator.CalculateDistanceToDestination(MockData.NullUserLocation, MockData.ShopLocation1);
+            async Task Act() => await distanceCalculator.CalculateDistanceToDestination(MockObjects.NullUserLocation, MockObjects.ShopLocation1);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
@@ -27,7 +27,7 @@ namespace CoffeeNation.Core.UnitTests
             var distanceCalculator = new CartesianDistanceCalculator();
 
             // Act
-            async Task Act() => await distanceCalculator.CalculateDistanceToDestination(MockData.UserLocation1, MockData.NullShopLocation);
+            async Task Act() => await distanceCalculator.CalculateDistanceToDestination(MockObjects.UserLocation1, MockObjects.NullShopLocation);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
@@ -40,7 +40,7 @@ namespace CoffeeNation.Core.UnitTests
             var distanceCalculator = new CartesianDistanceCalculator();
 
             // Act
-            var distance = await distanceCalculator.CalculateDistanceToDestination(MockData.UserLocation1, MockData.ShopLocation1);
+            var distance = await distanceCalculator.CalculateDistanceToDestination(MockObjects.UserLocation1, MockObjects.ShopLocation1);
 
             // Assert
             Assert.NotNull(distance);
@@ -52,8 +52,8 @@ namespace CoffeeNation.Core.UnitTests
             // Arrange
             var distanceCalculator = new CartesianDistanceCalculator();
 
-            var source = MockData.UserLocation1;
-            var destination = MockData.ShopLocation1;
+            var source = MockObjects.UserLocation1;
+            var destination = MockObjects.ShopLocation1;
 
             // Act
             var distance = await distanceCalculator.CalculateDistanceToDestination(source, destination);
@@ -68,8 +68,8 @@ namespace CoffeeNation.Core.UnitTests
             // Arrange
             var distanceCalculator = new CartesianDistanceCalculator();
 
-            var source = MockData.UserLocation1;
-            var destination = MockData.ShopLocation1;
+            var source = MockObjects.UserLocation1;
+            var destination = MockObjects.ShopLocation1;
 
             // Act
             var distance = await distanceCalculator.CalculateDistanceToDestination(source, destination);

@@ -34,8 +34,8 @@ namespace CoffeeNation.Dependency
 
         private static void AddCoreRegistrations(this IServiceCollection services)
         {
-            services.AddTransient<IDistanceCalculator, CartesianDistanceCalculator>();
-            services.AddTransient<IDistanceSelector, ClosestThreeDistancesSelector>();
+            services.AddSingleton<IDistanceCalculator, CartesianDistanceCalculator>();
+            services.AddSingleton<IDistanceSelector, ClosestThreeDistancesSelector>();
         }
 
         private static void AddServiceRegistrations(this IServiceCollection services)

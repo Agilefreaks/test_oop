@@ -15,7 +15,7 @@ namespace CoffeeNation.Data.UnitTests.Parser
             var csvLineParser = new CsvLineParser();
 
             // Act
-            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockData.StringNullCsvLine);
+            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockObjects.StringNullCsvLine);
 
             // Assert
             var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
@@ -29,7 +29,7 @@ namespace CoffeeNation.Data.UnitTests.Parser
             var csvLineParser = new CsvLineParser();
 
             // Act
-            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockData.StringNullCsvLine);
+            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockObjects.StringNullCsvLine);
 
             // Assert
             var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
@@ -43,7 +43,7 @@ namespace CoffeeNation.Data.UnitTests.Parser
             var csvLineParser = new CsvLineParser();
 
             // Act
-            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockData.LessThanThreeTokensCsvLine);
+            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockObjects.LessThanThreeTokensCsvLine);
 
             // Assert
             var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
@@ -58,7 +58,7 @@ namespace CoffeeNation.Data.UnitTests.Parser
             var csvLineParser = new CsvLineParser();
 
             // Act
-            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockData.MoreThanThreeTokensCsvLine);
+            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockObjects.MoreThanThreeTokensCsvLine);
 
             // Assert
             var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
@@ -72,7 +72,7 @@ namespace CoffeeNation.Data.UnitTests.Parser
             var csvLineParser = new CsvLineParser();
 
             // Act
-            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockData.Token1ErrorCsvLine);
+            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockObjects.Token1ErrorCsvLine);
 
             // Assert
             var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
@@ -86,7 +86,7 @@ namespace CoffeeNation.Data.UnitTests.Parser
             var csvLineParser = new CsvLineParser();
 
             // Act
-            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockData.Token2ErrorCsvLine);
+            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockObjects.Token2ErrorCsvLine);
 
             // Assert
             var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
@@ -100,7 +100,7 @@ namespace CoffeeNation.Data.UnitTests.Parser
             var csvLineParser = new CsvLineParser();
 
             // Act
-            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockData.Token3ErrorCsvLine);
+            async Task Act() => await csvLineParser.GetCoffeeShopLocation(MockObjects.Token3ErrorCsvLine);
 
             // Assert
             var exception = await Assert.ThrowsAsync<DataValidationException>(Act);
@@ -114,7 +114,7 @@ namespace CoffeeNation.Data.UnitTests.Parser
             var csvLineParser = new CsvLineParser();
 
             // Act
-            var location = await csvLineParser.GetCoffeeShopLocation(MockData.ValidCsvLine1);
+            var location = await csvLineParser.GetCoffeeShopLocation(MockObjects.ValidCsvLine1);
 
             // Assert
             Assert.NotNull(location);
@@ -126,12 +126,12 @@ namespace CoffeeNation.Data.UnitTests.Parser
             var csvLineParser = new CsvLineParser();
 
             // Act
-            var location = await csvLineParser.GetCoffeeShopLocation(MockData.ValidCsvLine99);
+            var location = await csvLineParser.GetCoffeeShopLocation(MockObjects.ValidCsvLine99);
 
             // Assert
-            Assert.Equal(MockData.ShopLocation99.X, location.X);
-            Assert.Equal(MockData.ShopLocation99.Y, location.Y);
-            Assert.Equal(MockData.ShopLocation99.Tag, location.Tag);
+            Assert.Equal(MockObjects.ShopLocation99.X, location.X);
+            Assert.Equal(MockObjects.ShopLocation99.Y, location.Y);
+            Assert.Equal(MockObjects.ShopLocation99.Tag, location.Tag);
         }
     }
 }

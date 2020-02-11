@@ -18,7 +18,7 @@ namespace CoffeeNation.Data.UnitTests
             var dataWriter = new ConsoleMessageDataWriter(outputProviderMock.Object);
 
             // Act
-            async Task Act() => await dataWriter.WriteMessage(MockData.NullMessage);
+            async Task Act() => await dataWriter.WriteMessage(MockObjects.NullMessage);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
@@ -28,7 +28,7 @@ namespace CoffeeNation.Data.UnitTests
         public async Task TestThat_WriteMessage_When_OutputProviderThrowsException_Throws_SameException()
         {
             // Arrange
-            var mockException = MockData.GenericException;
+            var mockException = MockObjects.GenericException;
 
             var outputProviderMock = new Mock<IConsoleOutputProvider>();
             outputProviderMock
@@ -38,7 +38,7 @@ namespace CoffeeNation.Data.UnitTests
             var dataWriter = new ConsoleMessageDataWriter(outputProviderMock.Object);
 
             // Act
-            async Task Act() => await dataWriter.WriteMessage(MockData.ValidMessage);
+            async Task Act() => await dataWriter.WriteMessage(MockObjects.ValidMessage);
 
             // Assert
             var exception = await Assert.ThrowsAnyAsync<Exception>(Act);
@@ -51,7 +51,7 @@ namespace CoffeeNation.Data.UnitTests
             // Arrange
             var outputProviderMock = new Mock<IConsoleOutputProvider>();
 
-            var mockMessage = MockData.ValidMessage;
+            var mockMessage = MockObjects.ValidMessage;
 
             var dataWriter = new ConsoleMessageDataWriter(outputProviderMock.Object);
 

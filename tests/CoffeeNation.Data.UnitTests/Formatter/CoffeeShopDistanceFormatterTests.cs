@@ -15,7 +15,7 @@ namespace CoffeeNation.Data.UnitTests.Formatter
             var distanceFormatter = new CoffeeShopDistanceFormatter();
 
             // Act
-            async Task Act() => await distanceFormatter.GetFormattedDistance(MockData.NullShopDistance);
+            async Task Act() => await distanceFormatter.GetFormattedDistance(MockObjects.NullShopDistance);
 
             // Assert
             await Assert.ThrowsAnyAsync<ArgumentNullException>(Act);
@@ -28,7 +28,7 @@ namespace CoffeeNation.Data.UnitTests.Formatter
             var distanceFormatter = new CoffeeShopDistanceFormatter();
 
             // Act
-            var formattedDistance = await distanceFormatter.GetFormattedDistance(MockData.ShopDistance1);
+            var formattedDistance = await distanceFormatter.GetFormattedDistance(MockObjects.ShopDistance1);
 
             // Assert
             Assert.False(string.IsNullOrEmpty(formattedDistance));
@@ -41,10 +41,10 @@ namespace CoffeeNation.Data.UnitTests.Formatter
             var distanceFormatter = new CoffeeShopDistanceFormatter();
 
             // Act
-            var formattedDistance = await distanceFormatter.GetFormattedDistance(MockData.ShopDistance1);
+            var formattedDistance = await distanceFormatter.GetFormattedDistance(MockObjects.ShopDistance1);
 
             // Assert
-            Assert.Equal(MockData.FormattedCoffeeShopDistance1, formattedDistance);
+            Assert.Equal(MockObjects.FormattedCoffeeShopDistance1, formattedDistance);
         }
     }
 }

@@ -6,7 +6,7 @@ using CoffeeNation.Core.Exceptions;
 
 namespace CoffeeNation.UnitTestsCommon
 {
-    public static class MockData
+    public static class MockObjects
     {
         // Location
         public static Location NullShopLocation => null;

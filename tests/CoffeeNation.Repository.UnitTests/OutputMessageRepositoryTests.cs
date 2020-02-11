@@ -18,7 +18,7 @@ namespace CoffeeNation.Repository.UnitTests
             var outputMessageRepository = new OutputMessageRepository(dataWriterMock.Object);
 
             // Act
-            async Task Act() => await outputMessageRepository.SendMessage(MockData.NullMessage);
+            async Task Act() => await outputMessageRepository.SendMessage(MockObjects.NullMessage);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
@@ -28,7 +28,7 @@ namespace CoffeeNation.Repository.UnitTests
         public async Task TestThat_SendMessage_When_DataWriterThrowsException_Throws_SameException()
         {
             // Arrange
-            var mockException = MockData.GenericException;
+            var mockException = MockObjects.GenericException;
 
             var dataWriterMock = new Mock<IMessageDataWriter>();
             dataWriterMock
@@ -38,7 +38,7 @@ namespace CoffeeNation.Repository.UnitTests
             var outputMessageRepository = new OutputMessageRepository(dataWriterMock.Object);
 
             // Act
-            async Task Act() => await outputMessageRepository.SendMessage(MockData.ValidMessage);
+            async Task Act() => await outputMessageRepository.SendMessage(MockObjects.ValidMessage);
 
             // Assert
             var exception = await Assert.ThrowsAnyAsync<Exception>(Act);
@@ -51,7 +51,7 @@ namespace CoffeeNation.Repository.UnitTests
             // Arrange
             var dataWriterMock = new Mock<IMessageDataWriter>();
 
-            var mockMessage = MockData.ValidMessage;
+            var mockMessage = MockObjects.ValidMessage;
 
             var outputMessageRepository = new OutputMessageRepository(dataWriterMock.Object);
 

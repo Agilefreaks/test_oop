@@ -18,7 +18,7 @@ namespace CoffeeNation.Service.UnitTests
             var messagingService = new MessagingService(outputMessageRepositoryMock.Object);
 
             // Act
-            async Task Act() => await messagingService.SendErrorDetails(MockData.NullMessage, MockData.GenericException);
+            async Task Act() => await messagingService.SendErrorDetails(MockObjects.NullMessage, MockObjects.GenericException);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(Act);
@@ -33,7 +33,7 @@ namespace CoffeeNation.Service.UnitTests
             var messagingService = new MessagingService(outputMessageRepositoryMock.Object);
 
             // Act
-            async Task Act() => await messagingService.SendErrorDetails(MockData.EmptyMessage, MockData.GenericException);
+            async Task Act() => await messagingService.SendErrorDetails(MockObjects.EmptyMessage, MockObjects.GenericException);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(Act);
@@ -48,7 +48,7 @@ namespace CoffeeNation.Service.UnitTests
             var messagingService = new MessagingService(outputMessageRepositoryMock.Object);
 
             // Act
-            async Task Act() => await messagingService.SendErrorDetails(MockData.ValidMessage, MockData.NullException);
+            async Task Act() => await messagingService.SendErrorDetails(MockObjects.ValidMessage, MockObjects.NullException);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
@@ -58,7 +58,7 @@ namespace CoffeeNation.Service.UnitTests
         public async Task TestThat_SendErrorDetails_When_OutputRepositoryThrowsException_Throws_SameException()
         {
             // Arrange
-            var mockException = MockData.GenericException;
+            var mockException = MockObjects.GenericException;
 
             var outputMessageRepositoryMock = new Mock<IOutputMessageRepository>();
             outputMessageRepositoryMock
@@ -68,7 +68,7 @@ namespace CoffeeNation.Service.UnitTests
             var messagingService = new MessagingService(outputMessageRepositoryMock.Object);
 
             // Act
-            async Task Act() => await messagingService.SendErrorDetails(MockData.ValidMessage, MockData.GenericException);
+            async Task Act() => await messagingService.SendErrorDetails(MockObjects.ValidMessage, MockObjects.GenericException);
 
             // Assert
             var exception = await Assert.ThrowsAnyAsync<Exception>(Act);
@@ -84,10 +84,10 @@ namespace CoffeeNation.Service.UnitTests
             var messagingService = new MessagingService(outputMessageRepositoryMock.Object);
 
             // Act
-            await messagingService.SendErrorDetails(MockData.ValidErrorDetailsMessage, MockData.GenericException);
+            await messagingService.SendErrorDetails(MockObjects.ValidErrorDetailsMessage, MockObjects.GenericException);
 
             // Assert
-            outputMessageRepositoryMock.Verify(x => x.SendMessage(MockData.ValidErrorDetailsString), Times.Once);
+            outputMessageRepositoryMock.Verify(x => x.SendMessage(MockObjects.ValidErrorDetailsString), Times.Once);
         }
     }
 }

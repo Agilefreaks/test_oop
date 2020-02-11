@@ -40,7 +40,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
         public async Task TestThat_DisplayClosestCoffeeShops_When_QueryServiceThrows_DataValidationException_Calls_MessagingServiceWithCorrectParameters_Once()
         {
             // Arrange
-            var mockException = MockData.DataValidationException;
+            var mockException = MockObjects.DataValidationException;
 
             _queryServiceMock
                 .Setup(x => x.GetClosestCoffeeShops())
@@ -59,7 +59,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
         public async Task TestThat_DisplayClosestCoffeeShops_When_QueryServiceThrows_DataProviderException_Calls_MessagingServiceWithCorrectParameters_Once()
         {
             // Arrange
-            var mockException = MockData.DataProviderException;
+            var mockException = MockObjects.DataProviderException;
 
             _queryServiceMock
                 .Setup(x => x.GetClosestCoffeeShops())
@@ -78,7 +78,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
         public async Task TestThat_DisplayClosestCoffeeShops_When_QueryServiceThrows_GenericException_Calls_MessagingServiceWithCorrectParameters_Once()
         {
             // Arrange
-            var mockException = MockData.GenericException;
+            var mockException = MockObjects.GenericException;
 
             _queryServiceMock
                 .Setup(x => x.GetClosestCoffeeShops())
@@ -97,7 +97,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
         public async Task TestThat_DisplayClosestCoffeeShops_When_DisplayServiceThrows_DataValidationException_Calls_MessagingServiceWithCorrectParameters_Once()
         {
             // Arrange
-            var mockException = MockData.DataValidationException;
+            var mockException = MockObjects.DataValidationException;
 
             _displayServiceMock
                 .Setup(x => x.DisplayCoffeeShopDistances(It.IsAny<IEnumerable<Distance>>()))
@@ -116,7 +116,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
         public async Task TestThat_DisplayClosestCoffeeShops_When_DisplayServiceThrows_DataProviderException_Calls_MessagingServiceWithCorrectParameters_Once()
         {
             // Arrange
-            var mockException = MockData.DataProviderException;
+            var mockException = MockObjects.DataProviderException;
 
             _displayServiceMock
                 .Setup(x => x.DisplayCoffeeShopDistances(It.IsAny<IEnumerable<Distance>>()))
@@ -135,7 +135,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
         public async Task TestThat_DisplayClosestCoffeeShops_When_DisplayServiceThrows_GenericException_Calls_MessagingServiceWithCorrectParameters_Once()
         {
             // Arrange
-            var mockException = MockData.GenericException;
+            var mockException = MockObjects.GenericException;
 
             _displayServiceMock
                 .Setup(x => x.DisplayCoffeeShopDistances(It.IsAny<IEnumerable<Distance>>()))
@@ -156,7 +156,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
             // Arrange
             _queryServiceMock
                 .Setup(x => x.GetClosestCoffeeShops())
-                .ReturnsAsync(MockData.SelectedShopDistances);
+                .ReturnsAsync(MockObjects.SelectedShopDistances);
 
             _displayServiceMock
                 .Setup(x => x.DisplayCoffeeShopDistances(It.IsAny<IEnumerable<Distance>>()));
@@ -174,7 +174,7 @@ namespace CoffeeNation.ConsoleApp.UnitTests
         public async Task TestThat_DisplayClosestCoffeeShops_When_NoError_Calls_DisplayService_Once()
         {
             // Arrange
-            var mockDistances = MockData.SelectedShopDistances.ToList();
+            var mockDistances = MockObjects.SelectedShopDistances.ToList();
 
             _queryServiceMock
                 .Setup(x => x.GetClosestCoffeeShops())

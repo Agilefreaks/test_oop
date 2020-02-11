@@ -46,11 +46,11 @@ namespace CoffeeNation.Service.UnitTests
             // Arrange
             _userLocationRepositoryMock
                 .Setup(x => x.GetUserLocation())
-                .ReturnsAsync(MockData.UserLocation1);
+                .ReturnsAsync(MockObjects.UserLocation1);
 
             _coffeeShopLocationRepositoryMock
                 .Setup(x => x.GetCoffeeShopLocations())
-                .ReturnsAsync(MockData.ValidCoffeeShopLocations);
+                .ReturnsAsync(MockObjects.ValidCoffeeShopLocations);
 
             _distanceCalculatorMock
                 .Setup(x => x.CalculateDistanceToDestination(It.IsAny<Location>(), It.IsAny<Location>()))
@@ -141,19 +141,19 @@ namespace CoffeeNation.Service.UnitTests
             // Arrange
             _userLocationRepositoryMock
                 .Setup(x => x.GetUserLocation())
-                .ReturnsAsync(MockData.UserLocation1);
+                .ReturnsAsync(MockObjects.UserLocation1);
 
             _coffeeShopLocationRepositoryMock
                 .Setup(x => x.GetCoffeeShopLocations())
-                .ReturnsAsync(MockData.ValidCoffeeShopLocations);
+                .ReturnsAsync(MockObjects.ValidCoffeeShopLocations);
 
             _distanceCalculatorMock
                 .Setup(x => x.CalculateDistanceToDestination(It.IsAny<Location>(), It.IsAny<Location>()))
-                .ReturnsAsync(MockData.ShopDistance1);
+                .ReturnsAsync(MockObjects.ShopDistance1);
 
             _distanceSelectorMock
                 .Setup(x => x.SelectDistances(It.IsAny<IEnumerable<Distance>>()))
-                .ReturnsAsync(MockData.SelectedShopDistances);
+                .ReturnsAsync(MockObjects.SelectedShopDistances);
 
             var coffeeShopsQueryService = new CoffeeShopsQueryService(_queryFacadeMock.Object);
 
@@ -170,19 +170,19 @@ namespace CoffeeNation.Service.UnitTests
             // Arrange
             _userLocationRepositoryMock
                 .Setup(x => x.GetUserLocation())
-                .ReturnsAsync(MockData.UserLocation1);
+                .ReturnsAsync(MockObjects.UserLocation1);
 
             _coffeeShopLocationRepositoryMock
                 .Setup(x => x.GetCoffeeShopLocations())
-                .ReturnsAsync(MockData.ValidCoffeeShopLocations);
+                .ReturnsAsync(MockObjects.ValidCoffeeShopLocations);
 
             _distanceCalculatorMock
                 .Setup(x => x.CalculateDistanceToDestination(It.IsAny<Location>(), It.IsAny<Location>()))
-                .ReturnsAsync(MockData.ShopDistance1);
+                .ReturnsAsync(MockObjects.ShopDistance1);
 
             _distanceSelectorMock
                 .Setup(x => x.SelectDistances(It.IsAny<IEnumerable<Distance>>()))
-                .ReturnsAsync(MockData.SelectedShopDistances);
+                .ReturnsAsync(MockObjects.SelectedShopDistances);
 
             var coffeeShopsQueryService = new CoffeeShopsQueryService(_queryFacadeMock.Object);
 

@@ -19,7 +19,7 @@ namespace CoffeeNation.Data.UnitTests
             var csvContentProviderMock = new Mock<ICsvContentProvider>();
             csvContentProviderMock
                 .Setup(x => x.GetCsvLines())
-                .ReturnsAsync(MockData.ValidCsvContent);
+                .ReturnsAsync(MockObjects.ValidCsvContent);
 
             var csvContentParserMock = new Mock<ICsvLineParser>();
             csvContentParserMock
@@ -40,12 +40,12 @@ namespace CoffeeNation.Data.UnitTests
         public async Task TestThat_ReadCoffeeShopLocations_When_ParserThrowsException_Throws_SameException()
         {
             // Arrange
-            var mockException = MockData.GenericException; 
+            var mockException = MockObjects.GenericException; 
 
             var csvContentProviderMock = new Mock<ICsvContentProvider>();
             csvContentProviderMock
                 .Setup(x => x.GetCsvLines())
-                .ReturnsAsync(MockData.ValidCsvContent);
+                .ReturnsAsync(MockObjects.ValidCsvContent);
 
             var csvContentParserMock = new Mock<ICsvLineParser>();
             csvContentParserMock
@@ -73,7 +73,7 @@ namespace CoffeeNation.Data.UnitTests
             var csvContentParserMock = new Mock<ICsvLineParser>();
             csvContentParserMock
                 .Setup(x => x.GetCoffeeShopLocation(It.IsAny<string>()))
-                .ReturnsAsync(MockData.ShopLocation1);
+                .ReturnsAsync(MockObjects.ShopLocation1);
 
             var dataReader = new CsvCoffeeShopLocationDataReader(csvContentProviderMock.Object, csvContentParserMock.Object);
 
@@ -89,7 +89,7 @@ namespace CoffeeNation.Data.UnitTests
         public async Task TestThat_ReadCoffeeShopLocations_When_ProviderThrowsException_Throws_SameException()
         {
             // Arrange
-            var mockException = MockData.GenericException;
+            var mockException = MockObjects.GenericException;
 
             var csvContentProviderMock = new Mock<ICsvContentProvider>();
             csvContentProviderMock.Setup(x => x.GetCsvLines())
@@ -98,7 +98,7 @@ namespace CoffeeNation.Data.UnitTests
             var csvContentParserMock = new Mock<ICsvLineParser>();
             csvContentParserMock
                 .Setup(x => x.GetCoffeeShopLocation(It.IsAny<string>()))
-                .ReturnsAsync(MockData.ShopLocation1);
+                .ReturnsAsync(MockObjects.ShopLocation1);
 
             var dataReader = new CsvCoffeeShopLocationDataReader(csvContentProviderMock.Object, csvContentParserMock.Object);
 
@@ -117,12 +117,12 @@ namespace CoffeeNation.Data.UnitTests
             var csvContentProviderMock = new Mock<ICsvContentProvider>();
             csvContentProviderMock
                 .Setup(x => x.GetCsvLines())
-                .ReturnsAsync(MockData.ValidCsvContent);
+                .ReturnsAsync(MockObjects.ValidCsvContent);
 
             var csvContentParserMock = new Mock<ICsvLineParser>();
             csvContentParserMock
                 .Setup(x => x.GetCoffeeShopLocation(It.IsAny<string>()))
-                .ReturnsAsync(MockData.ShopLocation1);
+                .ReturnsAsync(MockObjects.ShopLocation1);
 
             var dataReader = new CsvCoffeeShopLocationDataReader(csvContentProviderMock.Object, csvContentParserMock.Object);
 
@@ -137,7 +137,7 @@ namespace CoffeeNation.Data.UnitTests
         public async Task TestThat_ReadCoffeeShopLocations_When_ParserAndProviderDoNotThrowExceptions_Returns_LocationWithExpectedValues()
         {
             // Arrange
-            var csvContentMock = MockData.ValidCsvContent.ToList();
+            var csvContentMock = MockObjects.ValidCsvContent.ToList();
 
             var csvContentProviderMock = new Mock<ICsvContentProvider>();
             csvContentProviderMock
@@ -147,7 +147,7 @@ namespace CoffeeNation.Data.UnitTests
             var csvContentParserMock = new Mock<ICsvLineParser>();
             csvContentParserMock
                 .Setup(x => x.GetCoffeeShopLocation(It.IsAny<string>()))
-                .ReturnsAsync(MockData.ShopLocation1);
+                .ReturnsAsync(MockObjects.ShopLocation1);
 
             var dataReader = new CsvCoffeeShopLocationDataReader(csvContentProviderMock.Object, csvContentParserMock.Object);
 

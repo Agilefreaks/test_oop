@@ -22,7 +22,7 @@ namespace CoffeeNation.Repository.UnitTests
             var coffeeShopDistanceRepository = new CoffeeShopDistanceRepository(dataWriterMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopDistanceRepository.SetCoffeeShopDistances(MockData.NullShopDistances);
+            async Task Act() => await coffeeShopDistanceRepository.SetCoffeeShopDistances(MockObjects.NullShopDistances);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentNullException>(Act);
@@ -37,7 +37,7 @@ namespace CoffeeNation.Repository.UnitTests
             var coffeeShopDistanceRepository = new CoffeeShopDistanceRepository(dataWriterMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopDistanceRepository.SetCoffeeShopDistances(MockData.EmptyShopDistances);
+            async Task Act() => await coffeeShopDistanceRepository.SetCoffeeShopDistances(MockObjects.EmptyShopDistances);
 
             // Assert
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(Act);
@@ -55,7 +55,7 @@ namespace CoffeeNation.Repository.UnitTests
             var coffeeShopDistanceRepository = new CoffeeShopDistanceRepository(dataWriterMock.Object);
 
             // Act
-            async Task Act() => await coffeeShopDistanceRepository.SetCoffeeShopDistances(MockData.SelectedShopDistances);
+            async Task Act() => await coffeeShopDistanceRepository.SetCoffeeShopDistances(MockObjects.SelectedShopDistances);
 
             // Assert
             var exception = await Assert.ThrowsAsync<DataProviderException>(Act);
@@ -66,7 +66,7 @@ namespace CoffeeNation.Repository.UnitTests
         public async Task TestThat_SetCoffeeShopDistances_When_DistancesListIsValid_Calls_DataWriterWriteCoffeeShopDistances_Once()
         {
             // Arrange
-            var distancesMock = MockData.SelectedShopDistances.ToList();
+            var distancesMock = MockObjects.SelectedShopDistances.ToList();
 
             var dataWriterMock = new Mock<ICoffeeShopDistanceDataWriter>();
             dataWriterMock.Setup(x => x.WriteCoffeeShopDistances(It.IsAny<IEnumerable<Distance>>()));

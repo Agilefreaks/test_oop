@@ -55,7 +55,7 @@ namespace CoffeeNation.Repository.UnitTests
             var dataReaderMock = new Mock<ICoffeeShopLocationDataReader>();
             dataReaderMock
                 .Setup(x => x.ReadCoffeeShopLocations())
-                .ReturnsAsync(MockData.EmptyShopLocations);
+                .ReturnsAsync(MockObjects.EmptyShopLocations);
 
             var coffeeShopLocationRepository = new CoffeeShopLocationRepository(dataReaderMock.Object);
 
@@ -73,7 +73,7 @@ namespace CoffeeNation.Repository.UnitTests
             var dataReaderMock = new Mock<ICoffeeShopLocationDataReader>();
             dataReaderMock
                 .Setup(x => x.ReadCoffeeShopLocations())
-                .ReturnsAsync(MockData.ValidCoffeeShopLocations);
+                .ReturnsAsync(MockObjects.ValidCoffeeShopLocations);
 
             var coffeeShopLocationRepository = new CoffeeShopLocationRepository(dataReaderMock.Object);
 
@@ -91,7 +91,7 @@ namespace CoffeeNation.Repository.UnitTests
             var dataReaderMock = new Mock<ICoffeeShopLocationDataReader>();
             dataReaderMock
                 .Setup(x => x.ReadCoffeeShopLocations())
-                .ReturnsAsync(MockData.ValidCoffeeShopLocations);
+                .ReturnsAsync(MockObjects.ValidCoffeeShopLocations);
 
             var coffeeShopLocationRepository = new CoffeeShopLocationRepository(dataReaderMock.Object);
 
