@@ -13,6 +13,8 @@ class InputValidator
     raise 'Invalid input: check correctness of arguments, filename or file entries' unless valid_input?
   end
 
+  private
+
   def valid_input?
     valid_file? && valid_user_coordinates? && valid_file_entries?
   end
