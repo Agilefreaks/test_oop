@@ -9,7 +9,7 @@ RSpec.describe InputValidator do
                        ["Starbucks Moscow", "55.752047", "37.595242"],
                        ["Starbucks Seattle2", "47.5869", "-122.3368"]] }
 
-  describe '#validates' do
+  describe '#validate' do
     context 'when invalid input' do
       it 'throws error and program exits' do
         input_validator = InputValidator.new(invalid_input)

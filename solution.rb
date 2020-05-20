@@ -1,8 +1,7 @@
 require_relative 'input_validator'
 require_relative 'user'
-require_relative 'coffee_shop'
 require_relative 'user_coffee_shop_query'
-
+require_relative 'coffee_shop'
 class Solution
   attr_reader :user_x_coordinate, :user_y_coordinate, :csv_file_name, :input
 
@@ -14,22 +13,26 @@ class Solution
   end
 
   def find
-    validate_input
+    input_validator.validate
     user_coffee_shop_query.result
   end
 
   private
 
-  def validate_input
-    InputValidator.new(input).validate
+  def input_validator
+    @input_validator ||= InputValidator.new(input)
   end
 
   def user_coffee_shop_query
-    UserCoffeeShopQuery.new(coffee_shop.all, user)
+    UserCoffeeShopQuery.new(coffee_shops, user)
   end
 
-  def coffee_shop
-    CoffeeShop.new(csv_file_name)
+  def coffee_shops
+    file_entries.map { |name, x, y| CoffeeShop.new(name, x, y) }
+  end
+
+  def file_entries
+    input_validator.file_entries
   end
 
   def user

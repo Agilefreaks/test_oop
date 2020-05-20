@@ -8,10 +8,11 @@ RSpec.describe Solution do
                        ["Starbucks SF", "37.5209", "-122.3340"],
                        ["Starbucks Moscow", "55.752047", "37.595242"],
                        ["Starbucks Seattle2", "47.5869", "-122.3368"]] }
+  let (:solution) { Solution.new(input).find }
   describe "#find" do
     before { allow(CSV).to receive(:read).with(filename).and_return(coffee_shops) }
     it 'returns the closest three coffee shops for a user' do
-      solution = Solution.new(input).find
+      
       expect(solution.length).to be(3)
     end
   end
