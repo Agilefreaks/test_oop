@@ -2,6 +2,7 @@ require_relative 'input_validator'
 require_relative 'user'
 require_relative 'user_coffee_shop_query'
 require_relative 'coffee_shop'
+
 class Solution
   attr_reader :user_x_coordinate, :user_y_coordinate, :csv_file_name, :input
 
