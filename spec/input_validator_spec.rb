@@ -13,7 +13,7 @@ RSpec.describe InputValidator do
     context 'when invalid input' do
       it 'throws error and program exits' do
         input_validator = InputValidator.new(invalid_input)
-        expect { input_validator.validate }.to raise_error
+        expect { input_validator.validate }.to raise_error(RuntimeError)
       end
     end
     context 'when valid input' do

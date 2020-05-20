@@ -15,8 +15,10 @@ class Solution
 
   def find
     validate_input
-    user_coffee_shop_query.show_closest
+    user_coffee_shop_query.result
   end
+
+  private
 
   def validate_input
     InputValidator.new(input).validate

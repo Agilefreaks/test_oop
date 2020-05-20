@@ -13,13 +13,13 @@ RSpec.describe UserCoffeeShopQuery do
     {name: "Starbucks Seattle2", x: "47.5869", y: "-122.3368"}
   ]}
 
-  describe "#show_closest" do
+  describe "#result" do
     before { allow(CSV).to receive(:read).with(filename).and_return(coffee_shops) }
 
     it 'determines what are the closest three coffee shops for a user' do
       user_coffee_shop_query = UserCoffeeShopQuery.new(coffee_shops, user)
-      expect(user_coffee_shop_query.show_closest.length).to be(3)
-      expect(user_coffee_shop_query.show_closest.first[:name]).to eq('Starbucks Moscow')
+      expect(user_coffee_shop_query.result.length).to be(3)
+      expect(user_coffee_shop_query.result.first[:name]).to eq('Starbucks Moscow')
     end
   end
 end

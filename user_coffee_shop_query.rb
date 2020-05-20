@@ -8,7 +8,7 @@ class UserCoffeeShopQuery
     @user = user
   end
 
-  def show_closest
+  def result
     calculate_distances
     @distances.sort_by { |coffee_shop| coffee_shop[:distance] }.first(3).each do |coffee_shop|
       puts "#{coffee_shop[:name]},#{coffee_shop[:distance]}"
