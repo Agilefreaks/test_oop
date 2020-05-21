@@ -1,19 +1,21 @@
 require_relative 'distance_calculator'
 
 class UserCoffeeShopQuery
+  attr_reader :coffee_shops
+
   def initialize(coffee_shops, user)
     @coffee_shops = coffee_shops
     @user = user
   end
 
   def result
-    distances.sort_by { |coffee_shop| coffee_shop[:distance] }.first(3)
+    distances.min(3).map { |distance| { name: coffee_shops[distances.index(distance)].name, distance: distance } }
   end
 
   private
 
   def distances
-    @coffee_shops.map { |coffee_shop| { name: coffee_shop.name, distance: distance(coffee_shop) } }
+    @distances ||= coffee_shops.map { |coffee_shop| distance(coffee_shop) }
   end
 
   def distance(coffee_shop)
