@@ -1,0 +1,5 @@
+inherit_from: '../.rubocop.yml'
+
+# Allow specs to span as many lines as they need to
+Metrics/BlockLength:
+  Enabled: false
