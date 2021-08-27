@@ -1,0 +1,2 @@
+# Ignore RSpec slow examples file
+spec/examples.txt
