@@ -1,2 +1,3 @@
 # Ignore RSpec slow examples file
 spec/examples.txt
+/.byebug_history

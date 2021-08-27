@@ -8,3 +8,5 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 gem 'rspec', '~> 3.10'
 
 gem 'rubocop', '~> 1.20', require: false
+
+gem 'byebug', '~> 11.1', groups: %i[development test]
