@@ -6,10 +6,10 @@ module CoffeePlace
     module_function
 
     # Maximum number of latitude degrees
-    MAX_LAT = 180
+    MAX_LAT = 90
 
     # Maximum number of longitude degrees
-    MAX_LON = 90
+    MAX_LON = 180
 
     def within_latitude_bounds?(lat)
       (lat >= -MAX_LAT) && (lat <= MAX_LAT)

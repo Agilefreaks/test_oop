@@ -32,19 +32,19 @@ RSpec.describe CoffeePlace::Location do
     end
 
     it 'returns failure when latitude is invalid' do
-      invalid_opts = valid_opts.merge(lat: 182.3)
+      invalid_opts = valid_opts.merge(lat: -91.2)
       result = subject.validate(**invalid_opts)
 
       expect(result).to be_failure
-      expect(result.error).to eq('Invalid latitude: 182.3')
+      expect(result.error).to eq('Invalid latitude: -91.2')
     end
 
     it 'returns failure when longitude is invalid' do
-      invalid_opts = valid_opts.merge(lon: -91.2)
+      invalid_opts = valid_opts.merge(lon: 182.3)
       result = subject.validate(**invalid_opts)
 
       expect(result).to be_failure
-      expect(result.error).to eq('Invalid longitude: -91.2')
+      expect(result.error).to eq('Invalid longitude: 182.3')
     end
 
     it 'returns failure when latitude cannot be parsed' do

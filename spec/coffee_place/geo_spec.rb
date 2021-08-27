@@ -10,11 +10,11 @@ RSpec.describe CoffeePlace::Geo do
     expect(geo.within_latitude_bounds?(42.0)).to eq(true)
     expect(geo.within_latitude_bounds?(-42.0)).to eq(true)
 
-    expect(geo.within_latitude_bounds?(180)).to eq(true)
-    expect(geo.within_latitude_bounds?(-180.0)).to eq(true)
+    expect(geo.within_latitude_bounds?(90.0)).to eq(true)
+    expect(geo.within_latitude_bounds?(-90.0)).to eq(true)
 
-    expect(geo.within_latitude_bounds?(182.0)).to eq(false)
-    expect(geo.within_latitude_bounds?(-182.0)).to eq(false)
+    expect(geo.within_latitude_bounds?(92.0)).to eq(false)
+    expect(geo.within_latitude_bounds?(-92.0)).to eq(false)
   end
 
   it 'checks whether a value is within longitude bounds' do
@@ -22,10 +22,10 @@ RSpec.describe CoffeePlace::Geo do
     expect(geo.within_longitude_bounds?(42.0)).to eq(true)
     expect(geo.within_longitude_bounds?(-42.0)).to eq(true)
 
-    expect(geo.within_longitude_bounds?(90.0)).to eq(true)
-    expect(geo.within_longitude_bounds?(-90.0)).to eq(true)
+    expect(geo.within_longitude_bounds?(180)).to eq(true)
+    expect(geo.within_longitude_bounds?(-180.0)).to eq(true)
 
-    expect(geo.within_longitude_bounds?(92.0)).to eq(false)
-    expect(geo.within_longitude_bounds?(-92.0)).to eq(false)
+    expect(geo.within_longitude_bounds?(182.0)).to eq(false)
+    expect(geo.within_longitude_bounds?(-182.0)).to eq(false)
   end
 end
