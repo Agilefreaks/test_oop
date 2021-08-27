@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'coffee_place'
 
 RSpec.describe CoffeePlace do
