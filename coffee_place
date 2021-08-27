@@ -1,0 +1,6 @@
+#! /usr/bin/env ruby
+
+require_relative './lib/coffee_place/cli.rb'
+
+cli = CoffeePlace::CLI.new
+cli.run(ARGV)
