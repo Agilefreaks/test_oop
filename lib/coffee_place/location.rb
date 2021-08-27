@@ -2,18 +2,24 @@
 
 require_relative './result'
 require_relative './geo'
+require_relative './earth_distance'
 
 module CoffeePlace
   # Represents a location on the map
   class Location
     include Geo
+    include EarthDistance
 
-    attr :lat, :lon, :name
+    attr_accessor :lat, :lon, :name
 
     def initialize(lat:, lon:, name:)
       @lat = lat
       @lon = lon
       @name = name
+    end
+
+    def distance_to(other_location)
+      earth_distance(self, other_location)
     end
 
     def valid_latitude?

@@ -13,6 +13,46 @@ RSpec.describe CoffeePlace::Location do
     )
   end
 
+  describe '#distance_to' do
+    subject(:location) do
+      described_class.new(
+        lat: 47.6,
+        lon: -122.4,
+        name: 'Current user location'
+      )
+    end
+
+    let(:seattle) do
+      described_class.new(
+        lat: 47.5809,
+        lon: -122.3160,
+        name: 'Coffee Shop Seattle'
+      )
+    end
+
+    let(:downtown) do
+      described_class.new(
+        lat: 47.5869,
+        lon: -122.3368,
+        name: 'Coffee Shop Downtown'
+      )
+    end
+
+    let(:san_fransisco) do
+      described_class.new(
+        lat: 37.5209,
+        lon: -122.3340,
+        name: 'Coffee Shop San Francisco'
+      )
+    end
+
+    it 'returns distance to other locations' do
+      expect(location.distance_to(downtown)).to be_almost_eq(0.0645)
+      expect(location.distance_to(seattle)).to be_almost_eq(0.0861)
+      expect(location.distance_to(san_fransisco)).to be_almost_eq(10.0793)
+    end
+  end
+
   describe '.validate' do
     subject { described_class }
 
