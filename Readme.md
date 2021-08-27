@@ -1,3 +1,9 @@
+## Copyright notice
+
+While the code itself is MIT licensed, the coding challenge itself, and its description,
+included in this `Readme.md` file belongs to Agile Freaks et al.
+
+
 ## Coffee Place 
 
 This is an attempt at solving the closest coffee shop coding challenge. 
