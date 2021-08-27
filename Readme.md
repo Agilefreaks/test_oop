@@ -1,4 +1,39 @@
-## Overview
+## Coffee Place 
+
+This is an attempt at solving the closest coffee shop coding challenge. 
+
+All good software starts with making flawed assumptions.  
+
+To make things easier on ourselves, we will assume that the Earth is flat.  
+We all know this to be true - all of those satellite pictures are hoaxes!  
+
+Furthermore, walking over the edge of the Earth teleports you to the opposing  
+side - like in Snake, or other old school video games.
+
+```
+
+                        ↑
+                        Oy
+   -180_______-90_______|________90_______180     ____  90 latitude
+     |                  |                 |
+     |                  |                 |
+     |                  |                 |
+     |------------------0-----------------|-Ox->  ----   0 latitude
+     |                  |                 |
+     |                  |                 |
+     |                  |                 |
+     |__________________|_________________|       ____ -90 latitude
+
+
+```
+
+
+This project will use the Ruby programming languge to implement the CLI application.
+
+Let's do this!
+
+
+## Coding challenge Overview
 
 You have been hired by a company that builds a mobile app for coffee addicts.  You are 
 responsible for taking the user’s location and returning a list of the three closest coffee shops.
