@@ -27,6 +27,9 @@ module CoffeePlace
 
     private
 
+    # Since we are declaratively defining independent flags, method length isn't a concern
+    #
+    # rubocop:disable Metrics/MethodLength
     def build_args_parser
       OptionParser.new do |opts|
         opts.banner = CoffeePlace::BANNER
@@ -44,6 +47,7 @@ module CoffeePlace
         end
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
     # Sadly, ruby's OptParser does not like arguments that start with a minus sign,
     # as it interprets them as CLI command switches, e.g -122.4 raises OptionParser::InvalidOption
