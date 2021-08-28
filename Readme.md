@@ -16,6 +16,10 @@ We all know this to be true - all of those satellite pictures are hoaxes!
 Furthermore, walking over the edge of the Earth teleports you to the opposing  
 side - like in Snake, or other old school video games.
 
+This only works for the "left-right" sides, as crossing the 180 meridian takes  
+you to the other hemisphere. This does **not** work for the "up-down" sides,  
+as we don't have a good way of teleporting from the North Pole to the South Pole yet.
+
 ```
 
                         ↑

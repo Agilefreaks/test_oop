@@ -51,6 +51,52 @@ RSpec.describe CoffeePlace::Location do
       expect(location.distance_to(seattle)).to be_almost_eq(0.0861)
       expect(location.distance_to(san_fransisco)).to be_almost_eq(10.0793)
     end
+
+    context 'when locations are across 180 meridian' do
+      let(:honolulu) do
+        described_class.new(
+          lat: 21.350601,
+          lon: -157.933155,
+          name: 'Coffee Shop Honolulu Hawaii'
+        )
+      end
+
+      let(:tokyo) do
+        described_class.new(
+          lat: 35.681933,
+          lon: 139.763514,
+          name: 'Coffee Shop Tokyo'
+        )
+      end
+
+      it 'returns correct distance between locations' do
+        expect(honolulu.distance_to(tokyo)).to be_almost_eq(63.9303)
+      end
+    end
+
+    context 'when location are far but both close to the poles' do
+      # https://en.wikipedia.org/wiki/Longyearbyen
+      let(:northernmost_town) do
+        described_class.new(
+          lat: 78.13,
+          lon: 15.38,
+          name: 'Coffee Shop Longyearbyen Norway'
+        )
+      end
+
+      # https://en.wikipedia.org/wiki/Ushuaia
+      let(:southernmost_town) do
+        described_class.new(
+          lat: -54.48,
+          lon: 68.18,
+          name: 'Coffee Shop Ushuaia Argentina'
+        )
+      end
+
+      it 'returns correct distance between locations' do
+        expect(northernmost_town.distance_to(southernmost_town)).to be_almost_eq(142.7349)
+      end
+    end
   end
 
   describe 'same_place?' do

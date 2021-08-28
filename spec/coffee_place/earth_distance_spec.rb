@@ -36,22 +36,5 @@ RSpec.describe CoffeePlace::EarthDistance do
         earth.wrapped_delta(lon_a, lon_b, CoffeePlace::Geo::MAX_LON)
       end
     end
-
-    context 'for latitude' do
-      it 'returns absolute value of difference' do
-        expect(latitude_delta(62, 44)).to be_almost_eq(18)
-        expect(latitude_delta(-10.2, -4.2)).to be_almost_eq(6)
-        expect(latitude_delta(30, -20.8)).to be_almost_eq(50.8)
-      end
-
-      it 'wraps around when delta too great' do
-        expect(latitude_delta(62, -80.3)).to be_almost_eq(37.7) # (180 - (62 + 80.3))
-        expect(latitude_delta(-82, 10.6)).to be_almost_eq(87.4) # (180 - (82 + 10.6))
-      end
-
-      def latitude_delta(lat_a, lat_b)
-        earth.wrapped_delta(lat_a, lat_b, CoffeePlace::Geo::MAX_LAT)
-      end
-    end
   end
 end

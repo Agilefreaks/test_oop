@@ -9,12 +9,14 @@ module CoffeePlace
 
     def earth_distance(location_a, location_b)
       lon_delta = wrapped_delta(location_a.lon, location_b.lon, Geo::MAX_LON)
-      lat_delta = wrapped_delta(location_a.lat, location_b.lat, Geo::MAX_LAT)
+      lat_delta = (location_a.lat - location_b.lat).abs
 
       Math.sqrt(lon_delta**2 + lat_delta**2)
     end
 
-    # Ensure that we can wrap around longitude and latitude
+    # Ensure that we can wrap around longitude.
+    # Crossing the -180 degree meridian takes us across to the Eastern Hemisphere.
+    #
     # This means that if the direct distance is too great we "go the other way",
     # crossing the event horizon, and ending up on the other side of our map.
     #
