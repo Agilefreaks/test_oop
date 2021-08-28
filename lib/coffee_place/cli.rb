@@ -27,7 +27,7 @@ module CoffeePlace
       locations = import_locations_from!(cli_opts)
 
       search = Search.new(locations)
-      closest_locations = search.find_closest_to(user_location)
+      closest_locations = search.find_closest_to(user_location, cli_opts.num_results)
 
       display_closest_locations(closest_locations)
     end

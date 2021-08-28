@@ -3,7 +3,7 @@
 module CoffeePlace
   # Keeps parsed CLI options, also defining defaults.
   class CLIOptions
-    attr_accessor :version, :help, :remaining
+    attr_accessor :version, :help, :remaining, :num_results
 
     def initialize(version: false, help: false, remaining: [])
       @version = version

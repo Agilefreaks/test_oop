@@ -38,6 +38,10 @@ module CoffeePlace
         opts.on('-v', '--version', 'Print version and exit') do
           @cli_opts.version = true
         end
+
+        opts.on('-n[NUM]', '--num=[NUM]', 'Number of search results to return - default is 3') do |num|
+          @cli_opts.num_results = num.to_i
+        end
       end
     end
 

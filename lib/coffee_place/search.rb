@@ -12,7 +12,9 @@ module CoffeePlace
 
     # Returns an array of `[distance, location]` tuples,
     # sorted in ascending order of distance to `target_location`
-    def find_closest_to(target_location, num_results = DEFAULT_NUM_RESULTS)
+    def find_closest_to(target_location, num_results = nil)
+      num_results ||= DEFAULT_NUM_RESULTS
+
       @locations
         .map { |location| [target_location.distance_to(location), location] }
         .sort_by(&:first)
