@@ -53,6 +53,27 @@ RSpec.describe CoffeePlace::Location do
     end
   end
 
+  describe 'same_place?' do
+    subject(:location) { described_class.new(lat: 1.0, lon: 2.0, name: 'Location') }
+    subject(:other) { described_class.new(lat: 1.0, lon: 2.0, name: 'Other') }
+
+    it 'is same place as another location when coordinates are the same' do
+      expect(location).to be_same_place(other)
+    end
+
+    it 'is not same place as another location when lat differs' do
+      other.lat = 3
+
+      expect(location).not_to be_same_place(other)
+    end
+
+    it 'is not same place as another location when lon differs' do
+      other.lon = 3
+
+      expect(location).not_to be_same_place(other)
+    end
+  end
+
   describe '.validate' do
     subject { described_class }
 

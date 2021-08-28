@@ -34,6 +34,14 @@ module CoffeePlace
       "location(lat = #{@lat}, lon: #{@lon}, name: #{@name})"
     end
 
+    def ==(other)
+      same_place?(other) && (@name == other.name)
+    end
+
+    def same_place?(other)
+      (@lat == other.lat) && (@lon == other.lon)
+    end
+
     class << self
       def validate(lat:, lon:, name:)
         result_lat = parse_coordinate(lat, 'latitude')
