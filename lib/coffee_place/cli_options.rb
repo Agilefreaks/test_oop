@@ -19,8 +19,17 @@ module CoffeePlace
       @help
     end
 
+    def source_name
+      @remaining.last
+    end
+
     def <<(arg_value)
       @remaining << arg_value
+    end
+
+    # Counts free standing CLI arguments, not taking flags into account
+    def num_args
+      @remaining.size
     end
   end
 end
