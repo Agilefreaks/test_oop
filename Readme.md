@@ -42,6 +42,28 @@ This project will use the Ruby programming languge to implement the CLI applicat
 
 Let's do this!
 
+## Setup instructions
+
+This project uses Ruby 3.0.
+
+Setup steps:
+    - clone repo
+    - make sure you have Ruby 3.0 installed
+      using `rvm` or `chruby` will switch Ruby to the right version
+    - `gem install bundler`     # Make sure bundler is installed for Ruby 3.0
+    - `bundle install`          # Install dependencies
+    - `bundle exec rspec`       # Run tests
+    - `bundle exec rubocop`     # Delight in code style guide nagging :P
+
+
+## How to run the program:
+```
+# Using local file
+./coffee_place 47.6 -122.4 coffee_shops.csv
+
+# Using remote file
+./coffee_place 47.6 -122.4 https://raw.githubusercontent.com/Agilefreaks/test_oop/master/coffee_shops.csv
+```
 
 ## Coding challenge Overview
 
