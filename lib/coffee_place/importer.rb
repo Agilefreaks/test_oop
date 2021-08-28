@@ -10,29 +10,38 @@ module CoffeePlace
   # Imports locations from local or remote CSV file.
   class Importer
     def initialize
+      @locations = []
       @errors = []
     end
 
     def import_from(source_name)
-      @errors.clear
-      locations = []
       line_index = 0
 
       with_source(source_name) do |csv|
-        CSV.parse(csv) do |(place_name, lat, lon)|
-          result = Location.validate(name: place_name, lat: lat, lon: lon)
+        CSV.parse(csv) do |line|
           line_index += 1
-
-          if result.success?
-            locations << result.value
-          else
-            add_import_error "CSV error on line #{line_index}: #{result.error}"
-          end
+          import_line(line, line_index)
         end
       end
 
+      location_results
+    end
+
+    def import_line(line, line_index)
+      place_name, lat, lon = line
+
+      result = Location.validate(name: place_name, lat: lat, lon: lon)
+
+      if result.success?
+        @locations << result.value
+      else
+        add_import_error "CSV error on line #{line_index}: #{result.error}"
+      end
+    end
+
+    def location_results
       if @errors.empty?
-        Result.success(locations)
+        Result.success(@locations)
       else
         Result.failure(@errors)
       end
@@ -47,10 +56,7 @@ module CoffeePlace
       # When we have a local file, try to open it
       return with_local_file(uri, &block) if File.exist?(uri.path)
 
-      add_import_error <<~ERROR
-        Don't know how to import locations from: #{source_name.inspect}
-        Make sure the URL or filename is not misstyped.
-      ERROR
+      add_import_error unknown_source_error_message(source_name)
     rescue URI::InvalidURIError
       add_import_error "#{source_name} is not a valid URL or local filename"
     end
@@ -65,6 +71,13 @@ module CoffeePlace
       File.open(uri.path, &block)
     rescue StandardError => e
       add_import_error "Failed to read local file \"#{uri.path}\": #{e.message}"
+    end
+
+    def unknown_source_error_message(source_name)
+      <<~ERROR
+        Don't know how to import locations from: #{source_name.inspect}
+        Make sure the URL or filename is not misstyped.
+      ERROR
     end
 
     def add_import_error(message)
