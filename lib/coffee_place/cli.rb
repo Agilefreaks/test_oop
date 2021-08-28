@@ -4,6 +4,7 @@ require_relative '../coffee_place'
 require_relative './location'
 require_relative './cli_parser'
 require_relative './importer'
+require_relative './search'
 
 module CoffeePlace
   # Parses and runs CLI application using supplied args.
@@ -47,13 +48,11 @@ module CoffeePlace
 
       locations = locations_result.value
 
-      puts <<~MSG
-        Not yet implemented, work in progress!
-        #{user_location}
-      MSG
+      search = Search.new(locations)
+      clossest_locations = search.find_closest_to(user_location)
 
-      locations.each do |location|
-        puts location
+      clossest_locations.each do |distance, location|
+        puts "#{location.name},#{distance.round(4)}"
       end
     end
 
