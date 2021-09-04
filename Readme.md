@@ -1,4 +1,71 @@
-## Overview
+## Copyright notice
+
+While the code itself is MIT licensed, the coding challenge itself, and its description,
+included in this `Readme.md` file belongs to Agile Freaks et al.
+
+
+## Coffee Place 
+
+This is an attempt at solving the closest coffee shop coding challenge. 
+
+All good software starts with making flawed assumptions.  
+
+To make things easier on ourselves, we will assume that the Earth is flat.  
+We all know this to be true - all of those satellite pictures are hoaxes!  
+
+Furthermore, walking over the edge of the Earth teleports you to the opposing  
+side - like in Snake, or other old school video games.
+
+This only works for the "left-right" sides, as crossing the 180 meridian takes  
+you to the other hemisphere. This does **not** work for the "up-down" sides,  
+as we don't have a good way of teleporting from the North Pole to the South Pole yet.
+
+```
+
+                        ↑
+                        Oy
+   -180_______-90_______|________90_______180     ____  90 latitude
+     |                  |                 |
+     |                  |                 |
+     |                  |                 |
+     |------------------0-----------------|-Ox->  ----   0 latitude
+     |                  |                 |
+     |                  |                 |
+     |                  |                 |
+     |__________________|_________________|       ____ -90 latitude
+
+
+```
+
+
+This project will use the Ruby programming languge to implement the CLI application.
+
+Let's do this!
+
+## Setup instructions
+
+This project uses Ruby 3.0.
+
+Setup steps:
+    - clone repo
+    - make sure you have Ruby 3.0 installed
+      using `rvm` or `chruby` will switch Ruby to the right version
+    - `gem install bundler`     # Make sure bundler is installed for Ruby 3.0
+    - `bundle install`          # Install dependencies
+    - `bundle exec rspec`       # Run tests
+    - `bundle exec rubocop`     # Delight in code style guide nagging :P
+
+
+## How to run the program:
+```
+# Using local file
+./coffee_place 47.6 -122.4 coffee_shops.csv
+
+# Using remote file
+./coffee_place 47.6 -122.4 https://raw.githubusercontent.com/Agilefreaks/test_oop/master/coffee_shops.csv
+```
+
+## Coding challenge Overview
 
 You have been hired by a company that builds a mobile app for coffee addicts.  You are 
 responsible for taking the user’s location and returning a list of the three closest coffee shops.
