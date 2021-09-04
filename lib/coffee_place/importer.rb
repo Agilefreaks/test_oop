@@ -66,6 +66,8 @@ module CoffeePlace
       uri.open(&block)
     rescue OpenURI::HTTPError => e
       add_import_error "Failed to download remote file \"#{uri}\": #{e.message}"
+    rescue SocketError => e
+      add_import_error "Failed to connect to remote host: #{e.message}"
     end
 
     def with_local_file(uri, &block)
