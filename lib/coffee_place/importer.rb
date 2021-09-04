@@ -29,13 +29,14 @@ module CoffeePlace
 
     def import_line(line, line_index)
       place_name, lat, lon = line
+      location = Location.new(name: place_name, lat: lat, lon: lon)
 
-      result = Location.validate(name: place_name, lat: lat, lon: lon)
-
-      if result.success?
-        @locations << result.value
+      if location.valid?
+        @locations << location
       else
-        add_import_error "CSV error on line #{line_index}: #{result.error}"
+        location.errors.each do |error|
+          add_import_error "CSV error on line #{line_index}: #{error}"
+        end
       end
     end
 

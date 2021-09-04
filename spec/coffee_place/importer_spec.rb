@@ -56,6 +56,7 @@ RSpec.describe CoffeePlace::Importer do
         expect(result).not_to be_success
         expect(result.error).to contain_exactly(
           'CSV error on line 2: Invalid latitude: " South America"',
+          'CSV error on line 2: Invalid longitude: " Western Hemisphere"',
           'CSV error on line 4: Missing longitude'
         )
       end

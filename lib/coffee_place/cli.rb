@@ -51,13 +51,12 @@ module CoffeePlace
 
     def validate_user_location!(cli_opts)
       lat, lon = cli_opts.remaining
-      location_result = Location.validate(lat: lat, lon: lon, name: 'Current user')
+      location = Location.new(lat: lat, lon: lon, name: 'Current user')
 
-      if location_result.success?
-        location_result.value
+      if location.valid?
+        location
       else
-        puts "Failure: #{location_result.error}"
-        show_help_and_exit!(exit_status: 1)
+        print_errors_and_exit!(location.errors)
       end
     end
 

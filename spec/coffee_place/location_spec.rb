@@ -120,70 +120,51 @@ RSpec.describe CoffeePlace::Location do
     end
   end
 
-  describe '.validate' do
-    subject { described_class }
+  describe '.validation' do
+    subject(:location) { described_class.new(lat: 22.3, lon: 42.9, name: 'Funkytown') }
 
-    let(:valid_opts) do
-      { lat: 22.3, lon: 42.9, name: 'Funkytown' }
-    end
+    it { is_expected.to be_valid }
 
-    it 'returns success with location when options valid' do
-      result = subject.validate(**valid_opts)
+    it 'returns error when latitude is invalid' do
+      location.lat = -91.2
 
-      expect(result).to be_success
-      expect(result.value).to have_attributes(
-        lat: 22.3,
-        lon: 42.9,
-        name: 'Funkytown'
-      )
-    end
-
-    it 'returns failure when latitude is invalid' do
-      invalid_opts = valid_opts.merge(lat: -91.2)
-      result = subject.validate(**invalid_opts)
-
-      expect(result).to be_failure
-      expect(result.error).to eq('Invalid latitude: -91.2')
+      expect(location).not_to be_valid
+      expect(location.errors).to include('Invalid latitude: -91.2')
     end
 
     it 'returns failure when longitude is invalid' do
-      invalid_opts = valid_opts.merge(lon: 182.3)
-      result = subject.validate(**invalid_opts)
+      location.lon = 182.3
 
-      expect(result).to be_failure
-      expect(result.error).to eq('Invalid longitude: 182.3')
+      expect(location).not_to be_valid
+      expect(location.errors).to include('Invalid longitude: 182.3')
     end
 
     it 'returns failure when latitude cannot be parsed' do
-      invalid_opts = valid_opts.merge(lat: '7 cats')
-      result = subject.validate(**invalid_opts)
+      location.lat = '7 cats'
 
-      expect(result).to be_failure
-      expect(result.error).to eq('Invalid latitude: "7 cats"')
+      expect(location).not_to be_valid
+      expect(location.errors).to include('Invalid latitude: "7 cats"')
     end
 
     it 'returns failure when longitude cannot be parsed' do
-      invalid_opts = valid_opts.merge(lon: '10 passes North')
-      result = subject.validate(**invalid_opts)
+      location.lon = '10 passes North'
 
-      expect(result).to be_failure
-      expect(result.error).to eq('Invalid longitude: "10 passes North"')
+      expect(location).not_to be_valid
+      expect(location.errors).to include('Invalid longitude: "10 passes North"')
     end
 
     it 'returns failure when latitude is missing' do
-      invalid_opts = valid_opts.merge(lat: nil)
-      result = subject.validate(**invalid_opts)
+      location.lat = nil
 
-      expect(result).to be_failure
-      expect(result.error).to eq('Missing latitude')
+      expect(location).not_to be_valid
+      expect(location.errors).to include('Missing latitude')
     end
 
     it 'returns failure when longitude is missing' do
-      invalid_opts = valid_opts.merge(lon: nil)
-      result = subject.validate(**invalid_opts)
+      location.lon = nil
 
-      expect(result).to be_failure
-      expect(result.error).to eq('Missing longitude')
+      expect(location).not_to be_valid
+      expect(location.errors).to include('Missing longitude')
     end
   end
 end
