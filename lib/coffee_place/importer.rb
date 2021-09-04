@@ -9,6 +9,8 @@ require_relative './location'
 module CoffeePlace
   # Imports locations from local or remote CSV file.
   class Importer
+    ALLOWED_URI_SCHEMES = %w[http https].freeze
+
     def initialize
       @locations = []
       @errors = []
@@ -52,7 +54,7 @@ module CoffeePlace
       uri = URI.parse(source_name)
 
       # When we have an URL, download remote file
-      return with_remote_file(uri, &block) if uri.scheme
+      return with_remote_file(uri, &block) if allowed_uri_scheme?(uri.scheme)
 
       # When we have a local file, try to open it
       return with_local_file(uri, &block) if File.exist?(uri.path)
@@ -74,6 +76,10 @@ module CoffeePlace
       File.open(uri.path, &block)
     rescue StandardError => e
       add_import_error "Failed to read local file \"#{uri.path}\": #{e.message}"
+    end
+
+    def allowed_uri_scheme?(scheme)
+      ALLOWED_URI_SCHEMES.include?(scheme)
     end
 
     def unknown_source_error_message(source_name)
